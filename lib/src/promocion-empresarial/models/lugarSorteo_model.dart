@@ -51,23 +51,23 @@ class LugarSorteoModel {
 
   factory LugarSorteoModel.fromJson(Map<String, dynamic> json) =>
       LugarSorteoModel(
-        lugarSorteoId: json["lugarSorteoId"],
-        tramiteId: json["tramiteId"],
-        promocionEmpresarialId: json["promocionEmpresarialId"],
-        personaId: json["personaId"],
-        departamentoId: json["departamentoId"],
-        direccion: json["direccion"],
+        lugarSorteoId: json["lugarSorteoId"] ?? 0,
+        tramiteId: json["tramiteId"] ?? 0,
+        promocionEmpresarialId: json["promocionEmpresarialId"] ?? 0,
+        personaId: json["personaId"] ?? 0,
+        departamentoId: json["departamentoId"] ?? 0,
+        direccion: json["direccion"] ?? "",
         fechaSorteo: DateTime.parse(json["fechaSorteo"]),
         fechaSorteoFin: DateTime.parse(json["fechaSorteoFin"]),
         fechaRegistro: json["fechaRegistro"],
         estadoId: json["estadoId"],
-        observacion: json["observacion"],
+        observacion: json["observacion"] ?? "",
         esAmpliado: json["esAmpliado"],
-        departamento: json["departamento"],
-        fechaS: json["fechaS"],
-        fechaSFin: json["fechaSFin"],
-        tipoInicioSorteoId: json["tipoInicioSorteoID"],
-        tipoInicioSorteoDescripcion: json["tipoInicioSorteoDescripcion"],
+        departamento: json["departamento"] ?? "",
+        fechaS: json["fechaS"] ?? "",
+        fechaSFin: json["fechaSFin"] ?? "",
+        tipoInicioSorteoId: json["tipoInicioSorteoID"] ?? 0,
+        tipoInicioSorteoDescripcion: json["tipoInicioSorteoDescripcion"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

@@ -193,6 +193,9 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
   }
 
   Widget _crearComoParticipar() {
+    print(promocionEmpresarialController.objMecanicaPremiacion
+        .toJson()
+        .toString());
     return Obx(() => (promocionEmpresarialController
                 .objMecanicaPremiacion.value.mecanica !=
             "")

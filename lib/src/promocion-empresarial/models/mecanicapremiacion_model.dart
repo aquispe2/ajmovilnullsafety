@@ -51,23 +51,26 @@ class MecanicaPremiacionModel {
 
   factory MecanicaPremiacionModel.fromJson(Map<String, dynamic> json) =>
       MecanicaPremiacionModel(
-        mecanicaPremiacionId: json["mecanicaPremiacionId"],
-        promocionEmpresarialId: json["promocionEmpresarialId"],
-        tramiteId: json["tramiteId"],
-        tipoModalidadPremiacionId: json["tipoModalidadPremiacionId"],
-        tipoClasificacionId: json["tipoClasificacionId"],
-        tipoClasificacionDescripcion: json["tipoClasificacionDescripcion"],
-        tipoModalidadSorteoId: json["tipoModalidadSorteoId"],
-        tipoModalidadSorteoDescripcion: json["tipoModalidadSorteoDescripcion"],
-        tipoPremiacionDirectaId: json["tipoPremiacionDirectaId"],
+        mecanicaPremiacionId: json["mecanicaPremiacionId"] ?? 0,
+        promocionEmpresarialId: json["promocionEmpresarialId"] ?? 0,
+        tramiteId: json["tramiteId"] ?? 0,
+        tipoModalidadPremiacionId: json["tipoModalidadPremiacionId"] ?? 0,
+        tipoClasificacionId: json["tipoClasificacionId"] ?? 0,
+        tipoClasificacionDescripcion:
+            json["tipoClasificacionDescripcion"] ?? "",
+        tipoModalidadSorteoId: json["tipoModalidadSorteoId"] ?? 0,
+        tipoModalidadSorteoDescripcion:
+            json["tipoModalidadSorteoDescripcion"] ?? "",
+        tipoPremiacionDirectaId: json["tipoPremiacionDirectaId"] ?? 0,
         tipoPremiacionDirectaDescripcion:
-            json["tipoPremiacionDirectaDescripcion"],
-        mecanica: json["mecanica"],
+            json["tipoPremiacionDirectaDescripcion"] ?? "",
+        mecanica: json["mecanica"] ?? "",
         fechaRegistro: DateTime.parse(json["fechaRegistro"]),
         estadoId: json["estadoId"],
-        tipoModalidadAzarId: json["tipoModalidadAzarId"],
-        tipoModalidadAzarDescripcion: json["tipoModalidadAzarDescripcion"],
-        tipoPremiacionDirectaAzar: json["tipoPremiacionDirectaAzar"],
+        tipoModalidadAzarId: json["tipoModalidadAzarId"] ?? 0,
+        tipoModalidadAzarDescripcion:
+            json["tipoModalidadAzarDescripcion"] ?? "",
+        tipoPremiacionDirectaAzar: json["tipoPremiacionDirectaAzar"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,7 +85,7 @@ class MecanicaPremiacionModel {
         "tipoPremiacionDirectaId": tipoPremiacionDirectaId,
         "tipoPremiacionDirectaDescripcion": tipoPremiacionDirectaDescripcion,
         "mecanica": mecanica,
-        "fechaRegistro": fechaRegistro.toIso8601String(),
+        //"fechaRegistro": fechaRegistro.toIso8601String(),
         "estadoId": estadoId,
         "tipoModalidadAzarId": tipoModalidadAzarId,
         "tipoModalidadAzarDescripcion": tipoModalidadAzarDescripcion,

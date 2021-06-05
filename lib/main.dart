@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
+import 'package:movilaj/src/promocion-empresarial/views/buscaPe_view.dart';
 import 'package:movilaj/src/utils/apis.dart' as api;
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:get/get.dart';
@@ -45,8 +46,8 @@ class _MyAppState extends State<MyApp> {
           GetPage(
               name: 'promociones_empresariales_detalle',
               page: () => PromocionEmpresarialDetalleView()),
-          /*GetPage(name: 'busca_promociones', page: () => BuscaPeView()),
-          GetPage(name: 'juegos_loteria', page: () => JuegosLoteriaView()),
+          GetPage(name: 'busca_promociones', page: () => BuscaPeView()),
+          /*GetPage(name: 'juegos_loteria', page: () => JuegosLoteriaView()),
           GetPage(name: 'juegos_azar', page: () => JuegosAzarView()),
           GetPage(name: 'busca_casos', page: () => BuscaCasosView()),
           GetPage(name: 'caso_detalle', page: () => CasoDetalleView()),

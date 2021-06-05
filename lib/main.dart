@@ -1,39 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
+import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
+import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
 import 'package:movilaj/src/utils/apis.dart' as api;
+import 'package:movilaj/src/utils/colores.dart' as colores;
+import 'package:get/get.dart';
+import 'package:movilaj/src/views/inicio_view.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: "${api.SITIO_WEB}/consultas?ajmovil=true",
-      appBar: new AppBar(
-        title: new Text("Widget webview"),
-      ),
-    );
+    // inicializando estado
+    Get.put(PromocionEmpresarialController());
+    /*Get.put(ConsultasReclamosDenunciasController());
+    final seguimientoTramiteController =Get.put(SeguimientoTramiteController());
+    Get.put(NormativaController());*/
+
+    // cargamos oficinas
+    //seguimientoTramiteController.cargarOficinas();
+
+    return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: colores.blue_grey_darken_1,
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        /*routes: {
+          'inicio': (BuildContext context) => InicioView(),
+        },*/
+        getPages: [
+          GetPage(name: 'inicio', page: () => InicioView()),
+          GetPage(name: 'promociones_empresariales', page: () => ListaPeView()),
+          GetPage(
+              name: 'promociones_empresariales_detalle',
+              page: () => PromocionEmpresarialDetalleView()),
+          /*GetPage(name: 'busca_promociones', page: () => BuscaPeView()),
+          GetPage(name: 'juegos_loteria', page: () => JuegosLoteriaView()),
+          GetPage(name: 'juegos_azar', page: () => JuegosAzarView()),
+          GetPage(name: 'busca_casos', page: () => BuscaCasosView()),
+          GetPage(name: 'caso_detalle', page: () => CasoDetalleView()),
+          GetPage(
+              name: 'consultas_reclamos_siteweb',
+              page: () => ConsultasReclamosView()),
+          GetPage(
+              name: 'denuncias_anticorrupcion',
+              page: () => DenunciasAnticorrupcionView()),
+          GetPage(
+              name: 'seguimiento_tramites',
+              page: () => SeguimientoTramitesView()),
+          GetPage(
+              name: 'tramite_fisico_detalle',
+              page: () => TramiteFisicoDetalleView()),
+          GetPage(
+              name: 'tramite_plataforma_detalle',
+              page: () => TramitePlataformaDetalleView()),
+          GetPage(name: 'aviso', page: () => AvisosView()),*/
+        ],
+        initialRoute: 'inicio');
   }
 }

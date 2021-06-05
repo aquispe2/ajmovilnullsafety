@@ -1,0 +1,510 @@
+import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
+import 'package:movilaj/src/promocion-empresarial/models/lugarPremiacon_model.dart';
+import 'package:movilaj/src/promocion-empresarial/models/lugarSorteo_model.dart';
+import 'package:movilaj/src/promocion-empresarial/models/premiosofertados_model.dart';
+
+import 'package:movilaj/src/utils/apis.dart';
+import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
+import 'package:movilaj/src/widgets/circularProgessCenter_widget.dart';
+import 'package:movilaj/src/widgets/circularProgress_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:movilaj/src/utils/colores.dart' as colores;
+import 'package:movilaj/src/utils/variables.dart' as variable;
+import 'package:url_launcher/url_launcher.dart';
+
+class PromocionEmpresarialDetalleView extends StatefulWidget {
+  @override
+  _BuscaPeDetalleState createState() => _BuscaPeDetalleState();
+}
+
+class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
+  final promocionEmpresarialController =
+      Get.find<PromocionEmpresarialController>();
+
+  @override
+  Widget build(BuildContext context) {
+    promocionEmpresarialController.cargarMecanicaPremiacionByPromocionId(
+        promocionEmpresarialController.objPromocion.promocionEmpresarialId);
+    promocionEmpresarialController.cargarPremiosOfertadosByPromocionId(
+        promocionEmpresarialController.objPromocion.promocionEmpresarialId);
+    promocionEmpresarialController.cargarLugaresPremiacionByPromocionId(
+        promocionEmpresarialController.objPromocion.promocionEmpresarialId);
+    promocionEmpresarialController.cargarLugaresSorteoByPromocionId(
+        promocionEmpresarialController.objPromocion.promocionEmpresarialId);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          variable.PROMOCIONES_EMPRESARIALES_DETALLE,
+          style: estiloTexto.estiloTextoAppbar,
+        ),
+      ),
+      body: Container(
+        color: colores.grey_lighten_2,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+          children: <Widget>[
+            _crearDatosEmpresa(),
+            _crearComoParticipar(),
+            _crearPremiosOfertados(),
+            _crearLugaresPremiacion(),
+            _crearLugarSorteo(),
+            _crearMasInformacion(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _crearMasInformacion() {
+    return Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(children: <Widget>[
+          Text.rich(TextSpan(
+              text: 'Para más información presione el enlace: ',
+              style: estiloTexto.estiloTextoNormal,
+              children: <InlineSpan>[
+                TextSpan(
+                  text: 'más información',
+                  style: new TextStyle(
+                    color: Colors.blue,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      launch(
+                          "${SITIO_SIAJ}/WebPortal/PromEmpresarial/BUSPromocion.aspx?idpe=${promocionEmpresarialController.objPromocion.promocionEmpresarialId}");
+                    },
+                )
+              ]))
+        ]));
+  }
+
+  Widget _crearDatosEmpresa() {
+    return Card(
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              "DATOS DE LA PROMOCIÓN",
+              style: estiloTexto.estiloTitulo,
+            ),
+            Divider(
+              color: Colors.indigo,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Empresa:',
+                    style: estiloTexto.estiloSubTitulo,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  child: Text(
+                    promocionEmpresarialController.objPromocion.nombreEmpresa,
+                    style: estiloTexto.estiloTextoNormal,
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Promoción:',
+                    style: estiloTexto.estiloSubTitulo,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  child: Text(
+                    promocionEmpresarialController.objPromocion.nombrePromocion,
+                    style: estiloTexto.estiloTextoNormal,
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Duración:',
+                    style: estiloTexto.estiloSubTitulo,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Estado:',
+                    style: estiloTexto.estiloSubTitulo,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                Text(
+                  promocionEmpresarialController.objPromocion.estado,
+                  style: estiloTexto.estiloTextoNormal,
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Autorización:',
+                    style: estiloTexto.estiloSubTitulo,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  child: Text(
+                    promocionEmpresarialController
+                        .objPromocion.cadenaCiteResolucion,
+                    style: estiloTexto.estiloTextoNormal,
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _crearComoParticipar() {
+    return Obx(() => (promocionEmpresarialController
+                .objMecanicaPremiacion.value.mecanica !=
+            "")
+        ? Card(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "COMO PARTICIPAR",
+                        style: estiloTexto.estiloTitulo,
+                      ),
+                      Divider(
+                        color: Colors.indigo,
+                      ),
+                      Text(
+                        promocionEmpresarialController
+                            .objMecanicaPremiacion.value.mecanica,
+                        style: estiloTexto.estiloTextoNormal,
+                        textAlign: TextAlign.justify,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
+        : ((promocionEmpresarialController.descargandoMecanica.value == true)
+            ? CircularProgressCenterWidget()
+            : _noExisetDato("COMO PARTICIPAR", variable.NOEXISTE_DATOS)));
+  }
+
+  Widget _crearLugaresPremiacion() {
+    return Obx(() => (promocionEmpresarialController.lstLugarPremiacion.length >
+            0)
+        ? Card(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "LUGARES PREMIACIÓN",
+                    style: estiloTexto.estiloTitulo,
+                  ),
+                  Divider(
+                    color: Colors.indigo,
+                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      primary: false,
+                      itemCount: promocionEmpresarialController
+                          .lstLugarPremiacion.length,
+                      itemBuilder: (context, i) => _creatItemLugarPremiacion(
+                          promocionEmpresarialController.lstLugarPremiacion[i]))
+                ],
+              ),
+            ),
+          )
+        : ((promocionEmpresarialController.descargandoLugarPremiacion.value ==
+                true)
+            ? CircularProgressCenterWidget()
+            : _noExisetDato("LUGARES PREMIACIÓN", variable.NOEXISTE_DATOS)));
+  }
+
+  Widget _crearLugarSorteo() {
+    return Obx(() => (promocionEmpresarialController.lstLugarSorteo.length > 0)
+        ? Card(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "LUGARES DE SORTEO",
+                    style: estiloTexto.estiloTitulo,
+                  ),
+                  Divider(
+                    color: Colors.indigo,
+                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      primary: false,
+                      itemCount:
+                          promocionEmpresarialController.lstLugarSorteo.length,
+                      itemBuilder: (context, i) => _creatItemLugarSorteo(
+                          promocionEmpresarialController.lstLugarSorteo[i]))
+                ],
+              ),
+            ),
+          )
+        : ((promocionEmpresarialController.descargandoLugarSorteo.value == true)
+            ? CircularProgressCenterWidget()
+            : _noExisetDato("LUGARES DE SORTEO", variable.NOEXISTE_DATOS)));
+  }
+
+  Widget _creatItemLugarSorteo(LugarSorteoModel pLugarSorteo) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width * 0.25,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                'Dirección:',
+                style: estiloTexto.estiloSubTitulo,
+                textAlign: TextAlign.right,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                pLugarSorteo.direccion,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width * 0.25,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                'Departamento:',
+                style: estiloTexto.estiloSubTitulo,
+                textAlign: TextAlign.right,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                pLugarSorteo.departamento,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width * 0.25,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                'Fecha de sorteo:',
+                style: estiloTexto.estiloSubTitulo,
+                textAlign: TextAlign.right,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                "${DateFormat('dd/MM/yyyy').format(pLugarSorteo.fechaSorteo!)}",
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Divider()
+      ],
+    );
+  }
+
+  Widget _crearPremiosOfertados() {
+    return Obx(() => (promocionEmpresarialController
+                .lstPremiosOfertados.length >
+            0)
+        ? Card(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "PREMIOS OFERTADOS",
+                    style: estiloTexto.estiloTitulo,
+                  ),
+                  Divider(
+                    color: Colors.indigo,
+                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      primary: false,
+                      itemCount: promocionEmpresarialController
+                          .lstPremiosOfertados.length,
+                      itemBuilder: (context, i) => _creatItemPremiosOfertados(
+                          promocionEmpresarialController
+                              .lstPremiosOfertados[i]))
+                ],
+              ),
+            ),
+          )
+        : ((promocionEmpresarialController.descargandoPremioOfertado.value ==
+                true)
+            ? CircularProgressCenterWidget()
+            : _noExisetDato("PREMIOS OFERTADOS", variable.NOEXISTE_DATOS)));
+  }
+
+  Widget _creatItemPremiosOfertados(PremiosOfertadosModel pPremioOfertado) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Icon(
+              Icons.done,
+              size: 15,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.75,
+              child: Text(
+                pPremioOfertado.descripcionPremio,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _creatItemLugarPremiacion(LugarPremiacionModel pLugarPremiacion) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  'Dirección:',
+                  style: estiloTexto.estiloSubTitulo,
+                  textAlign: TextAlign.right,
+                )),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                pLugarPremiacion.direccion,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  'Departamento:',
+                  style: estiloTexto.estiloSubTitulo,
+                  textAlign: TextAlign.right,
+                )),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                pLugarPremiacion.departamento,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  'Observación:',
+                  style: estiloTexto.estiloSubTitulo,
+                  textAlign: TextAlign.right,
+                )),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              child: Text(
+                pLugarPremiacion.observacion,
+                style: estiloTexto.estiloTextoNormal,
+              ),
+            )
+          ],
+        ),
+        Divider()
+      ],
+    );
+  }
+
+  Card _noExisetDato(String titulo, String contenido) {
+    return Card(
+      elevation: 10.0,
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              titulo,
+              style: estiloTexto.estiloSubTitulo,
+            ),
+            Divider(
+              color: Colors.blue[800],
+            ),
+            Text(
+              contenido,
+              style: estiloTexto.estiloTextoNormal,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:movilaj/src/informate/views/mapas_view.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
@@ -65,8 +66,8 @@ class _MyAppState extends State<MyApp> {
               page: () => TramiteFisicoDetalleView()),
           GetPage(
               name: 'tramite_plataforma_detalle',
-              page: () => TramitePlataformaDetalleView()),
-          GetPage(name: 'aviso', page: () => AvisosView()),*/
+              page: () => TramitePlataformaDetalleView()),*/
+          GetPage(name: 'mapa', page: () => MapasView()),
         ],
         initialRoute: 'inicio');
   }

@@ -132,7 +132,7 @@ class _InicioViewState extends State<InicioView> {
                 Container(),
                 _iconoCard(
                     context,
-                    "aviso",
+                    "mapa",
                     Center(
                       child: Icon(
                         Icons.audiotrack,
@@ -140,7 +140,7 @@ class _InicioViewState extends State<InicioView> {
                         size: 30.0,
                       ),
                     ),
-                    Text("Avisos",
+                    Text("Mapa",
                         style:
                             TextStyle(fontSize: 10, color: Color(0xff1565C0)),
                         textAlign: TextAlign.center),

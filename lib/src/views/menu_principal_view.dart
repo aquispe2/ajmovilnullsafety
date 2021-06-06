@@ -24,42 +24,70 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
           children: <Widget>[
             SafeArea(
               child: Container(
+                color: Colors.white,
                 padding: EdgeInsets.all(20),
                 width: double.infinity,
                 height: 200,
                 child: CircleLogoWidget(),
               ),
             ),
-            SizedBox(
-              height: 5,
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color(0xff004d9d),
+                  Color(0xff00ade7),
+                ],
+              )),
+              child: ListTile(
+                dense: true,
+                /*leading: Icon(
+                  Icons.label,
+                  color: Colors.white,
+                ),*/
+                title: Text(
+                  'Autoridad de Fiscalización del Juego',
+                  style: estiloTexto.stlTextoBlancoHomeBold,
+                ),
+                onTap: () {
+                  showAlertDialog(context);
+                },
+              ),
             ),
-            /*Column(
-              children: <Widget>[
+            Column(
+                /*children: <Widget>[
                 (normativaController.versionNueva.value != "")
                     ? Text(
                         normativaController.versionNueva.value,
                         style: TextStyle(fontSize: 12, color: Colors.red),
                       )
                     : SizedBox(height: 1),
-              ],
-            ),*/
+              ],*/
+                ),
             Expanded(
               child:
                   Container(color: Color(0xffFFFFFF), child: _ListaOpciones()),
             ),
             Container(
               decoration: BoxDecoration(
-                color: colores.grey_lighten_2,
-              ),
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color(0xff004d9d),
+                  Color(0xff00ade7),
+                ],
+              )),
               child: ListTile(
                 dense: true,
-                leading: Icon(
+                /*leading: Icon(
                   Icons.label,
-                  color: colores.blue_grey_darken_2,
-                ),
-                title: Text('Salir',
-                    style: TextStyle(
-                        fontSize: 14, color: colores.blue_grey_darken_2)),
+                  color: Colors.white,
+                ),*/
+                title: Text('               Salir',
+                    style: estiloTexto.stlTextoBlancoHomeBold),
                 onTap: () {
                   showAlertDialog(context);
                 },
@@ -112,16 +140,16 @@ class _ListaOpciones extends StatelessWidget {
       padding: EdgeInsets.zero,
       physics: BouncingScrollPhysics(),
       separatorBuilder: (context, i) => Divider(
-        color: colores.blue_grey_darken_1,
+        color: Colors.blue,
       ),
       itemCount: viewRoutes.length,
       itemBuilder: (context, i) => ListTile(
         dense: true,
         contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-        leading: Text("holaa"),
+        leading: Text("   "),
         title: Text(
           viewRoutes[i].titulo,
-          style: estiloTexto.estiloTextoNormal,
+          style: estiloTexto.stlTextoOpcionesMenuDesplegable,
         ),
         trailing: Icon(
           Icons.chevron_right,

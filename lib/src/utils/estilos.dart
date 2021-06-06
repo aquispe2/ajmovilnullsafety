@@ -61,6 +61,12 @@ TextStyle stlTextoIconHomePequeno = GoogleFonts.quicksand(
         letterSpacing: 0.0,
         fontSize: 9,
         fontWeight: FontWeight.bold));
+TextStyle stlTextoOpcionesMenuDesplegable = GoogleFonts.heebo(
+    textStyle: TextStyle(
+        color: Colors.black,
+        letterSpacing: 0.0,
+        fontSize: 13,
+        fontWeight: FontWeight.bold));
 // =========================
 
 TextStyle estiloTitulo = GoogleFonts.fjallaOne(

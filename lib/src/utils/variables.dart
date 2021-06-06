@@ -14,7 +14,7 @@ const SEGUIMIENTO_TRAMITES = "Seguimiento de Trámites";
 const ACERCA_APP = "Acerca de la App";
 const BUSCA_PE = "Búsqueda de Promociones";
 const BUSQUEDA_TRAMITES = "Búsqueda de Trámites";
-const BUSQUEDA_CASOS = "Búsqueda de Casos";
+const BUSQUEDA_CASOS = "Seguimientos";
 
 // MENSAJES
 const NOEXISTE_DATOS = "No existe datos";

@@ -23,36 +23,105 @@ class _InicioViewState extends State<InicioView> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+    double altoIcono = (media.width < 400) ? 40 : 60;
+    double anchoIcono = (media.width < 400) ? 40 : 60;
+
+    TextStyle stlTextoIconHome = (media.width < 400)
+        ? estiloTexto.stlTextoIconHomePequeno
+        : estiloTexto.stlTextoIconHomeNormal;
+
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(variable_textos.INICIO, style: estiloTexto.estiloTextoAppbar),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Color(0xff000000), //OR Colors.red or whatever you want
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                width: 40,
+                height: 40,
+                child: Image.asset('assets/LOGO_AJ_MOVIL_PEQUENO.png'))
+          ],
+        ),
         elevation: 0.0,
       ),
       drawer: MenuPrincipal(),
-      body: Stack(
-        children: <Widget>[
-          HeaderWidget(),
-          Container(
-            padding: EdgeInsets.only(top: 180),
-            child: GridView.count(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xff004d9d),
+            Color(0xff00ade7),
+          ],
+        )),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+              child: Text(
+                "AJ móvil te mantiene informado sobre sorteos, concursos y juegos de azar fiscalizados y autorizados por la AJ.",
+                style: estiloTexto.stlTextoBlancoHome,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                "Encuentra tus respuestas realizando búsquedas por nombre de empresa, nombre de promoción empresarial o palabra clave.",
+                style: estiloTexto.stlTextoBlancoHome,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Revisa nuestro tutorial ",
+                    style: estiloTexto.stlTextoBlancoHomeBold,
+                    textAlign: TextAlign.center,
+                  ),
+                  Card(
+                    elevation: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Container(
+                          width: 30,
+                          height: 30,
+                          child:
+                              Image.asset('assets/LOGO_AJ_MOVIL_PEQUENO.png')),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            GridView.count(
+              shrinkWrap: true,
+              primary: false,
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
               crossAxisCount: 3,
-              padding: EdgeInsets.all(16.0),
-              childAspectRatio: 8.0 / 9.0,
               children: <Widget>[
                 _iconoCard(
                     context,
                     "promociones_empresariales",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset(
+                              'assets/PROMOCIONES_EMPRESARIALES.png')),
                     ),
                     Text(
                       "Promociones Empresariales",
-                      style: TextStyle(fontSize: 10, color: Color(0xff1565C0)),
+                      style: stlTextoIconHome,
                       textAlign: TextAlign.center,
                     ),
                     null),
@@ -60,101 +129,93 @@ class _InicioViewState extends State<InicioView> {
                     context,
                     "consultas_reclamos_siteweb",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset('assets/CONSULTAS_RECLAMOS.png')),
                     ),
                     Text("Consultas y Reclamos",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center),
+                        style: stlTextoIconHome, textAlign: TextAlign.center),
                     "${api.SITIO_WEB}/consultas?ajmovil=true"),
                 _iconoCard(
                     context,
                     "juegos_loteria",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset('assets/LOTERIAS_DE_JUEGO.png')),
                     ),
                     Text("Juegos de Lotería",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center),
+                        style: stlTextoIconHome, textAlign: TextAlign.center),
                     null),
                 _iconoCard(
                     context,
                     "denuncias_anticorrupcion",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset(
+                              'assets/DENUNCIAS_ANTICORRUPCION.png')),
                     ),
                     Text("Denuncias Anticorrupción",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center),
+                        style: stlTextoIconHome, textAlign: TextAlign.center),
                     "${api.SITIO_WEB}/denuncias?ajmovil=true"),
                 _iconoCard(
                     context,
                     "juegos_azar",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset('assets/JUEGOS_DE_AZAR.png')),
                     ),
                     Text("Juegos de Azar",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center),
+                        style: stlTextoIconHome, textAlign: TextAlign.center),
                     null),
                 _iconoCardSeguimiento(
                     context,
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset('assets/SEGUIMIENTOS.png')),
                     ),
-                    Text("Seguimiento",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center)),
+                    Text("Seguimientos",
+                        style: stlTextoIconHome, textAlign: TextAlign.center)),
                 Container(),
                 _iconoCard(
                     context,
                     "mapa",
                     Center(
-                      child: Icon(
-                        Icons.audiotrack,
-                        color: Colors.green,
-                        size: 30.0,
-                      ),
+                      child: Container(
+                          width: altoIcono,
+                          height: anchoIcono,
+                          child: Image.asset(
+                              'assets/PROMOCIONES_EMPRESARIALES.png')),
                     ),
                     Text("Mapa",
-                        style:
-                            TextStyle(fontSize: 10, color: Color(0xff1565C0)),
-                        textAlign: TextAlign.center),
+                        style: stlTextoIconHome, textAlign: TextAlign.center),
                     null)
               ],
             ),
-          )
-        ],
+            Text(
+              "Estado Plurinacional de Bolivia",
+              style: estiloTexto.stlTextoBlancoHomeBold,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        ),
       ),
     );
   }
 
-  GestureDetector _iconoCard(BuildContext context, String path, Widget icon,
-      Widget text, String? url) {
+  Widget _iconoCard(
+      BuildContext context, String path, Widget icon, Text text, String? url) {
     return GestureDetector(
       onTap: () => {
         if (path == 'consultas_reclamos_siteweb' ||
@@ -163,25 +224,28 @@ class _InicioViewState extends State<InicioView> {
         else
           {Get.toNamed(path)}
       },
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 18.0 / 11.0,
-              child: icon,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 3.0, 16.0, 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  text,
-                ],
+      child: Container(
+        child: Card(
+          elevation: 10,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 18.0 / 11.0,
+                child: icon,
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 3.0, 16.0, 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    text,
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -227,6 +291,7 @@ class _InicioViewState extends State<InicioView> {
             });
       },
       child: Card(
+        elevation: 10,
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

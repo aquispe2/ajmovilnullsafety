@@ -27,7 +27,7 @@ class _JuegosAzarState extends State<JuegosAzarView> {
       appBar: AppBar(
         title: Text(
           variable.JUEGO_AZAR,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),
@@ -49,39 +49,48 @@ class _JuegosAzarState extends State<JuegosAzarView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Nombre de Empresa",
-                            style: estiloTexto.estiloSubTitulo),
-                        Text(
-                          promocionEmpresarialController
-                              .lstJuegoDeAzar[index].nombreOperador,
-                          style: estiloTexto.estiloTextoNormal,
+                        Text("NOMBRE DE EMPRESA",
+                            style: estiloTexto.stlSubTitulo),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          child: Text(
+                            promocionEmpresarialController
+                                .lstJuegoDeAzar[index].nombreOperador,
+                            style: estiloTexto.stlTexto,
+                          ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Nombre del Salón de Juego",
-                            style: estiloTexto.estiloSubTitulo),
-                        Text(
-                          promocionEmpresarialController
-                              .lstJuegoDeAzar[index].nombreSalonJuego,
-                          style: estiloTexto.estiloTextoNormal,
+                        Text("NOMBRE DEL SALÓN DE JUEGO",
+                            style: estiloTexto.stlSubTitulo),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          child: Text(
+                            promocionEmpresarialController
+                                .lstJuegoDeAzar[index].nombreSalonJuego,
+                            style: estiloTexto.stlTexto,
+                          ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Horario de Atención",
-                            style: estiloTexto.estiloSubTitulo),
+                        Text("HORARIO DE ATENCIÓN",
+                            style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeAzar[index].horarioAtencion,
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlTexto,
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          "Juegos Autorizados",
-                          style: estiloTexto.estiloSubTitulo,
+                          "JUEGOS AUTORIZADOS",
+                          style: estiloTexto.stlSubTitulo,
+                        ),
+                        SizedBox(
+                          height: 4,
                         ),
                         _juegosAutorizados(promocionEmpresarialController
                             .lstJuegoDeAzar[index].juegosAutorizados!),
@@ -89,8 +98,8 @@ class _JuegosAzarState extends State<JuegosAzarView> {
                           height: 10,
                         ),
                         Text(
-                          "Direcciones",
-                          style: estiloTexto.estiloSubTitulo,
+                          "DIRECCIONES",
+                          style: estiloTexto.stlSubTitulo,
                         ),
                         _direcciones(promocionEmpresarialController
                             .lstJuegoDeAzar[index].lstDirecciones!),
@@ -117,20 +126,30 @@ class _JuegosAzarState extends State<JuegosAzarView> {
         itemCount: lstJuegosAutorizados.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
+            children: [
+              SizedBox(
+                height: 4,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Icon(
-                    Icons.check,
-                    size: 15,
-                  ),
-                  Text(
-                    lstJuegosAutorizados[index],
-                    style: estiloTexto.estiloTextoNormal,
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.check,
+                        size: 15,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        child: Text(
+                          lstJuegosAutorizados[index],
+                          style: estiloTexto.stlTexto,
+                        ),
+                      ),
+                    ],
                   )
                 ],
-              )
+              ),
             ],
           );
         });
@@ -147,25 +166,37 @@ class _JuegosAzarState extends State<JuegosAzarView> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text(
-                    "Regional: ",
-                    style: estiloTexto.estiloTextoNormal,
+                  SizedBox(
+                    height: 4,
                   ),
                   Text(
-                    lstDirecciones[index].regional,
-                    style: estiloTexto.estiloTextoNormal,
+                    "Regional: ",
+                    style: estiloTexto.stlTextoBlue900,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.70,
+                    child: Text(
+                      lstDirecciones[index].regional,
+                      style: estiloTexto.stlTexto,
+                    ),
                   )
                 ],
+              ),
+              SizedBox(
+                height: 4,
               ),
               Row(
                 children: <Widget>[
                   Text(
                     "Dirección: ",
-                    style: estiloTexto.estiloTextoNormal,
+                    style: estiloTexto.stlTextoBlue900,
                   ),
-                  Text(
-                    lstDirecciones[index].direccion,
-                    style: estiloTexto.estiloTextoNormal,
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.70,
+                    child: Text(
+                      lstDirecciones[index].direccion,
+                      style: estiloTexto.stlTexto,
+                    ),
                   )
                 ],
               ),

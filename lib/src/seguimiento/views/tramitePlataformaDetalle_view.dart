@@ -47,18 +47,18 @@ class _TramitePlataformaDetalleViewState
                             Row(
                               children: <Widget>[
                                 Text("N° Trámite: ",
-                                    style: estiloTexto.estiloSubTitulo),
+                                    style: estiloTexto.stlSubTitulo),
                                 Text(
                                     '${seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].tramiteId}',
-                                    style: estiloTexto.estiloTextoNormal),
+                                    style: estiloTexto.stlTexto),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text("Hoja de Ruta: ",
-                                    style: estiloTexto.estiloSubTitulo),
+                                    style: estiloTexto.stlSubTitulo),
                                 Text(
                                   '${seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].numeroHojaRuta}',
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -70,7 +70,7 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Tipo de Trámite: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Container(
                                   width:
@@ -79,7 +79,7 @@ class _TramitePlataformaDetalleViewState
                                     seguimientoTramiteController
                                         .lstSeguimientoTramitePlataforma[index]
                                         .tipoTramiteDescripcion,
-                                    style: estiloTexto.estiloTextoNormal,
+                                    style: estiloTexto.stlTexto,
                                   ),
                                 ),
                               ],
@@ -91,13 +91,13 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Cite: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   seguimientoTramiteController
                                       .lstSeguimientoTramitePlataforma[index]
                                       .cite,
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -106,13 +106,13 @@ class _TramitePlataformaDetalleViewState
                             ),
                             Text(
                               "Referencia",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               seguimientoTramiteController
                                   .lstSeguimientoTramitePlataforma[index]
                                   .referencia,
-                              style: estiloTexto.estiloTextoNormal,
+                              style: estiloTexto.stlTexto,
                             ),
                             SizedBox(
                               height: 10,
@@ -121,13 +121,13 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Entregado por: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   seguimientoTramiteController
                                       .lstSeguimientoTramitePlataforma[index]
                                       .entregadoPor,
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -138,13 +138,13 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Origen: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   seguimientoTramiteController
                                       .lstSeguimientoTramitePlataforma[index]
                                       .origen,
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -155,11 +155,11 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Fecha recepción: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   ' ${DateFormat('dd/MM/yyyy').format(seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].fechaRecepcion!)}',
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -170,11 +170,11 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Fecha inicio: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   ' ${DateFormat('dd/MM/yyyy').format(seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].fechaInicio!)}',
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),
@@ -185,12 +185,12 @@ class _TramitePlataformaDetalleViewState
                               children: <Widget>[
                                 Text(
                                   "Fecha fin: ",
-                                  style: estiloTexto.estiloSubTitulo,
+                                  style: estiloTexto.stlSubTitulo,
                                 ),
                                 Text(
                                   //' ${DateFormat('dd/MM/yyyy').format(seguimientosTramites[index].fechaFin)}',
                                   '${(seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].fechaFin == null) ? 'En proceso' : DateFormat('dd/MM/yyyy').format(DateTime.parse(seguimientoTramiteController.lstSeguimientoTramitePlataforma[index].fechaFin))}',
-                                  style: estiloTexto.estiloTextoNormal,
+                                  style: estiloTexto.stlTexto,
                                 ),
                               ],
                             ),

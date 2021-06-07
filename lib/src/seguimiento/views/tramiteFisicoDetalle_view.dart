@@ -22,7 +22,7 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
           title: Column(children: [
             Text(
               "Búsqueda",
-              style: estiloTexto.estiloTextoBar,
+              style: estiloTexto.stlTituloBarBlanco,
             ),
             Text("Seguimiento por Hoja de Ruta",
                 style:
@@ -52,19 +52,19 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                         Row(
                           children: <Widget>[
                             Text("N° Trámite: ",
-                                style: estiloTexto.estiloSubTitulo),
+                                style: estiloTexto.stlSubTitulo),
                             Text(
                               '${seguimientoTramiteController.lstSeguimientoTramiteFisico[index].tramiteId}',
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                             SizedBox(
                               width: 10,
                             ),
                             Text("Hoja de Ruta: ",
-                                style: estiloTexto.estiloSubTitulo),
+                                style: estiloTexto.stlSubTitulo),
                             Text(
                               '${seguimientoTramiteController.lstSeguimientoTramiteFisico[index].numeroHojaRuta}',
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -73,12 +73,11 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                         ),
                         Row(
                           children: <Widget>[
-                            Text("Gestión: ",
-                                style: estiloTexto.estiloSubTitulo),
+                            Text("Gestión: ", style: estiloTexto.stlSubTitulo),
                             Text(
                               seguimientoTramiteController
                                   .lstSeguimientoTramiteFisico[index].gestion,
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -90,7 +89,7 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Tipo de Trámite: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.65,
@@ -98,7 +97,7 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                                 seguimientoTramiteController
                                     .lstSeguimientoTramiteFisico[index]
                                     .tipoTramiteDescripcion,
-                                style: estiloTexto.estiloTexto13,
+                                style: estiloTexto.stlTexto,
                               ),
                             ),
                           ],
@@ -110,12 +109,12 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Cite: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               seguimientoTramiteController
                                   .lstSeguimientoTramiteFisico[index].cite,
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -124,12 +123,12 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                         ),
                         Text(
                           "Referencia",
-                          style: estiloTexto.estiloSubTitulo,
+                          style: estiloTexto.stlSubTitulo,
                         ),
                         Text(
                           seguimientoTramiteController
                               .lstSeguimientoTramiteFisico[index].referencia,
-                          style: estiloTexto.estiloTexto13,
+                          style: estiloTexto.stlTexto,
                         ),
                         SizedBox(
                           height: 10,
@@ -138,13 +137,13 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Entregado por: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               seguimientoTramiteController
                                   .lstSeguimientoTramiteFisico[index]
                                   .entregadoPor,
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -155,12 +154,12 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Origen: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               seguimientoTramiteController
                                   .lstSeguimientoTramiteFisico[index].origen,
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -171,11 +170,11 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Fecha recepción: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               '${DateFormat('dd/MM/yyyy').format(seguimientoTramiteController.lstSeguimientoTramiteFisico[index].fechaRecepcion!)}',
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -186,11 +185,11 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Fecha inicio: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               '${DateFormat('dd/MM/yyyy').format(seguimientoTramiteController.lstSeguimientoTramiteFisico[index].fechaInicio!)}',
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),
@@ -201,12 +200,12 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           children: <Widget>[
                             Text(
                               "Fecha fin: ",
-                              style: estiloTexto.estiloSubTitulo,
+                              style: estiloTexto.stlSubTitulo,
                             ),
                             Text(
                               //'${(seguimientosTramites[index].fechaFin == null) ? 'En proceso' : DateFormat('dd/MM/yyyy').format(seguimientosTramites[index].fechaFin)}',
                               '${(seguimientoTramiteController.lstSeguimientoTramiteFisico[index].fechaFin == null) ? 'En proceso' : DateFormat('dd/MM/yyyy').format(DateTime.parse(seguimientoTramiteController.lstSeguimientoTramiteFisico[index].fechaFin))}',
-                              style: estiloTexto.estiloTexto13,
+                              style: estiloTexto.stlTexto,
                             ),
                           ],
                         ),

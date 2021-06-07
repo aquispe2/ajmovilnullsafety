@@ -3,7 +3,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:flutter/material.dart';
 
-
 import '../../views/menu_principal_view.dart';
 import 'package:movilaj/src/utils/variables.dart' as variable;
 import 'package:movilaj/src/utils/colores.dart' as colores;
@@ -56,7 +55,7 @@ class _MapasViewState extends State<MapasView> {
       appBar: AppBar(
           title: Text(
         variable.CONTACTANOS,
-        style: estiloTexto.estiloTextoAppbar,
+        style: estiloTexto.stlTituloBarBlanco,
       )),
       drawer: MenuPrincipal(),
       body: Container(
@@ -73,7 +72,7 @@ class _MapasViewState extends State<MapasView> {
             markers: Set.of(_markers.values)),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.business,
@@ -81,7 +80,7 @@ class _MapasViewState extends State<MapasView> {
             ),
             title: Text(
               'La Paz',
-              style: TextStyle(fontSize: 12),
+              style: estiloTexto.stlTextoPequeno,
             ),
           ),
           BottomNavigationBarItem(
@@ -91,7 +90,7 @@ class _MapasViewState extends State<MapasView> {
             ),
             title: Text(
               'Cochabamba',
-              style: TextStyle(fontSize: 12),
+              style: estiloTexto.stlTextoPequeno,
             ),
           ),
           BottomNavigationBarItem(
@@ -101,7 +100,7 @@ class _MapasViewState extends State<MapasView> {
             ),
             title: Text(
               'Santa Cruz',
-              style: TextStyle(fontSize: 12),
+              style: estiloTexto.stlTextoPequeno,
             ),
           ),
         ],
@@ -119,14 +118,14 @@ class _MapasViewState extends State<MapasView> {
           children: <Widget>[
             Text(
               _titulo,
-              style: estiloTexto.estiloTitulo,
+              style: estiloTexto.stlSubTitulo,
             ),
             SizedBox(
               height: 5,
             ),
             Text(
               _texto,
-              style: estiloTexto.estiloTextoNormal,
+              style: estiloTexto.stlTextoPequeno,
             )
           ],
         ),

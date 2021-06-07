@@ -27,7 +27,7 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
       appBar: AppBar(
         title: Text(
           variable.BUSQUEDA_CASOS,
-          style: estiloTexto.estiloTextoBar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),
@@ -69,7 +69,7 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
           isDense: true,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
           hintText: 'Ingrese nro. de caso a buscar',
-          labelText: 'Ingrese nro. de caso a buscar',
+          labelText: 'Nro de Caso',
           icon: Icon(Icons.search)),
     );
   }

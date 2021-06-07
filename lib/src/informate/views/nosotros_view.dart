@@ -11,7 +11,7 @@ class NosotrosView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           variable.NOSOTROS,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),
@@ -26,14 +26,17 @@ class NosotrosView extends StatelessWidget {
               child: LogoAjCompletoWidget(),
             ),
             Text("¿Quiénes somos y qué hacemos?",
-                style: estiloTexto.estiloTitulo),
+                style: estiloTexto.stlSubTitulo),
             SizedBox(
               height: 7,
             ),
-            Text(
-              "Somos una institución pública supedita al Ministerio de Economía y Finanzas Públicas, nuestra función está destinada a fiscalizar y controlar las actividades de juegos de lotería, azar, sorteos y promociones empresariales en el Estado Plurinacional de Bolivia.\n\nNuestro principal objetivo es proteger los derechos de la población boliviana a participar en condiciones de igualdad, legalidad y transparencia.",
-              textAlign: TextAlign.center,
-              style: estiloTexto.estiloTextoNormal,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                "Somos una institución pública supedita al Ministerio de Economía y Finanzas Públicas, nuestra función está destinada a fiscalizar y controlar las actividades de juegos de lotería, azar, sorteos y promociones empresariales en el Estado Plurinacional de Bolivia.\n\nNuestro principal objetivo es proteger los derechos de la población boliviana a participar en condiciones de igualdad, legalidad y transparencia.",
+                textAlign: TextAlign.center,
+                style: estiloTexto.stlTexto,
+              ),
             ),
           ],
         ),

@@ -35,7 +35,7 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
         appBar: AppBar(
           title: Text(
             "${variable.BUSQUEDA_TRAMITES}",
-            style: estiloTexto.estiloTextoBar,
+            style: estiloTexto.stlTituloBarBlanco,
           ),
         ),
         drawer: MenuPrincipal(),
@@ -59,7 +59,7 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.business,
@@ -68,7 +68,7 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
               ),
               title: Text(
                 'Trámites en físico',
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTextoPequeno,
               ),
             ),
             BottomNavigationBarItem(
@@ -79,7 +79,7 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
               ),
               title: Text(
                 'Trámites en plataforma',
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTextoPequeno,
               ),
             ),
           ],

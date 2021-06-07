@@ -33,7 +33,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
         children: <Widget>[
           Text(
             "Seguimiento de Trámites en Físico",
-            style: estiloTexto.estiloTitulo,
+            style: estiloTexto.stlTextoBold,
           ),
           SizedBox(
             height: 10,
@@ -41,7 +41,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
           Text(
             "Si el Trámite es Físico haga la búsqueda por: Gestión, Oficina y Número Hoja de Ruta, los 3 parámetros son obligatorios, para realizar el seguimiento",
             textAlign: TextAlign.center,
-            style: estiloTexto.estiloTexto14,
+            style: estiloTexto.stlTexto,
           ),
           SizedBox(
             height: 10,
@@ -57,7 +57,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
           Text(
             "Elija y seleccione la oficina en el que entregó el documento",
             textAlign: TextAlign.center,
-            style: estiloTexto.estiloTextoNormal,
+            style: estiloTexto.stlTextoPequeno,
           ),
           SizedBox(
             height: 5,
@@ -157,7 +157,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
     return Obx(() => (seguimientoTramiteController.lstOficina.length > 0)
         ? DropdownButton<OficinaModel>(
             isExpanded: true,
-            hint: Text("Seleccione Oficina"),
+            hint: Text("Seleccione Oficina", style: estiloTexto.stlTextoPequeno,),
             value: selectedOficina,
             onChanged: (OficinaModel? newValue) {
               setState(() {
@@ -170,7 +170,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
                 value: ofi,
                 child: new Text(
                   ofi.nombreOficina,
-                  style: estiloTexto.estiloTexto14,
+                  style: estiloTexto.stlTexto,
                 ),
               );
             }).toList(),
@@ -185,6 +185,8 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
       autofocus: false,
       controller: _controllerGestion,
       decoration: InputDecoration(
+        hintStyle: estiloTexto.stlTextoPequeno,
+              labelStyle: estiloTexto.stlTextoPequeno,
         counter: Offstage(),
         isDense: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -201,6 +203,8 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
       keyboardType: TextInputType.number,
       autofocus: false,
       decoration: InputDecoration(
+        hintStyle: estiloTexto.stlTextoPequeno,
+              labelStyle: estiloTexto.stlTextoPequeno,
         counter: Offstage(),
         isDense: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),

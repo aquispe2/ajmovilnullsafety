@@ -15,13 +15,22 @@ class Funciones {
   Future<String> downloadFile(String url, String fileName, String dir) async {
     try {
       var httpClient = new HttpClient();
+
+      httpClient.badCertificateCallback =
+          (X509Certificate cert, String host, int port) =>
+              true; // representa un certificado SSL
+
       var request = await httpClient.getUrl(Uri.parse(url));
       var response = await request.close();
+      print("prueba 1");
       var bytes = await consolidateHttpClientResponseBytes(response);
+      print("prueba 2");
       File file = new File('$dir/$fileName');
+      print("prueba 3");
       await file.writeAsBytes(bytes);
       return "bajar archivo con exito";
     } catch (ex) {
+      print("error: " + ex.toString());
       return "error al baja  archivo: " + ex.toString();
     }
   }

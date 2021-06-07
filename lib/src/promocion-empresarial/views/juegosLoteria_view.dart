@@ -27,7 +27,7 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
       appBar: AppBar(
         title: Text(
           variable.JUEGO_LOTERIA,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),
@@ -51,41 +51,41 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text("Nombre del sorteo",
-                            style: estiloTexto.estiloSubTitulo),
+                            style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeLoteria[index].nombreSorteo,
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlSubTitulo,
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text("Monto en cantidad premio mayor",
-                            style: estiloTexto.estiloSubTitulo),
+                            style: estiloTexto.stlSubTitulo),
                         Text(
                           "Bs ${f.format((promocionEmpresarialController.lstJuegoDeLoteria[index].montoCantidadPremioMayor != 0) ? promocionEmpresarialController.lstJuegoDeLoteria[index].montoCantidadPremioMayor : 0)}",
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlSubTitulo,
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text("Fecha del sorteo",
-                            style: estiloTexto.estiloSubTitulo),
+                            style: estiloTexto.stlSubTitulo),
                         Text(
                           DateFormat('dd/MM/yyyy').format(
                               promocionEmpresarialController
                                   .lstJuegoDeLoteria[index].fechaSorteo!),
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlTexto,
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text("Departamento",
-                            style: estiloTexto.estiloSubTitulo),
+                            style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeLoteria[index].departamento,
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlTexto,
                         ),
                       ],
                     ),

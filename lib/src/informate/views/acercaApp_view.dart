@@ -18,40 +18,37 @@ class _AcercaAppViewState extends State<AcercaAppView> {
       appBar: AppBar(
         title: Text(
           variables.ACERCA_APP,
-          style: estiloTexto.estiloTextoBar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            /*Container(
-              padding: EdgeInsets.all(20),
-              width: double.infinity,
-              height: 200,
-              child: CircleLogoWidget(),
-            ),*/
-            /*Text(
-              "¿Quiénes somos y qué hacemos ?",
-              style: estiloTexto.estiloTitulo,
-            ),*/
-            SizedBox(
-              height: 7,
-            ),
-            Text(
-              "Esta aplicación te permitirá verificar los concursos, sorteos y juegos de azar legales, autorizados y fiscalizados por la AJ.\n\nLa AJ cuida que las actividades de juego, azar y promociones empresariales en Bolivia se desarrollen con legalidad, transparencia y en condiciones de igualdad.",
-              textAlign: TextAlign.center,
-              style: estiloTexto.estiloTexto14,
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            Text(
-              'Versión ${api.VERSION_APP}',
-              style: estiloTexto.estiloTitulo,
-            )
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  width: 80,
+                  height: 80,
+                  child: Image.asset('assets/LOGO_AJ_MOVIL_PEQUENO.png')),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Esta aplicación te permitirá verificar los concursos, sorteos y juegos de azar legales, autorizados y fiscalizados por la AJ.\n\nLa AJ cuida que las actividades de juego, azar y promociones empresariales en Bolivia se desarrollen con legalidad, transparencia y en condiciones de igualdad.",
+                textAlign: TextAlign.center,
+                style: estiloTexto.stlTexto,
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              Text(
+                'Versión ${api.VERSION_APP}',
+                style: estiloTexto.stlTextoBold,
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -29,7 +29,7 @@ class _BuscaPeState extends State<BuscaPeView> {
       appBar: AppBar(
         title: Text(
           variable.BUSCA_PE,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       //drawer: MenuPrincipal(),

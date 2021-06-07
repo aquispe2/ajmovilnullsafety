@@ -19,17 +19,18 @@ final viewRoutes = <_Route>[
   _Route(null, "Nosotros", NosotrosView()),
   _Route(null, "Contáctanos", MapasView()),
   _Route(null, "Normativas", NormativaView()),
-  //_Route(null, "Consultas y Reclamos",ConsultasReclamosView()),
-  //_Route(null, "Denuncias Anticorrupción",DenunciasAnticorrupcionView()),
-  _Route(null, "Seguimiento de Casos", BuscaCasosView()),
-  _Route(null, "Seguimiento de Trámites", SeguimientoTramitesView()),
+  _Route(null, "Consultas y Reclamos",null),
+  _Route(null, "Denuncias Anticorrupción",null),
+  /*_Route(null, "Seguimiento de Casos", BuscaCasosView()),
+  _Route(null, "Seguimiento de Trámites", SeguimientoTramitesView()),*/
+  _Route(null, "Seguimientos", null),
   _Route(null, "Acerca de la App", AcercaAppView())
 ];
 
 class _Route {
   final IconData? icon;
   final String titulo;
-  final Widget view;
+  final Widget? view;
 
   _Route(this.icon, this.titulo, this.view);
 }

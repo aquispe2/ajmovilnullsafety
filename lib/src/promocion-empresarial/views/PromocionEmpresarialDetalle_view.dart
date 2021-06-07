@@ -39,7 +39,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
       appBar: AppBar(
         title: Text(
           variable.PROMOCIONES_EMPRESARIALES_DETALLE,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       body: Container(
@@ -65,7 +65,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         child: Column(children: <Widget>[
           Text.rich(TextSpan(
               text: 'Para más información presione el enlace: ',
-              style: estiloTexto.estiloTextoNormal,
+              style: estiloTexto.stlTexto,
               children: <InlineSpan>[
                 TextSpan(
                   text: 'más información',
@@ -90,7 +90,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
           children: <Widget>[
             Text(
               "DATOS DE LA PROMOCIÓN",
-              style: estiloTexto.estiloTitulo,
+              style: estiloTexto.stlSubTitulo,
             ),
             Divider(
               color: Colors.indigo,
@@ -102,7 +102,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Empresa:',
-                    style: estiloTexto.estiloSubTitulo,
+                    style: estiloTexto.stlSubTitulo,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -110,7 +110,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   width: MediaQuery.of(context).size.width * 0.60,
                   child: Text(
                     promocionEmpresarialController.objPromocion.nombreEmpresa,
-                    style: estiloTexto.estiloTextoNormal,
+                    style: estiloTexto.stlTexto,
                   ),
                 )
               ],
@@ -122,7 +122,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Promoción:',
-                    style: estiloTexto.estiloSubTitulo,
+                    style: estiloTexto.stlSubTitulo,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -130,7 +130,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   width: MediaQuery.of(context).size.width * 0.60,
                   child: Text(
                     promocionEmpresarialController.objPromocion.nombrePromocion,
-                    style: estiloTexto.estiloTextoNormal,
+                    style: estiloTexto.stlTexto,
                   ),
                 )
               ],
@@ -142,7 +142,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Duración:',
-                    style: estiloTexto.estiloSubTitulo,
+                    style: estiloTexto.stlSubTitulo,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -155,13 +155,13 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Estado:',
-                    style: estiloTexto.estiloSubTitulo,
+                    style: estiloTexto.stlSubTitulo,
                     textAlign: TextAlign.right,
                   ),
                 ),
                 Text(
                   promocionEmpresarialController.objPromocion.estado,
-                  style: estiloTexto.estiloTextoNormal,
+                  style: estiloTexto.stlTexto,
                 )
               ],
             ),
@@ -172,7 +172,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Autorización:',
-                    style: estiloTexto.estiloSubTitulo,
+                    style: estiloTexto.stlSubTitulo,
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -181,7 +181,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   child: Text(
                     promocionEmpresarialController
                         .objPromocion.cadenaCiteResolucion,
-                    style: estiloTexto.estiloTextoNormal,
+                    style: estiloTexto.stlTexto,
                   ),
                 )
               ],
@@ -208,7 +208,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                     children: <Widget>[
                       Text(
                         "COMO PARTICIPAR",
-                        style: estiloTexto.estiloTitulo,
+                        style: estiloTexto.stlSubTitulo,
                       ),
                       Divider(
                         color: Colors.indigo,
@@ -216,7 +216,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                       Text(
                         promocionEmpresarialController
                             .objMecanicaPremiacion.value.mecanica,
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                         textAlign: TextAlign.justify,
                       )
                     ],
@@ -240,7 +240,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 children: <Widget>[
                   Text(
                     "LUGARES PREMIACIÓN",
-                    style: estiloTexto.estiloTitulo,
+                    style: estiloTexto.stlSubTitulo,
                   ),
                   Divider(
                     color: Colors.indigo,
@@ -271,7 +271,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 children: <Widget>[
                   Text(
                     "LUGARES DE SORTEO",
-                    style: estiloTexto.estiloTitulo,
+                    style: estiloTexto.stlSubTitulo,
                   ),
                   Divider(
                     color: Colors.indigo,
@@ -303,7 +303,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Dirección:',
-                style: estiloTexto.estiloSubTitulo,
+                style: estiloTexto.stlSubTitulo,
                 textAlign: TextAlign.right,
               ),
             ),
@@ -311,7 +311,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 pLugarSorteo.direccion,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlSubTitulo,
               ),
             )
           ],
@@ -323,7 +323,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Departamento:',
-                style: estiloTexto.estiloSubTitulo,
+                style: estiloTexto.stlSubTitulo,
                 textAlign: TextAlign.right,
               ),
             ),
@@ -331,7 +331,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 pLugarSorteo.departamento,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             )
           ],
@@ -343,7 +343,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Fecha de sorteo:',
-                style: estiloTexto.estiloSubTitulo,
+                style: estiloTexto.stlSubTitulo,
                 textAlign: TextAlign.right,
               ),
             ),
@@ -351,7 +351,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 "${DateFormat('dd/MM/yyyy').format(pLugarSorteo.fechaSorteo!)}",
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             )
           ],
@@ -372,7 +372,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 children: <Widget>[
                   Text(
                     "PREMIOS OFERTADOS",
-                    style: estiloTexto.estiloTitulo,
+                    style: estiloTexto.stlSubTitulo,
                   ),
                   Divider(
                     color: Colors.indigo,
@@ -412,7 +412,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.75,
               child: Text(
                 pPremioOfertado.descripcionPremio,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             ),
           ],
@@ -432,14 +432,14 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Dirección:',
-                  style: estiloTexto.estiloSubTitulo,
+                  style: estiloTexto.stlSubTitulo,
                   textAlign: TextAlign.right,
                 )),
             Container(
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 pLugarPremiacion.direccion,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             )
           ],
@@ -451,14 +451,14 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Departamento:',
-                  style: estiloTexto.estiloSubTitulo,
+                  style: estiloTexto.stlSubTitulo,
                   textAlign: TextAlign.right,
                 )),
             Container(
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 pLugarPremiacion.departamento,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             )
           ],
@@ -470,14 +470,14 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Observación:',
-                  style: estiloTexto.estiloSubTitulo,
+                  style: estiloTexto.stlSubTitulo,
                   textAlign: TextAlign.right,
                 )),
             Container(
               width: MediaQuery.of(context).size.width * 0.60,
               child: Text(
                 pLugarPremiacion.observacion,
-                style: estiloTexto.estiloTextoNormal,
+                style: estiloTexto.stlTexto,
               ),
             )
           ],
@@ -496,14 +496,14 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
           children: <Widget>[
             Text(
               titulo,
-              style: estiloTexto.estiloSubTitulo,
+              style: estiloTexto.stlSubTitulo,
             ),
             Divider(
               color: Colors.blue[800],
             ),
             Text(
               contenido,
-              style: estiloTexto.estiloTextoNormal,
+              style: estiloTexto.stlTexto,
             )
           ],
         ),

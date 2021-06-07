@@ -32,7 +32,8 @@ class _NormativaViewState extends State<NormativaView> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(variable.NORMATIVA, style: estiloTexto.estiloTextoAppbar),
+          title:
+              Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
         ),
         drawer: MenuPrincipal(),
         body: Obx(() => (normativaController.lstNormativa.length > 0)
@@ -69,7 +70,7 @@ class _NormativaViewState extends State<NormativaView> {
             key: PageStorageKey<NormativaModel>(pNormativa),
             title: Text(
               pNormativa.normativa.toUpperCase(),
-              style: estiloTexto.estiloSubTitulo,
+              style: estiloTexto.stlSubTitulo,
             ),
             children:
                 pNormativa.lstNormativa!.map(_verDetalleNormativa).toList(),
@@ -90,12 +91,14 @@ class _NormativaViewState extends State<NormativaView> {
               urlDividido[urlDividido.length - 1].toString().trim();
           Directory tempDir = await getTemporaryDirectory();
           String tempPath = tempDir.path;
+
           await objFuncion.downloadFile(
               pNormativaModel.urlArchivo, nombre_archivo, tempPath);
           await Future.delayed(Duration(seconds: 1));
           //pr.hide();
           OpenFile.open('$tempPath/${nombre_archivo}');
         } catch (ex) {
+          print("errorrr: " + ex.toString());
           objFuncion.mostrarDialog("Error",
               "no pude descargar el archivo, favor de verificar que tenga conexión a internet y que tenga instalado alguna aplicación para abrir los documentos");
 
@@ -122,7 +125,7 @@ class _NormativaViewState extends State<NormativaView> {
                 ),
                 Text(
                   pNormativaModel.nombre,
-                  style: estiloTexto.estiloSubTitulo,
+                  style: estiloTexto.stlSubTitulo,
                 ),
               ],
             ),
@@ -140,7 +143,7 @@ class _NormativaViewState extends State<NormativaView> {
                 ),
                 Text(
                   'Fecha de emisión: ${DateFormat('dd/MM/yyyy').format(pNormativaModel.fechaEmision)}',
-                  style: estiloTexto.estiloTextoNormal,
+                  style: estiloTexto.stlTexto,
                 ),
               ],
             ),
@@ -159,7 +162,7 @@ class _NormativaViewState extends State<NormativaView> {
                 ),
                 Expanded(
                   child: Text(pNormativaModel.descripcion,
-                      style: estiloTexto.estiloTextoNormal),
+                      style: estiloTexto.stlTexto),
                 ),
               ],
             ),

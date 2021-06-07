@@ -26,7 +26,7 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
             Widget>[
           Text(
             "Seguimiento de Trámites en Plataforma",
-            style: estiloTexto.estiloTitulo,
+            style: estiloTexto.stlTextoBold,
           ),
           SizedBox(
             height: 10,
@@ -34,7 +34,7 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
           Text(
             "Si el Trámite fue realizado mediante la Plataforma AJ en línea PAJEL+, entonces haga la búsqueda solamente por el número de trámite, para realizar el seguimiento",
             textAlign: TextAlign.center,
-            style: estiloTexto.estiloTexto14,
+            style: estiloTexto.stlTexto,
           ),
           SizedBox(
             height: 10,
@@ -45,12 +45,14 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
             controller: _controllerBuscarPorTramiteId,
             autofocus: false,
             decoration: InputDecoration(
+              hintStyle: estiloTexto.stlTextoPequeno,
+              labelStyle: estiloTexto.stlTextoPequeno,
               counter: Offstage(),
               isDense: true,
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
               hintText: 'Digite el Número de Trámite',
-              labelText: 'Nro de trámite',
+              labelText: 'Digite el Número de Trámite',
             ),
           ),
           SizedBox(

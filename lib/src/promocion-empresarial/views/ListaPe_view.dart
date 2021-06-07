@@ -36,7 +36,7 @@ class _ListaPeViewState extends State<ListaPeView> {
                   children: <Widget>[
                     Text(
                       variable_textos.PROMOCIONES_EMPRESARIALES,
-                      style: estiloTexto.estiloTextoAppbar,
+                      style: estiloTexto.stlTituloBarBlanco,
                     ),
                     SizedBox(
                       height: 5,
@@ -52,7 +52,7 @@ class _ListaPeViewState extends State<ListaPeView> {
                   children: <Widget>[
                     Text(
                       variable_textos.PROMOCIONES_EMPRESARIALES,
-                      style: estiloTexto.estiloTextoAppbar,
+                      style: estiloTexto.stlTextoBlancoHome,
                     ),
                     SizedBox(
                       height: 5,
@@ -130,11 +130,11 @@ class _ListaPeViewState extends State<ListaPeView> {
         Column(children: [
           Text(
             "Duración",
-            style: estiloTexto.estiloTextoNormal,
+            style: estiloTexto.stlTexto,
           ),
           Text(
             '${DateFormat('dd/MM/yyyy').format(pPromocion.fechaDesde)} al ${(pPromocion.fechaHasta != null) ? DateFormat('dd/MM/yyyy').format(pPromocion.fechaHasta) : ' - '}',
-            style: estiloTexto.estiloTextoPeriodoPe,
+            style: estiloTexto.stlTexto,
           ),
         ]),
         Expanded(
@@ -167,7 +167,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Text(
           'Duración:',
-          style: estiloTexto.estiloSubTitulo,
+          style: estiloTexto.stlSubTitulo,
           textAlign: TextAlign.right,
         ),
       ),
@@ -175,7 +175,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         width: MediaQuery.of(context).size.width * 0.60,
         child: Text(
           '${DateFormat('dd/MM/yyyy').format(DateTime.parse(pPromocion.fechaDesde.toString()))} al ${(pPromocion.fechaHasta != null) ? DateFormat('dd/MM/yyyy').format(DateTime.parse(pPromocion.fechaHasta.toString())) : '-'}',
-          style: estiloTexto.estiloTextoNormal,
+          style: estiloTexto.stlTexto,
         ),
       )
     ]);
@@ -188,7 +188,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Text(
           'Autorización:',
-          style: estiloTexto.estiloSubTitulo,
+          style: estiloTexto.stlSubTitulo,
           textAlign: TextAlign.right,
         ),
       ),
@@ -196,7 +196,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         width: MediaQuery.of(context).size.width * 0.60,
         child: Text(
           '${pPromocion.cadenaCiteResolucion}',
-          style: estiloTexto.estiloTextoNormal,
+          style: estiloTexto.stlTexto,
         ),
       )
     ]);
@@ -250,7 +250,7 @@ class _ListaPeViewState extends State<ListaPeView> {
           },
           child: Text(
             "ver\n todos",
-            style: estiloTexto.estiloTextoNormalBlanco,
+            style: estiloTexto.stlTextoBlancoHome,
             textAlign: TextAlign.center,
           ),
           backgroundColor: colores.blue_grey_darken_1);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 import 'package:movilaj/src/informate/views/mapas_view.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
@@ -14,7 +15,6 @@ import 'package:movilaj/src/seguimiento/views/casoDetalle_view.dart';
 import 'package:movilaj/src/seguimiento/views/seguimientoTramites_view.dart';
 import 'package:movilaj/src/seguimiento/views/tramiteFisicoDetalle_view.dart';
 import 'package:movilaj/src/seguimiento/views/tramitePlataformaDetalle_view.dart';
-import 'package:movilaj/src/utils/apis.dart' as api;
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:get/get.dart';
 import 'package:movilaj/src/views/inicio_view.dart';
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     Get.put(ConsultasReclamosDenunciasController());
     final seguimientoTramiteController =
         Get.put(SeguimientoTramiteController());
-    /*Get.put(NormativaController());*/
+    Get.put(NormativaController());
 
     // cargamos oficinas
     seguimientoTramiteController.cargarOficinas();

@@ -20,7 +20,7 @@ class _AvisosViewState extends State<AvisosView> {
       appBar: AppBar(
         title: Text(
           variable.BUSQUEDA_CASOS,
-          style: estiloTexto.estiloTextoAppbar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       drawer: MenuPrincipal(),

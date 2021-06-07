@@ -7,6 +7,8 @@ import 'package:movilaj/src/widgets/circleLogo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
+import 'package:movilaj/src/utils/apis.dart' as api;
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatefulWidget {
   @override
@@ -102,13 +104,13 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
   showAlertDialog(BuildContext context) {
     // set up the buttons
     Widget cancelButton = FlatButton(
-      child: Text("Cancelar", style: estiloTexto.estiloTitulo),
+      child: Text("Cancelar", style: estiloTexto.stlTexto),
       onPressed: () {
         Navigator.pop(context);
       },
     );
     Widget continueButton = FlatButton(
-      child: Text("Salir", style: estiloTexto.estiloTitulo),
+      child: Text("Salir", style: estiloTexto.stlTexto),
       onPressed: () {
         exit(0);
       },
@@ -157,8 +159,49 @@ class _ListaOpciones extends StatelessWidget {
           size: 15,
         ),
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => viewRoutes[i].view));
+          if (viewRoutes[i].titulo == "Consultas y Reclamos") {
+            launch("${api.SITIO_WEB}/consultas?ajmovil=true");
+          } else if (viewRoutes[i].titulo == "Denuncias Anticorrupción") {
+            launch("${api.SITIO_WEB}/denuncias?ajmovil=true");
+          } else if (viewRoutes[i].titulo == "Seguimientos") {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return SimpleDialog(
+                    title: Text(
+                      "Seguimientos",
+                      textAlign: TextAlign.center,
+                    ),
+                    children: <Widget>[
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Para realizar el seguimiento presione una de las siguientes opciones de acuerdo a su elección y/o preferencia ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 12.0),
+                            ),
+                            OutlinedButton(
+                              onPressed: () {
+                                Get.toNamed("busca_casos");
+                              },
+                              child: const Text('Seguimiento de casos'),
+                            ),
+                            OutlinedButton(
+                              onPressed: () async {
+                                Get.toNamed("seguimiento_tramites");
+                              },
+                              child: const Text('Seguimiento de trámites'),
+                            ),
+                          ])
+                    ],
+                  );
+                });
+          } else {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => viewRoutes[i].view!));
+          }
         },
       ),
     );

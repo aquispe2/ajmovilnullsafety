@@ -36,7 +36,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
       appBar: AppBar(
         title: Text(
           '${variable.SEGUIMIENTO_CONSULTAS_RECLAMOS} ',
-          style: estiloTexto.estiloTextoBar,
+          style: estiloTexto.stlTituloBarBlanco,
         ),
       ),
       body: Container(
@@ -93,7 +93,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                     children: <Widget>[
                       Text(
                         "DATOS ADJUNTOS",
-                        style: estiloTexto.estiloTitulo,
+                        style: estiloTexto.stlTexto,
                       ),
                       Divider(
                         color: Colors.indigo,
@@ -101,7 +101,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       Text(
                         "(Para descargar y/o ver el adjunto, debe presionar sobre el nombre del archivo)",
                         textAlign: TextAlign.center,
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                       SizedBox(
                         height: 10,
@@ -125,7 +125,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                     children: <Widget>[
                       Text(
                         "DATOS ADJUNTOS",
-                        style: estiloTexto.estiloTitulo,
+                        style: estiloTexto.stlTexto,
                       ),
                       Divider(
                         color: Colors.indigo,
@@ -160,7 +160,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                     width: MediaQuery.of(context).size.width * 0.70,
                     child: GestureDetector(
                         child: Text(adjuntos.nombreArchivo,
-                            style: estiloTexto.estiloTextoNormal),
+                            style: estiloTexto.stlTexto),
                         onTap: () async {
                           //ProgressDialog pr = objFuncion.generarDialogProgress(context, "Descargando archivo");
                           //pr.show();
@@ -198,7 +198,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
               children: <Widget>[
                 Text(
                   "DATOS DE LA CONSULTA",
-                  style: estiloTexto.estiloTitulo,
+                  style: estiloTexto.stlTexto,
                 ),
                 Divider(
                   color: Colors.indigo,
@@ -210,7 +210,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'Tipo de Registro:',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -220,7 +220,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                         caso.descripcionRegistro != null
                             ? caso.descripcionRegistro
                             : '',
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -232,7 +232,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'Tipo de proceso:',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -242,7 +242,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                         caso.descripcionProceso != null
                             ? caso.descripcionProceso
                             : '',
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -254,7 +254,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'Departamento:',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -264,7 +264,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                         caso.descripcionDepartamento != null
                             ? caso.descripcionDepartamento
                             : '',
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -276,7 +276,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'Fecha de solicitud:',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -284,7 +284,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       width: MediaQuery.of(context).size.width * 0.55,
                       child: Text(
                         "${DateFormat('dd/MM/yyyy').format(DateTime.parse(caso.fechaRegistro))} ",
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -296,7 +296,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         'Estado:',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -304,7 +304,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       width: MediaQuery.of(context).size.width * 0.55,
                       child: Text(
                         caso.descripcionEstadoCaso,
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -318,14 +318,14 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                     Container(
                       child: Text(
                         'Descripción de la denuncia',
-                        style: estiloTexto.estiloSubTitulo,
+                        style: estiloTexto.stlSubTitulo,
                         textAlign: TextAlign.right,
                       ),
                     ),
                     Container(
                       child: Text(
                         caso.descripcion,
-                        style: estiloTexto.estiloTextoNormal,
+                        style: estiloTexto.stlTexto,
                       ),
                     )
                   ],
@@ -343,7 +343,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
             children: <Widget>[
               Text(
                 "DATOS DE RESPUESTA",
-                style: estiloTexto.estiloTitulo,
+                style: estiloTexto.stlTexto,
               ),
               Divider(
                 color: Colors.indigo,
@@ -353,7 +353,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
               ),
               Text(
                 "aún no tiene una respuesta",
-                style: estiloTexto.estiloTexto14,
+                style: estiloTexto.stlTexto,
               ),
             ],
           ),
@@ -367,7 +367,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                 children: <Widget>[
                   Text(
                     "DATOS DE RESPUESTA",
-                    style: estiloTexto.estiloTitulo,
+                    style: estiloTexto.stlTexto,
                   ),
                   Divider(
                     color: Colors.indigo,
@@ -381,7 +381,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       Container(
                         child: Text(
                           'Respuesta parcial',
-                          style: estiloTexto.estiloSubTitulo,
+                          style: estiloTexto.stlSubTitulo,
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -391,7 +391,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                           (caso.respuestaParcial != null)
                               ? caso.respuestaParcial
                               : 'aún no tiene una respuesta parcial',
-                          style: estiloTexto.estiloTexto14,
+                          style: estiloTexto.stlTexto,
                         ),
                       ),
                       SizedBox(
@@ -400,7 +400,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       Container(
                         child: Text(
                           'Respuesta final',
-                          style: estiloTexto.estiloSubTitulo,
+                          style: estiloTexto.stlSubTitulo,
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -410,7 +410,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                           (caso.conclusion != null)
                               ? caso.conclusion
                               : 'aún no tiene una respuesta final',
-                          style: estiloTexto.estiloTextoNormal,
+                          style: estiloTexto.stlTexto,
                         ),
                       ),
                     ],

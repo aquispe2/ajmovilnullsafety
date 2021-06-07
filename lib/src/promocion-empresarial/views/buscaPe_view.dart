@@ -1,3 +1,4 @@
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/utils/funciones.dart';
@@ -27,11 +28,17 @@ class _BuscaPeState extends State<BuscaPeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.BUSCA_PE,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.BUSCA_PE,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       //drawer: MenuPrincipal(),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -81,13 +88,28 @@ class _BuscaPeState extends State<BuscaPeView> {
               _controllerBuscar.text.trim() != "") {
             promocionEmpresarialController.setMensajeBusqueda(
                 "Busqueda realizada por : ${_controllerBuscar.text.trim()} ");
+            promocionEmpresarialController.limpiarPromocion();
+            await showDialog(
+              context: context,
+              builder: (context) => FutureProgressDialog(
+                  promocionEmpresarialController
+                      .cargarPromocionesEmpresarialesByTextoBusqueda(
+                          _controllerBuscar.text),
+                  message: Text(variable.PROGRESS_DESCARGANDO_ARCHIVO)),
+            );
+
             //await pr.show();
-            var result = await promocionEmpresarialController
+            /*var result = await promocionEmpresarialController
                 .cargarPromocionesEmpresarialesByTextoBusqueda(
-                    _controllerBuscar.text);
-            await Future.delayed(Duration(seconds: 1));
+                    _controllerBuscar.text);*/
+
             //await pr.hide();
-            if (result) {
+            print("RESULTADO");
+            print(
+                promocionEmpresarialController.lstPromociones.value.toString());
+
+            if (promocionEmpresarialController.lstPromociones.value.length >
+                0) {
               Get.back();
             } else {
               objFuncion.mostrarDialog(
@@ -105,7 +127,7 @@ class _BuscaPeState extends State<BuscaPeView> {
       child: Text(
         'Búsqueda por nombre de Empresa, Nombre de la Promoción Empresarial, Sigla Empresa o Premio Ofertado',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 12, color: Colors.black45),
+        style: estiloTexto.stlTexto,
       ),
     );
   }

@@ -3,17 +3,24 @@ import 'package:movilaj/src/widgets/logoAjCompleto_widget.dart';
 import 'package:flutter/material.dart';
 import '../../views/menu_principal_view.dart';
 import 'package:movilaj/src/utils/variables.dart' as variable;
+import 'package:movilaj/src/utils/colores.dart' as colores;
 
 class NosotrosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.NOSOTROS,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.NOSOTROS,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: Center(
         child: Column(

@@ -5,6 +5,7 @@ import '../../views/menu_principal_view.dart';
 import 'package:movilaj/src/utils/variables.dart' as variables;
 import 'package:movilaj/src/utils/apis.dart' as api;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
+import 'package:movilaj/src/utils/colores.dart' as colores;
 
 class AcercaAppView extends StatefulWidget {
   @override
@@ -16,11 +17,17 @@ class _AcercaAppViewState extends State<AcercaAppView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variables.ACERCA_APP,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variables.ACERCA_APP,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -29,8 +36,8 @@ class _AcercaAppViewState extends State<AcercaAppView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                  width: 80,
-                  height: 80,
+                  width: 100,
+                  height: 100,
                   child: Image.asset('assets/LOGO_AJ_MOVIL_PEQUENO.png')),
               SizedBox(
                 height: 10,

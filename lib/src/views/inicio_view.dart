@@ -6,6 +6,7 @@ import 'package:movilaj/src/utils/funciones.dart';
 
 import 'package:movilaj/src/utils/variables.dart' as variable_textos;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
+import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/widgets/header_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:movilaj/src/utils/apis.dart' as api;

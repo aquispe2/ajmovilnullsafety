@@ -8,6 +8,7 @@ import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:movilaj/src/utils/funciones.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:movilaj/src/widgets/circularProgessCenter_widget.dart';
 import 'package:open_file/open_file.dart';
 //import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -29,13 +30,21 @@ class _NormativaViewState extends State<NormativaView> {
 
   @override
   Widget build(BuildContext context) {
+    normativaController.lstNormativa.value =
+        List<NormativaModel>.empty(); // lipiando normativas
     normativaController.cargarNormativas();
 
     return Scaffold(
         appBar: AppBar(
-          title:
-              Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
-        ),
+            title:
+                Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
         drawer: MenuPrincipal(),
         body: Obx(() => (normativaController.lstNormativa.length > 0)
             ? Container(
@@ -46,9 +55,11 @@ class _NormativaViewState extends State<NormativaView> {
                           pNormativa: normativaController.lstNormativa[index]);
                     }),
               )
-            : Center(
-                child: Text("No existe datos para mostrar"),
-              )));
+            : ((normativaController.descargandoNormativa.value == true)
+                ? CircularProgressCenterWidget()
+                : Center(
+                    child: Text("No existe datos para mostrar"),
+                  ))));
   }
 
   Widget _crearItemNormativa({NormativaModel? pNormativa}) {
@@ -92,15 +103,13 @@ class _NormativaViewState extends State<NormativaView> {
           String tempPath = tempDir.path;
 
           //objFuncion.downloadFile(pNormativaModel.urlArchivo, nombre_archivo, tempPath);
-          showDialog(
+          await showDialog(
             context: context,
             builder: (context) => FutureProgressDialog(
                 objFuncion.downloadFile(
                     pNormativaModel.urlArchivo, nombre_archivo, tempPath),
                 message: Text(variable.PROGRESS_DESCARGANDO_ARCHIVO)),
           );
-
-          await Future.delayed(Duration(seconds: 1));
 
           OpenFile.open('$tempPath/${nombre_archivo}');
         } catch (ex) {

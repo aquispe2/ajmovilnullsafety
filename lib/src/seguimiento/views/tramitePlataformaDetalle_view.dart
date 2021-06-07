@@ -20,8 +20,22 @@ class _TramitePlataformaDetalleViewState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Búsqueda de trámite plataforma"),
-        ),
+            title: Column(children: [
+              Text(
+                "Búsqueda",
+                style: estiloTexto.stlTituloBarBlanco,
+              ),
+              Text("Seguimiento por N° de Trámite",
+                  style: TextStyle(
+                      fontSize: 10, color: colores.blue_grey_lighten_4))
+            ]),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
         body: _crearDatosTramitePlataforma());
   }
 
@@ -74,7 +88,7 @@ class _TramitePlataformaDetalleViewState
                                 ),
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.65,
+                                      MediaQuery.of(context).size.width * 0.60,
                                   child: Text(
                                     seguimientoTramiteController
                                         .lstSeguimientoTramitePlataforma[index]
@@ -123,11 +137,15 @@ class _TramitePlataformaDetalleViewState
                                   "Entregado por: ",
                                   style: estiloTexto.stlSubTitulo,
                                 ),
-                                Text(
-                                  seguimientoTramiteController
-                                      .lstSeguimientoTramitePlataforma[index]
-                                      .entregadoPor,
-                                  style: estiloTexto.stlTexto,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.60,
+                                  child: Text(
+                                    seguimientoTramiteController
+                                        .lstSeguimientoTramitePlataforma[index]
+                                        .entregadoPor,
+                                    style: estiloTexto.stlTexto,
+                                  ),
                                 ),
                               ],
                             ),

@@ -10,3 +10,7 @@ const blue_grey_darken_2 = Color(0xff42A5F5);
 const blue_grey_lighten_4 = Color(0xff90CAF9);
 const blue_grey_lighten_1 = Color(0xff90CAF9);
 const grey_lighten_2 = Color(0xffE3F2FD);
+
+// es para el degradado
+const azul_oscuro_aj = Color(0xff004d9d);
+const azul_claro_aj = Color(0xff00ade7);

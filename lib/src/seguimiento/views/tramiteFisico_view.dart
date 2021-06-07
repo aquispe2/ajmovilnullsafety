@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/controllers/seguimientoTramiteController.dart';
 import 'package:movilaj/src/seguimiento/models/oficina_model.dart';
@@ -8,6 +9,7 @@ import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/funciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movilaj/src/utils/variables.dart' as variable;
 //import 'package:progress_dialog/progress_dialog.dart';
 
 class TramiteFisicoView extends StatefulWidget {
@@ -107,12 +109,16 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
 
                     //pr.show();
 
-                    seguimientoTramiteController.cargarSeguimientoTramiteFisico(
-                        int.parse(_controllerGestion.text.trim()),
-                        selectedOficina!.oficinaId,
-                        int.parse(_controllerNroHr.text.trim()));
-                    await Future.delayed(Duration(seconds: 1));
-
+                    await showDialog(
+                      context: context,
+                      builder: (context) => FutureProgressDialog(
+                          seguimientoTramiteController
+                              .cargarSeguimientoTramiteFisico(
+                                  int.parse(_controllerGestion.text.trim()),
+                                  selectedOficina!.oficinaId,
+                                  int.parse(_controllerNroHr.text.trim())),
+                          message: Text(variable.PROGRESS_BUSCANDO_HR)),
+                    );
                     //pr.hide();
 
                     if (seguimientoTramiteController
@@ -157,7 +163,10 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
     return Obx(() => (seguimientoTramiteController.lstOficina.length > 0)
         ? DropdownButton<OficinaModel>(
             isExpanded: true,
-            hint: Text("Seleccione Oficina", style: estiloTexto.stlTextoPequeno,),
+            hint: Text(
+              "Seleccione Oficina",
+              style: estiloTexto.stlTextoPequeno,
+            ),
             value: selectedOficina,
             onChanged: (OficinaModel? newValue) {
               setState(() {
@@ -186,7 +195,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
       controller: _controllerGestion,
       decoration: InputDecoration(
         hintStyle: estiloTexto.stlTextoPequeno,
-              labelStyle: estiloTexto.stlTextoPequeno,
+        labelStyle: estiloTexto.stlTextoPequeno,
         counter: Offstage(),
         isDense: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -204,7 +213,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
       autofocus: false,
       decoration: InputDecoration(
         hintStyle: estiloTexto.stlTextoPequeno,
-              labelStyle: estiloTexto.stlTextoPequeno,
+        labelStyle: estiloTexto.stlTextoPequeno,
         counter: Offstage(),
         isDense: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),

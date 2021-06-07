@@ -58,20 +58,16 @@ class PromocionEmpresarialController extends GetxController {
     extaProceso.value = false;
   }
 
-  Future<bool> cargarPromocionesEmpresarialesByTextoBusqueda(
+  Future<void> cargarPromocionesEmpresarialesByTextoBusqueda(
       String pTextoBuscar) async {
     existePromocion.value = false;
     extaProceso.value = true;
     final promociones = await _promocionEmpresarialService
         .obtenerPromocionEmpresarial(pTextoBuscar: pTextoBuscar);
+    print("obteniendo promociones");
     lstPromociones.value = promociones;
     existePromocion.value = true;
     extaProceso.value = false;
-
-    if (promociones.length > 0)
-      return true;
-    else
-      return false;
   }
 
   String getMensajeBusqueda() {
@@ -130,6 +126,10 @@ class PromocionEmpresarialController extends GetxController {
     lstPremiosOfertados.value = new List.empty();
     lstLugarPremiacion.value = new List.empty();
     lstLugarSorteo.value = new List.empty();
+  }
+
+  void limpiarPromocion() {
+    lstPromociones.value = new List.empty();
   }
 
   //PARA JUEGOS DE LOTERIA

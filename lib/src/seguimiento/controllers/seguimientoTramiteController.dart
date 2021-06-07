@@ -17,7 +17,7 @@ class SeguimientoTramiteController extends GetxController {
 
   var lstOficina = new List<OficinaModel>.empty().obs;
 
-  void cargarSeguimientoTramiteFisico(
+  Future<void> cargarSeguimientoTramiteFisico(
       int pGestion, int pOficinaId, int pNroHr) async {
     descargandoSeguimientoTramiteFisico.value = true;
     lstSeguimientoTramiteFisico.value = await _seguimientoTramiteService
@@ -25,7 +25,7 @@ class SeguimientoTramiteController extends GetxController {
     descargandoSeguimientoTramiteFisico.value = false;
   }
 
-  void cargarSeguimientoTramitePlataforma(int pTramiteId) async {
+  Future<void> cargarSeguimientoTramitePlataforma(int pTramiteId) async {
     descargandoSeguimientoTramitePlataforma.value = true;
     lstSeguimientoTramitePlataforma.value = await _seguimientoTramiteService
         .obtenerSeguimientoTramitePlataforma(pTramiteId);

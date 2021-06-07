@@ -19,16 +19,22 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Column(children: [
-            Text(
-              "Búsqueda",
-              style: estiloTexto.stlTituloBarBlanco,
-            ),
-            Text("Seguimiento por Hoja de Ruta",
-                style:
-                    TextStyle(fontSize: 10, color: colores.blue_grey_lighten_4))
-          ]),
-        ),
+            title: Column(children: [
+              Text(
+                "Búsqueda",
+                style: estiloTexto.stlTituloBarBlanco,
+              ),
+              Text("Seguimiento por Hoja de Ruta",
+                  style: TextStyle(
+                      fontSize: 10, color: colores.blue_grey_lighten_4))
+            ]),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
         body: _crearDatosTramiteFisico());
   }
 
@@ -92,7 +98,7 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                               style: estiloTexto.stlSubTitulo,
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.65,
+                              width: MediaQuery.of(context).size.width * 0.60,
                               child: Text(
                                 seguimientoTramiteController
                                     .lstSeguimientoTramiteFisico[index]
@@ -139,11 +145,14 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                               "Entregado por: ",
                               style: estiloTexto.stlSubTitulo,
                             ),
-                            Text(
-                              seguimientoTramiteController
-                                  .lstSeguimientoTramiteFisico[index]
-                                  .entregadoPor,
-                              style: estiloTexto.stlTexto,
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.60,
+                              child: Text(
+                                seguimientoTramiteController
+                                    .lstSeguimientoTramiteFisico[index]
+                                    .entregadoPor,
+                                style: estiloTexto.stlTexto,
+                              ),
                             ),
                           ],
                         ),

@@ -27,11 +27,17 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.BUSQUEDA_CASOS,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.BUSQUEDA_CASOS,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -92,16 +98,15 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
     consultasReclamosDenunciasController.lstCaso.value =
         new List<CasoModel>.empty();
     if (_controllerBuscar.text.trim() != "") {
-      showDialog(
+      await showDialog(
         context: context,
         builder: (context) => FutureProgressDialog(
             consultasReclamosDenunciasController
                 .cargarCasosPorNroCaso(_controllerBuscar.text),
             message: Text(variable.PROGRESS_BUSCANDO_CASO)),
       );
-      await Future.delayed(
-          Duration(seconds: 1)); // por si acos una eséra de 1 segundo
-
+      print("resultado del caso");
+      print(consultasReclamosDenunciasController.lstCaso.length);
       if (consultasReclamosDenunciasController.lstCaso.isEmpty) {
         objFuncion.mostrarDialog("Mensaje", "No se ha encontrado el Caso");
       } else {

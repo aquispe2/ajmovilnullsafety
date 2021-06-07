@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movilaj/src/utils/colores.dart' as colores;
 
 TextStyle stlTextoBold = GoogleFonts.inder(
     textStyle: TextStyle(
@@ -76,3 +77,25 @@ TextStyle stlTextoOpcionesMenuDesplegable = GoogleFonts.heebo(
         fontWeight: FontWeight.bold));
 // =========================
 
+// para listar promocion
+TextStyle stlTextoNombrePromocion = GoogleFonts.imprima(
+    textStyle: TextStyle(
+        color: colores.azul_oscuro_aj,
+        letterSpacing: 0.5,
+        fontSize: 18,
+        fontWeight: FontWeight.bold));
+
+TextStyle stlTextoNombreEmpresa = GoogleFonts.quicksand(
+    textStyle: TextStyle(
+        color: Colors.grey[700],
+        letterSpacing: 0.5,
+        fontSize: 12,
+        fontWeight: FontWeight.bold));
+
+TextStyle stlTextoIrPromocion = GoogleFonts.padauk(
+    textStyle: TextStyle(
+        color: Colors.green[600],
+        letterSpacing: 0.2,
+        fontSize: 12,
+        fontWeight: FontWeight.bold));
+// ===================

@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: colores.blue_grey_darken_1,
+          primaryColor: colores.azul_oscuro_aj,
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),

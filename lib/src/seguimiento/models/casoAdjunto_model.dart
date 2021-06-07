@@ -13,40 +13,40 @@ String casoAdjuntoModelToJson(CasoAdjuntoModel data) =>
 class CasoAdjuntoModel {
   CasoAdjuntoModel({
     this.casoAdjuntoId = 0,
-    this.ruta = "",
+    //this.ruta = "",
     this.nombreArchivo = "",
     this.extensionArchivo = "",
-    this.fechaRegistro = "",
+    //this.fechaRegistro = "",
     this.casoId = 0,
-    this.estadoId = 0,
+    //this.estadoId = 0,
   });
 
   int casoAdjuntoId;
-  String ruta;
+  //String ruta;
   String nombreArchivo;
   String extensionArchivo;
-  String fechaRegistro;
+  //String fechaRegistro;
   int casoId;
-  int estadoId;
+  //int estadoId;
 
   factory CasoAdjuntoModel.fromJson(Map<String, dynamic> json) =>
       CasoAdjuntoModel(
         casoAdjuntoId: json["casoAdjuntoId"],
-        ruta: json["ruta"],
+        //ruta: json["ruta"],
         nombreArchivo: json["nombreArchivo"],
         extensionArchivo: json["extensionArchivo"],
-        fechaRegistro: json["fechaRegistro"],
+        //fechaRegistro: json["fechaRegistro"],
         casoId: json["casoId"],
-        estadoId: json["estadoId"],
+        //estadoId: json["estadoId"],
       );
 
   Map<String, dynamic> toJson() => {
         "casoAdjuntoId": casoAdjuntoId,
-        "ruta": ruta,
+        //"ruta": ruta,
         "nombreArchivo": nombreArchivo,
         "extensionArchivo": extensionArchivo,
-        "fechaRegistro": fechaRegistro,
+        //"fechaRegistro": fechaRegistro,
         "casoId": casoId,
-        "estadoId": estadoId,
+        //"estadoId": estadoId,
       };
 }

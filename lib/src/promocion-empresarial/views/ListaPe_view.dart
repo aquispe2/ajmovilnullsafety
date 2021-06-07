@@ -65,6 +65,13 @@ class _ListaPeViewState extends State<ListaPeView> {
                   ],
                 )
         ]),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+            ),
+          ),
+        ),
         actions: <Widget>[
           InkWell(
             onTap: () {
@@ -73,7 +80,7 @@ class _ListaPeViewState extends State<ListaPeView> {
             },
             child: CircleAvatar(
               child: Icon(Icons.search),
-              backgroundColor: Color(0xff1E88E5),
+              backgroundColor: colores.azul_oscuro_aj,
             ),
           ),
         ],
@@ -130,11 +137,11 @@ class _ListaPeViewState extends State<ListaPeView> {
         Column(children: [
           Text(
             "Duración",
-            style: estiloTexto.stlTexto,
+            style: estiloTexto.stlTextoPequeno,
           ),
           Text(
             '${DateFormat('dd/MM/yyyy').format(pPromocion.fechaDesde)} al ${(pPromocion.fechaHasta != null) ? DateFormat('dd/MM/yyyy').format(pPromocion.fechaHasta) : ' - '}',
-            style: estiloTexto.stlTexto,
+            style: estiloTexto.stlTextoPequeno,
           ),
         ]),
         Expanded(
@@ -143,12 +150,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         FlatButton(
             child: Text(
               "IR A LA PROMOCIÓN",
-              style: GoogleFonts.padauk(
-                  textStyle: TextStyle(
-                      color: Colors.green[600],
-                      letterSpacing: 0.5,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold)),
+              style: estiloTexto.stlTextoIrPromocion,
             ),
             onPressed: () {
               promocionEmpresarialController.setObjPromocion(pPromocion);
@@ -208,12 +210,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         width: MediaQuery.of(context).size.width * 0.90,
         child: Text(
           pPromocion.nombrePromocion.toString(),
-          style: GoogleFonts.imprima(
-              textStyle: TextStyle(
-                  color: Colors.blue[800],
-                  letterSpacing: 0.5,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold)),
+          style: estiloTexto.stlTextoNombrePromocion,
           textAlign: TextAlign.left,
         ),
       ),
@@ -226,12 +223,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         Container(
           width: MediaQuery.of(context).size.width * 0.90,
           child: Text("${pPromocion.nombreEmpresa}",
-              style: GoogleFonts.quicksand(
-                  textStyle: TextStyle(
-                      color: Colors.grey[700],
-                      letterSpacing: 0.5,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold)),
+              style: estiloTexto.stlTextoNombreEmpresa,
               textAlign: TextAlign.left),
         )
       ],

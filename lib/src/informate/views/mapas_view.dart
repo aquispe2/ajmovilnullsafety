@@ -54,9 +54,16 @@ class _MapasViewState extends State<MapasView> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-        variable.CONTACTANOS,
-        style: estiloTexto.stlTituloBarBlanco,
-      )),
+            variable.CONTACTANOS,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: Container(
         width: double.infinity,

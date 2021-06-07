@@ -22,3 +22,5 @@ const NOEXISTE_DATOS = "No existe datos";
 // MENSAJES DE PROGRESS DIALOG
 const PROGRESS_DESCARGANDO_ARCHIVO = "descargando archivo ...";
 const PROGRESS_BUSCANDO_CASO = "buscando caso ...";
+const PROGRESS_BUSCANDO_HR = "buscando hoja de ruta ...";
+const PROGRESS_BUSCANDO_TRAMITE = "buscando trámite ...";

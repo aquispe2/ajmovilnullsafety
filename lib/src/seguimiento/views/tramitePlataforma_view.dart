@@ -1,9 +1,11 @@
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/controllers/seguimientoTramiteController.dart';
 import 'package:flutter/material.dart';
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/funciones.dart';
+import 'package:movilaj/src/utils/variables.dart' as variable;
 //import 'package:progress_dialog/progress_dialog.dart';
 
 class TramitePlataforma extends StatefulWidget {
@@ -87,10 +89,14 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
 
                     //pr.show();
 
-                    seguimientoTramiteController
-                        .cargarSeguimientoTramitePlataforma(int.parse(
-                            _controllerBuscarPorTramiteId.text.trim()));
-                    await Future.delayed(Duration(seconds: 1));
+                    await showDialog(
+                      context: context,
+                      builder: (context) => FutureProgressDialog(
+                          seguimientoTramiteController
+                              .cargarSeguimientoTramitePlataforma(int.parse(
+                                  _controllerBuscarPorTramiteId.text.trim())),
+                          message: Text(variable.PROGRESS_BUSCANDO_TRAMITE)),
+                    );
 
                     //pr.hide();
 

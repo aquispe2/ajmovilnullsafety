@@ -33,11 +33,17 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            "${variable.BUSQUEDA_TRAMITES}",
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-        ),
+            title: Text(
+              "${variable.BUSQUEDA_TRAMITES}",
+              style: estiloTexto.stlTituloBarBlanco,
+            ),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
         drawer: MenuPrincipal(),
 
         //body: _widgetOptions.elementAt(_selectedIndex),

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/variables.dart' as variable;
+import 'package:movilaj/src/utils/colores.dart' as colores;
 
 class JuegosAzarView extends StatefulWidget {
   @override
@@ -25,11 +26,17 @@ class _JuegosAzarState extends State<JuegosAzarView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.JUEGO_AZAR,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.JUEGO_AZAR,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: _crearListaJuegosAzar(),
     );

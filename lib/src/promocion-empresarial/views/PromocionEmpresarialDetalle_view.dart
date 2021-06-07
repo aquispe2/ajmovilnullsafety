@@ -37,11 +37,17 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.PROMOCIONES_EMPRESARIALES_DETALLE,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.PROMOCIONES_EMPRESARIALES_DETALLE,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       body: Container(
         color: colores.grey_lighten_2,
         child: ListView(
@@ -65,13 +71,11 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         child: Column(children: <Widget>[
           Text.rich(TextSpan(
               text: 'Para más información presione el enlace: ',
-              style: estiloTexto.stlTexto,
+              style: estiloTexto.stlTextoPequeno,
               children: <InlineSpan>[
                 TextSpan(
                   text: 'más información',
-                  style: new TextStyle(
-                    color: Colors.blue,
-                  ),
+                  style: estiloTexto.stlSubTitulo,
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       launch(
@@ -428,7 +432,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         Row(
           children: <Widget>[
             Container(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.30,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Dirección:',
@@ -436,7 +440,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   textAlign: TextAlign.right,
                 )),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.direccion,
                 style: estiloTexto.stlTexto,
@@ -444,10 +448,13 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
             )
           ],
         ),
+        SizedBox(
+          height: 7,
+        ),
         Row(
           children: <Widget>[
             Container(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.30,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Departamento:',
@@ -455,7 +462,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   textAlign: TextAlign.right,
                 )),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.departamento,
                 style: estiloTexto.stlTexto,
@@ -463,10 +470,13 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
             )
           ],
         ),
+        SizedBox(
+          height: 7,
+        ),
         Row(
           children: <Widget>[
             Container(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.30,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   'Observación:',
@@ -474,7 +484,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                   textAlign: TextAlign.right,
                 )),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.observacion,
                 style: estiloTexto.stlTexto,

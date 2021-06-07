@@ -7,6 +7,7 @@ import 'package:movilaj/src/widgets/circularProgress_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/variables.dart' as variable;
+import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:intl/intl.dart';
 
 class JuegosLoteriaView extends StatefulWidget {
@@ -25,11 +26,17 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          variable.JUEGO_LOTERIA,
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            variable.JUEGO_LOTERIA,
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       drawer: MenuPrincipal(),
       body: _crearListaJuegosLoteria(),
     );
@@ -80,8 +87,7 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Departamento",
-                            style: estiloTexto.stlSubTitulo),
+                        Text("Departamento", style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeLoteria[index].departamento,

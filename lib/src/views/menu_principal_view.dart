@@ -51,8 +51,8 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
                 colors: [
-                  Color(0xff004d9d),
-                  Color(0xff00ade7),
+                  colores.azul_oscuro_aj,
+                  colores.azul_claro_aj,
                 ],
               )),
               child: Center(
@@ -78,8 +78,8 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Color(0xff004d9d),
-                    Color(0xff00ade7),
+                    colores.azul_oscuro_aj,
+                    colores.azul_claro_aj,
                   ],
                 )),
                 child: Center(

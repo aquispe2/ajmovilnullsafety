@@ -35,11 +35,17 @@ class _CasoDetalleView extends State<CasoDetalleView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '${variable.SEGUIMIENTO_CONSULTAS_RECLAMOS} ',
-          style: estiloTexto.stlTituloBarBlanco,
-        ),
-      ),
+          title: Text(
+            '${variable.SEGUIMIENTO_CONSULTAS_RECLAMOS} ',
+            style: estiloTexto.stlTituloBarBlanco,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
+            ),
+          )),
       body: Container(
         color: colores.grey_lighten_2,
         child: ListView(
@@ -102,7 +108,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       Text(
                         "(Para descargar y/o ver el adjunto, debe presionar sobre el nombre del archivo)",
                         textAlign: TextAlign.center,
-                        style: estiloTexto.stlTexto,
+                        style: estiloTexto.stlTextoPequeno,
                       ),
                       SizedBox(
                         height: 10,
@@ -134,7 +140,10 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text("no existe adjuntos para mostrar"),
+                      Text(
+                        "no existe adjuntos para mostrar",
+                        style: estiloTexto.stlTextoPequeno,
+                      ),
                     ],
                   ),
                 ),
@@ -322,13 +331,13 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Container(
                       child: Text(
-                        'Descripción de la denuncia',
+                        'Descripción de la denuncia :',
                         style: estiloTexto.stlSubTitulo,
-                        textAlign: TextAlign.right,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                     Container(
@@ -362,7 +371,7 @@ class _CasoDetalleView extends State<CasoDetalleView> {
               ),
               Text(
                 "aún no tiene una respuesta",
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoPequeno,
               ),
             ],
           ),

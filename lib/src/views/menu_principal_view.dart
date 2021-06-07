@@ -33,31 +33,6 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                 child: CircleLogoWidget(),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-                  Color(0xff004d9d),
-                  Color(0xff00ade7),
-                ],
-              )),
-              child: ListTile(
-                dense: true,
-                /*leading: Icon(
-                  Icons.label,
-                  color: Colors.white,
-                ),*/
-                title: Text(
-                  'Autoridad de Fiscalización del Juego',
-                  style: estiloTexto.stlTextoBlancoHomeBold,
-                ),
-                onTap: () {
-                  showAlertDialog(context);
-                },
-              ),
-            ),
             Column(
                 /*children: <Widget>[
                 (normativaController.versionNueva.value != "")
@@ -68,11 +43,9 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                     : SizedBox(height: 1),
               ],*/
                 ),
-            Expanded(
-              child:
-                  Container(color: Color(0xffFFFFFF), child: _ListaOpciones()),
-            ),
             Container(
+              height: 30,
+              width: double.infinity,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                 begin: Alignment.centerRight,
@@ -82,17 +55,39 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   Color(0xff00ade7),
                 ],
               )),
-              child: ListTile(
-                dense: true,
-                /*leading: Icon(
-                  Icons.label,
-                  color: Colors.white,
-                ),*/
-                title: Text('               Salir',
-                    style: estiloTexto.stlTextoBlancoHomeBold),
-                onTap: () {
-                  showAlertDialog(context);
-                },
+              child: Center(
+                child: Text(
+                  'Autoridad de Fiscalización del Juego',
+                  style: estiloTexto.stlTextoBlancoHomeBold,
+                ),
+              ),
+            ),
+            Expanded(
+              child:
+                  Container(color: Color(0xffFFFFFF), child: _ListaOpciones()),
+            ),
+            GestureDetector(
+              onTap: () {
+                showAlertDialog(context);
+              },
+              child: Container(
+                height: 40,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [
+                    Color(0xff004d9d),
+                    Color(0xff00ade7),
+                  ],
+                )),
+                child: Center(
+                  child: Text(
+                    'Salir',
+                    style: estiloTexto.stlTextoBlancoHomeBold,
+                  ),
+                ),
               ),
             )
           ],
@@ -116,10 +111,13 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
       },
     ); // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Salir"),
+      title: Text(
+        "Salir",
+        style: estiloTexto.stlSubTitulo,
+      ),
       content: Text(
         "¿Estas seguro de salir de AJ Móvil?",
-        style: TextStyle(fontSize: 12),
+        style: estiloTexto.stlTexto,
       ),
       actions: [
         cancelButton,
@@ -140,7 +138,7 @@ class _ListaOpciones extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.zero,
-      physics: BouncingScrollPhysics(),
+      //physics: BouncingScrollPhysics(),
       separatorBuilder: (context, i) => Divider(
         color: Colors.blue,
       ),
@@ -153,11 +151,11 @@ class _ListaOpciones extends StatelessWidget {
           viewRoutes[i].titulo,
           style: estiloTexto.stlTextoOpcionesMenuDesplegable,
         ),
-        trailing: Icon(
+        /*trailing: Icon(
           Icons.chevron_right,
           color: colores.blue_grey_darken_1,
           size: 15,
-        ),
+        ),*/
         onTap: () {
           if (viewRoutes[i].titulo == "Consultas y Reclamos") {
             launch("${api.SITIO_WEB}/consultas?ajmovil=true");

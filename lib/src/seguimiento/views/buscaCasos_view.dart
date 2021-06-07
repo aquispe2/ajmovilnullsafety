@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/controllers/consultaReclamoDenunciaController.dart';
+import 'package:movilaj/src/seguimiento/models/caso_model.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/utils/funciones.dart';
@@ -85,23 +87,27 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
         onPressed: _enviarBusqueda);
   }
 
-  void _enviarBusqueda() async {
-    //ProgressDialog pr = objFuncion.generarDialogProgress(context, "Buscando Caso");
-    if (_controllerBuscar.text != null && _controllerBuscar.text.trim() != "") {
-      //await pr.show();
-      bool resultado = await consultasReclamosDenunciasController
-          .cargarCasosPorNroCaso(_controllerBuscar.text);
-      await Future.delayed(Duration(seconds: 1));
-      //await pr.hide();
-      if (resultado == false) {
-        //objFuncion.mostrarAlert(context, "No se ha encontrado el Caso");
+// el return estaria opr demas, pero el cmoponente de dialogprogress nos pide un retorno
+  Future<void> _enviarBusqueda() async {
+    consultasReclamosDenunciasController.lstCaso.value =
+        new List<CasoModel>.empty();
+    if (_controllerBuscar.text.trim() != "") {
+      showDialog(
+        context: context,
+        builder: (context) => FutureProgressDialog(
+            consultasReclamosDenunciasController
+                .cargarCasosPorNroCaso(_controllerBuscar.text),
+            message: Text(variable.PROGRESS_BUSCANDO_CASO)),
+      );
+      await Future.delayed(
+          Duration(seconds: 1)); // por si acos una eséra de 1 segundo
+
+      if (consultasReclamosDenunciasController.lstCaso.isEmpty) {
         objFuncion.mostrarDialog("Mensaje", "No se ha encontrado el Caso");
       } else {
         Get.toNamed('caso_detalle');
-        //Navigator.pushNamed(context, 'seguimiento_consultas_denuncias');
       }
     } else {
-      //objFuncion.mostrarAlert(context, "Debe escribir el número de caso");
       objFuncion.mostrarDialog("Mensaje", "Debe escribir el número de caso");
     }
   }

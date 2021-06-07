@@ -1,6 +1,7 @@
 import 'dart:io';
 
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/controllers/consultaReclamoDenunciaController.dart';
 import 'package:movilaj/src/seguimiento/models/casoAdjunto_model.dart';
@@ -169,8 +170,16 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                             String tempPath = tempDir.path;
                             String uri =
                                 '$API_AJAYU/$PATH_FILE/${adjuntos.nombreArchivo}';
-                            await objFuncion.downloadFile(
-                                uri, adjuntos.nombreArchivo, tempPath);
+
+                            showDialog(
+                              context: context,
+                              builder: (context) => FutureProgressDialog(
+                                  objFuncion.downloadFile(
+                                      uri, adjuntos.nombreArchivo, tempPath),
+                                  message: Text(
+                                      variable.PROGRESS_DESCARGANDO_ARCHIVO)),
+                            );
+
                             await Future.delayed(Duration(seconds: 1));
                             //pr.hide();
                             OpenFile.open(

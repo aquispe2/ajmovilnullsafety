@@ -7,8 +7,6 @@ import 'package:movilaj/src/informate/views/nosotros_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/juegosAzar_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/juegosLoteria_view.dart';
-import 'package:movilaj/src/seguimiento/views/buscaCasos_view.dart';
-import 'package:movilaj/src/seguimiento/views/seguimientoTramites_view.dart';
 import 'package:movilaj/src/views/inicio_view.dart';
 
 final viewRoutes = <_Route>[
@@ -19,10 +17,8 @@ final viewRoutes = <_Route>[
   _Route(null, "Nosotros", NosotrosView()),
   _Route(null, "Contáctanos", MapasView()),
   _Route(null, "Normativas", NormativaView()),
-  _Route(null, "Consultas y Reclamos",null),
-  _Route(null, "Denuncias Anticorrupción",null),
-  /*_Route(null, "Seguimiento de Casos", BuscaCasosView()),
-  _Route(null, "Seguimiento de Trámites", SeguimientoTramitesView()),*/
+  _Route(null, "Consultas y Reclamos", null),
+  _Route(null, "Denuncias Anticorrupción", null),
   _Route(null, "Seguimientos", null),
   _Route(null, "Acerca de la App", AcercaAppView())
 ];

@@ -18,3 +18,7 @@ const BUSQUEDA_CASOS = "Seguimientos";
 
 // MENSAJES
 const NOEXISTE_DATOS = "No existe datos";
+
+// MENSAJES DE PROGRESS DIALOG
+const PROGRESS_DESCARGANDO_ARCHIVO = "descargando archivo ...";
+const PROGRESS_BUSCANDO_CASO = "buscando caso ...";

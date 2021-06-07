@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 import 'package:movilaj/src/informate/models/normativa_model.dart';
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 
 import 'package:movilaj/src/utils/funciones.dart';
 import 'package:flutter/material.dart';
@@ -83,8 +84,6 @@ class _NormativaViewState extends State<NormativaView> {
   Widget _verDetalleNormativa(LstNormativa pNormativaModel) {
     return InkWell(
       onTap: () async {
-        //ProgressDialog pr =objFuncion.generarDialogProgress(context, "Descargando archivo");
-        //pr.show();
         try {
           var urlDividido = pNormativaModel.urlArchivo.split("/");
           var nombre_archivo =
@@ -92,18 +91,23 @@ class _NormativaViewState extends State<NormativaView> {
           Directory tempDir = await getTemporaryDirectory();
           String tempPath = tempDir.path;
 
-          await objFuncion.downloadFile(
-              pNormativaModel.urlArchivo, nombre_archivo, tempPath);
+          //objFuncion.downloadFile(pNormativaModel.urlArchivo, nombre_archivo, tempPath);
+          showDialog(
+            context: context,
+            builder: (context) => FutureProgressDialog(
+                objFuncion.downloadFile(
+                    pNormativaModel.urlArchivo, nombre_archivo, tempPath),
+                message: Text(variable.PROGRESS_DESCARGANDO_ARCHIVO)),
+          );
+
           await Future.delayed(Duration(seconds: 1));
-          //pr.hide();
+
           OpenFile.open('$tempPath/${nombre_archivo}');
         } catch (ex) {
-          print("errorrr: " + ex.toString());
           objFuncion.mostrarDialog("Error",
               "no pude descargar el archivo, favor de verificar que tenga conexión a internet y que tenga instalado alguna aplicación para abrir los documentos");
 
           await Future.delayed(Duration(seconds: 1));
-          //pr.hide();
         }
       },
       child: Container(

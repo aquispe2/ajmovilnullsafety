@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:movilaj/src/informate/models/aviso_model.dart';
 import 'package:movilaj/src/informate/models/normativa_model.dart';
 import 'package:movilaj/src/utils/apis.dart' as api;
 import 'package:http/http.dart' as http;

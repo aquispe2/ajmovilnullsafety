@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:movilaj/src/informate/models/aviso_model.dart';
 import 'package:movilaj/src/informate/models/normativa_model.dart';
 import 'package:movilaj/src/informate/services/normativa_service.dart';
 

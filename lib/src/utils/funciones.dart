@@ -16,9 +16,9 @@ class Funciones {
     try {
       var httpClient = new HttpClient();
 
-      httpClient.badCertificateCallback =
+      /*httpClient.badCertificateCallback =
           (X509Certificate cert, String host, int port) =>
-              true; // representa un certificado SSL
+              true; */
 
       var request = await httpClient.getUrl(Uri.parse(url));
       var response = await request.close();

@@ -188,15 +188,14 @@ class _InicioViewState extends State<InicioView> {
                 Container(),
                 _iconoCard(
                     context,
-                    "mapa",
+                    "aviso",
                     Center(
                       child: Container(
                           width: altoIcono,
                           height: anchoIcono,
-                          child: Image.asset(
-                              'assets/PROMOCIONES_EMPRESARIALES.png')),
+                          child: Image.asset('assets/AVISO.png')),
                     ),
-                    Text("Mapa",
+                    Text("Avisos",
                         style: stlTextoIconHome, textAlign: TextAlign.center),
                     null)
               ],
@@ -221,7 +220,10 @@ class _InicioViewState extends State<InicioView> {
       onTap: () => {
         if (path == 'consultas_reclamos_siteweb' ||
             path == 'denuncias_anticorrupcion')
-          {launch(url!)}
+          {
+            launch(url!)
+            //_launchInWebViewWithJavaScript(url!)
+          }
         else
           {Get.toNamed(path)}
       },
@@ -314,5 +316,32 @@ class _InicioViewState extends State<InicioView> {
         ),
       ),
     );
+  }
+
+  Future<void> _launchInWebViewOrVC(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+        enableDomStorage: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

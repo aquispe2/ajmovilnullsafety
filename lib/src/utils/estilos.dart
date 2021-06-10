@@ -14,6 +14,12 @@ TextStyle stlTexto = GoogleFonts.quicksand(
         letterSpacing: 0.5,
         fontSize: 14,
         fontWeight: FontWeight.normal));
+TextStyle stlTextoMediano = GoogleFonts.quicksand(
+    textStyle: TextStyle(
+        color: Colors.black,
+        letterSpacing: 0.5,
+        fontSize: 12,
+        fontWeight: FontWeight.normal));
 
 TextStyle stlTextoPequeno = GoogleFonts.quicksand(
     textStyle: TextStyle(
@@ -99,3 +105,26 @@ TextStyle stlTextoIrPromocion = GoogleFonts.padauk(
         fontSize: 12,
         fontWeight: FontWeight.bold));
 // ===================
+
+// estilos para avisos
+TextStyle stlTextoTituloAviso = GoogleFonts.breeSerif(
+    textStyle: TextStyle(
+        color: colores.azul_oscuro_aj,
+        letterSpacing: 0.2,
+        fontSize: 25,
+        fontWeight: FontWeight.bold));
+
+TextStyle stlTextoContenidoAviso = GoogleFonts.quicksand(
+    textStyle: TextStyle(
+        color: Colors.grey[900],
+        letterSpacing: 0.2,
+        fontSize: 12,
+        fontWeight: FontWeight.normal));
+
+TextStyle stlTextoFechaAviso = GoogleFonts.padauk(
+    textStyle: TextStyle(
+        color: Colors.orange,
+        letterSpacing: 0.2,
+        fontSize: 12,
+        fontWeight: FontWeight.bold));
+// ======================

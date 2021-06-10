@@ -15,6 +15,7 @@ const ACERCA_APP = "Acerca de la App";
 const BUSCA_PE = "Búsqueda de Promociones";
 const BUSQUEDA_TRAMITES = "Búsqueda de Trámites";
 const BUSQUEDA_CASOS = "Seguimientos";
+const AVISOS = "Avisos";
 
 // MENSAJES
 const NOEXISTE_DATOS = "No existe datos";

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:movilaj/src/informate/controllers/aviso_controller.dart';
 import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
-import 'package:movilaj/src/informate/views/mapas_view.dart';
+import 'package:movilaj/src/informate/views/avisos_view.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
@@ -19,7 +22,19 @@ import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:get/get.dart';
 import 'package:movilaj/src/views/inicio_view.dart';
 
+// para ssl
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+// =============
+
 void main() {
+  HttpOverrides.global = new MyHttpOverrides(); // para SSL
   runApp(MyApp());
 }
 
@@ -37,6 +52,7 @@ class _MyAppState extends State<MyApp> {
     final seguimientoTramiteController =
         Get.put(SeguimientoTramiteController());
     Get.put(NormativaController());
+    Get.put(AvisoController());
 
     // cargamos oficinas
     seguimientoTramiteController.cargarOficinas();
@@ -77,7 +93,7 @@ class _MyAppState extends State<MyApp> {
           GetPage(
               name: 'tramite_plataforma_detalle',
               page: () => TramitePlataformaDetalleView()),
-          GetPage(name: 'mapa', page: () => MapasView()),
+          GetPage(name: 'aviso', page: () => AvisosView()),
         ],
         initialRoute: 'inicio');
   }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "446209115077",
+    "firebase_url": "https://aj-movil-push.firebaseio.com",
+    "project_id": "aj-movil-push",
+    "storage_bucket": "aj-movil-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446209115077:android:5cd1fbb39e91e10fcf81ac",
+        "android_client_info": {
+          "package_name": "bo.gob.aj.movilaj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446209115077-25i3r0cnjaep47mop7cm9fo85td4of83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBptfNOc7tOiVA-LlOEhDqlfhsbL5vx0no"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446209115077-25i3r0cnjaep47mop7cm9fo85td4of83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

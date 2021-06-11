@@ -25,6 +25,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+apply plugin: 'com.google.gms.google-services' // para notificaiones push
+
 // aumentado para genera apk release con firma
  def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
@@ -87,4 +89,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:28.1.0') // para notificaiocnes push
+    implementation 'com.google.firebase:firebase-analytics-ktx' // para notificaiones push
+    implementation 'com.android.support:multidex:1.0.3' // para notificaiones menor o igual al sdk 20
 }

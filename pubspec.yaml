@@ -37,6 +37,11 @@ dependencies:
   open_file: ^3.2.1
   google_maps_flutter: ^2.0.6
   future_progress_dialog: ^0.2.0
+  firebase_messaging: ^10.0.1
+  firebase_core: ^1.2.1
+
+  #ERA PARA EL CONTADOR DE AVISO
+  badges: ^2.0.1 
 
 dev_dependencies:
   flutter_test:

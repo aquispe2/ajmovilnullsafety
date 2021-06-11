@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:movilaj/src/informate/controllers/aviso_controller.dart';
 import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 import 'package:movilaj/src/informate/views/avisos_view.dart';
+import 'package:movilaj/src/notificaciones-push/services/push_notification_service.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
@@ -33,7 +34,12 @@ class MyHttpOverrides extends HttpOverrides {
 }
 // =============
 
-void main() {
+void main() async {
+  //notificaion push
+  WidgetsFlutterBinding.ensureInitialized();
+  await PushNotificationService.initializeApp();
+  // ==============
+
   HttpOverrides.global = new MyHttpOverrides(); // para SSL
   runApp(MyApp());
 }
@@ -44,18 +50,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  /*@override
+  void initState() {
+    super.initState();
+    PushNotificationService.messagesStream.listen((message) {
+      print('My App: $message');
+    });
+  }*/
+
   @override
   Widget build(BuildContext context) {
-    // inicializando estado
+    // cargamos oficinas
+
+    // provechamos de iniclaizar los estados de getX
     Get.put(PromocionEmpresarialController());
     Get.put(ConsultasReclamosDenunciasController());
     final seguimientoTramiteController =
         Get.put(SeguimientoTramiteController());
     Get.put(NormativaController());
     Get.put(AvisoController());
-
-    // cargamos oficinas
     seguimientoTramiteController.cargarOficinas();
+    // =================
 
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,

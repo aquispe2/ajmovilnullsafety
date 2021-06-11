@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 
 import 'package:movilaj/src/utils/funciones.dart';
 
-import 'package:movilaj/src/utils/variables.dart' as variable_textos;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
-import 'package:movilaj/src/utils/colores.dart' as colores;
-import 'package:movilaj/src/widgets/header_widget.dart';
+
 import 'package:url_launcher/url_launcher.dart';
+
 import 'package:movilaj/src/utils/apis.dart' as api;
 
 import 'menu_principal_view.dart';
@@ -19,7 +18,6 @@ class InicioView extends StatefulWidget {
 }
 
 class _InicioViewState extends State<InicioView> {
-  //final seguimientoTramiteController = Get.find<SeguimientoTramiteController>();
   Funciones objFuncion = new Funciones();
 
   @override
@@ -88,15 +86,20 @@ class _InicioViewState extends State<InicioView> {
                     style: estiloTexto.stlTextoBlancoHomeBold,
                     textAlign: TextAlign.center,
                   ),
-                  Card(
-                    elevation: 6,
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Container(
-                          width: 30,
-                          height: 30,
-                          child:
-                              Image.asset('assets/LOGO_AJ_MOVIL_PEQUENO.png')),
+                  GestureDetector(
+                    onTap: () => {
+                      launch(api.TUTORIAL)
+                    }, // hay q revisar no esta yendo al tutorial
+                    child: Card(
+                      elevation: 6,
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Container(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset(
+                                'assets/LOGO_AJ_MOVIL_PEQUENO.png')),
+                      ),
                     ),
                   )
                 ],
@@ -186,6 +189,44 @@ class _InicioViewState extends State<InicioView> {
                     Text("Seguimientos",
                         style: stlTextoIconHome, textAlign: TextAlign.center)),
                 Container(),
+                /*Obx(() => (storage.getItem('cantidadNot') != null &&
+                        storage.getItem('cantidadNot') > 0)
+                    ? Badge(
+                        position: BadgePosition.topEnd(top: 0, end: 0),
+                        padding: EdgeInsets.all(7),
+                        animationDuration: Duration(milliseconds: 300),
+                        animationType: BadgeAnimationType.slide,
+                        badgeContent: Text(
+                          avisoController.cantidadNotificacion.value.toString(),
+                          style: estiloTexto.stlTextoBlancoHome,
+                        ),
+                        child: _iconoCard(
+                            context,
+                            "aviso",
+                            Center(
+                              child: Container(
+                                  width: altoIcono,
+                                  height: anchoIcono,
+                                  child: Image.asset('assets/AVISO.png')),
+                            ),
+                            Text("Avisos",
+                                style: stlTextoIconHome,
+                                textAlign: TextAlign.center),
+                            null),
+                      )
+                    : _iconoCard(
+                        context,
+                        "aviso",
+                        Center(
+                          child: Container(
+                              width: altoIcono,
+                              height: anchoIcono,
+                              child: Image.asset('assets/AVISO.png')),
+                        ),
+                        Text("Avisos",
+                            style: stlTextoIconHome,
+                            textAlign: TextAlign.center),
+                        null)),*/
                 _iconoCard(
                     context,
                     "aviso",
@@ -343,5 +384,13 @@ class _InicioViewState extends State<InicioView> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  String obtenerCantidad(Stream cantidad) {
+    cantidad.listen((cantidad) {
+      print(cantidad);
+      return cantidad;
+    });
+    return ' ';
   }
 }

@@ -19,3 +19,5 @@ const TOPIC = 'anuncios_aj_qas';
 //==== OTRAS CONFIGIURACIONES ===============
 const VERSION_APP = 2.0;
 const TIMEOUT_SECOND = 60;
+
+const TUTORIAL = 'https://youtu.be/cHNsxrNiizg';

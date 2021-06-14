@@ -18,12 +18,19 @@ class AvisosView extends StatefulWidget {
 class _AvisosViewState extends State<AvisosView> {
   final avisoController = Get.find<AvisoController>();
 
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      avisoController.limpiarAviso();
+      avisoController.obtenerAviso();
+    });
+    super.initState();
+  }
+
   Funciones objFuncion = new Funciones();
 
   @override
   Widget build(BuildContext context) {
-    avisoController.obtenerAviso();
-
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -39,8 +46,8 @@ class _AvisosViewState extends State<AvisosView> {
           )),
       drawer: MenuPrincipal(),
       body: Container(
-          width: double.infinity,
-          /*decoration: BoxDecoration(
+        width: double.infinity,
+        /*decoration: BoxDecoration(
               color: colores.azul_oscuro_aj,
               gradient: LinearGradient(
                 begin: Alignment.centerRight,
@@ -50,8 +57,9 @@ class _AvisosViewState extends State<AvisosView> {
                   colores.azul_claro_aj,
                 ],
               )),*/
-          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-          child: _crearListaAviso(avisoController.lstAviso)),
+        padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+        child: _crearListaAviso(avisoController.lstAviso),
+      ),
     );
   }
 
@@ -73,17 +81,17 @@ class _AvisosViewState extends State<AvisosView> {
 
   Widget _crearItemAviso({required AvisoModel pAvisoModel}) {
     return Card(
-        elevation: 2,
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            side: BorderSide(width: 1, color: colores.azul_oscuro_aj)),
         child: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(14.0),
           child: Column(
             children: <Widget>[
               _imagenAviso(pAvisoModel),
               _tituloAviso(pAvisoModel),
               _contenidoAviso(pAvisoModel),
-              SizedBox(
-                height: 10,
-              ),
               _fechaAviso(pAvisoModel)
             ],
           ),
@@ -92,10 +100,14 @@ class _AvisosViewState extends State<AvisosView> {
 
   Widget _tituloAviso(AvisoModel pAvisoModel) {
     if (pAvisoModel.titulo.trim() != "")
-      return Text(
-        pAvisoModel.titulo.trim().toString(),
-        style: estiloTexto.stlTextoTituloAviso,
-        textAlign: TextAlign.center,
+      return Column(
+        children: [
+          Text(
+            pAvisoModel.titulo.trim().toString(),
+            style: estiloTexto.stlTextoTituloAviso,
+            textAlign: TextAlign.center,
+          ),
+        ],
       );
     else
       return Row();
@@ -142,11 +154,14 @@ class _AvisosViewState extends State<AvisosView> {
     }
   }
 
-  Row _contenidoAviso(AvisoModel pAvisoModel) {
+  Column _contenidoAviso(AvisoModel pAvisoModel) {
     if (pAvisoModel.contenido.trim() != "")
-      return Row(children: <Widget>[
+      return Column(children: <Widget>[
+        Divider(
+          color: Colors.indigo,
+        ),
         Container(
-          //width: MediaQuery.of(context).size.width * 0.98,
+          width: MediaQuery.of(context).size.width * 0.90,
           child: Text(
             pAvisoModel.contenido.toString(),
             style: estiloTexto.stlTextoContenidoAviso,
@@ -155,7 +170,7 @@ class _AvisosViewState extends State<AvisosView> {
         ),
       ]);
     else {
-      return Row();
+      return Column();
     }
   }
 
@@ -163,22 +178,29 @@ class _AvisosViewState extends State<AvisosView> {
     if (pAvisoModel.fechaAviso.trim() != "")
       return Container(
         //width: MediaQuery.of(context).size.width * 0.95,
-        child: Row(children: <Widget>[
-          Expanded(
-            child: SizedBox(),
-          ),
-          Text(
-            "fecha publicación: ",
-            style: estiloTexto.stlTextoContenidoAviso,
-          ),
-          Container(
-            child: Text(
-              pAvisoModel.fechaAviso.toString(),
-              style: estiloTexto.stlTextoFechaAviso,
-              textAlign: TextAlign.right,
+        child: Column(
+          children: [
+            Divider(
+              color: Colors.indigo,
             ),
-          ),
-        ]),
+            Row(children: <Widget>[
+              Expanded(
+                child: SizedBox(),
+              ),
+              Text(
+                "fecha publicación: ",
+                style: estiloTexto.stlTextoContenidoAviso,
+              ),
+              Container(
+                child: Text(
+                  pAvisoModel.fechaAviso.toString(),
+                  style: estiloTexto.stlTextoFechaAviso,
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ]),
+          ],
+        ),
       );
     else {
       return Row();

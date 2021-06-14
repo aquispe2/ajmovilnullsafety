@@ -82,35 +82,17 @@ class _BuscaPeState extends State<BuscaPeView> {
         label: Text('Buscar'),
         icon: Icon(Icons.search),
         onPressed: () async {
-          //ProgressDialog pr = objFuncion.generarDialogProgress(context, "Buscando Promoción Empresarial");
-
-          if (_controllerBuscar.text != null &&
-              _controllerBuscar.text.trim() != "") {
+          if (_controllerBuscar.text.trim() != "") {
             promocionEmpresarialController.setMensajeBusqueda(
                 "Busqueda realizada por : ${_controllerBuscar.text.trim()} ");
-            promocionEmpresarialController.limpiarPromocion();
-            await showDialog(
-              context: context,
-              builder: (context) => FutureProgressDialog(
-                  promocionEmpresarialController
-                      .cargarPromocionesEmpresarialesByTextoBusqueda(
-                          _controllerBuscar.text),
-                  message: Text(variable.PROGRESS_DESCARGANDO_ARCHIVO)),
-            );
 
-            //await pr.show();
-            /*var result = await promocionEmpresarialController
-                .cargarPromocionesEmpresarialesByTextoBusqueda(
-                    _controllerBuscar.text);*/
-
-            //await pr.hide();
-            print("RESULTADO");
-            print(
-                promocionEmpresarialController.lstPromociones.value.toString());
-
-            if (promocionEmpresarialController.lstPromociones.value.length >
-                0) {
-              Get.back();
+            var result = await objFuncion.showProgress(
+                context,
+                promocionEmpresarialController
+                    .cargarPromocionesEmpresarialesByTextoBusqueda(
+                        _controllerBuscar.text));
+            if (result) {
+              Get.toNamed("promociones_empresariales");
             } else {
               objFuncion.mostrarDialog(
                   "Mensaje", "No se ha encontrado la Promoción");
@@ -125,7 +107,7 @@ class _BuscaPeState extends State<BuscaPeView> {
   Widget _crearNota() {
     return Center(
       child: Text(
-        'Búsqueda por nombre de Empresa, Nombre de la Promoción Empresarial, Sigla Empresa o Premio Ofertado',
+        'Búsqueda por nombre de Empresa, Nombre de la Promoción Empresarial, Nombre Comercial, Premio Ofretado o Sigla Empresa.',
         textAlign: TextAlign.center,
         style: estiloTexto.stlTexto,
       ),

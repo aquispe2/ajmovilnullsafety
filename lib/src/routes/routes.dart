@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movilaj/src/informate/views/acercaApp_view.dart';
+import 'package:movilaj/src/informate/views/avisos_view.dart';
 import 'package:movilaj/src/informate/views/mapas_view.dart';
 import 'package:movilaj/src/informate/views/normativa_view.dart';
 import 'package:movilaj/src/informate/views/nosotros_view.dart';
@@ -20,6 +21,7 @@ final viewRoutes = <_Route>[
   _Route(null, "Consultas y Reclamos", null),
   _Route(null, "Denuncias Anticorrupción", null),
   _Route(null, "Seguimientos", null),
+  _Route(null, "Avisos", AvisosView()),
   _Route(null, "Acerca de la App", AcercaAppView())
 ];
 

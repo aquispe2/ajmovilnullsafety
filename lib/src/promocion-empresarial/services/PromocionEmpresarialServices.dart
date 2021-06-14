@@ -28,9 +28,11 @@ class PromocionEmpresarialService {
 
   Future<List<PromocionEmpresarialModel>> obtenerPromocionEmpresarial(
       {required String pTextoBuscar}) async {
+    print("INICIA SERVICIO: " + pTextoBuscar);
     String pTetxoBase64 = base64.encode(utf8.encode(pTextoBuscar));
     final url =
         "${api.API_NET}/GetPromocionesEmpresarialesxTextov3/$pTetxoBase64";
+
     final resp = await http
         .get(Uri.parse(url))
         .timeout(Duration(seconds: api.TIMEOUT_SECOND));
@@ -38,7 +40,7 @@ class PromocionEmpresarialService {
     List<PromocionEmpresarialModel> lstPromocionEmpresarial = decodeData
         .map((obj) => PromocionEmpresarialModel.fromJson(obj))
         .toList();
-    print("servicio: $url");
+    print("TERMINA SERVICIO: " + pTextoBuscar);
     return lstPromocionEmpresarial;
   }
 

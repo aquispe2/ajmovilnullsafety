@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:get/get.dart';
 
 import 'package:validators/validators.dart';
@@ -43,5 +44,58 @@ class Funciones {
       titleStyle: TextStyle(color: Colors.blue),
       middleTextStyle: TextStyle(color: Colors.blueGrey, fontSize: 12),
     );
+  }
+
+  Future<void> showProgressReturnVoid(
+      BuildContext context, Future pFuture) async {
+    await showDialog(
+      context: context,
+      builder: (context) =>
+          FutureProgressDialog(pFuture, message: Text('Procesando...')),
+    );
+
+    return showResultDialogReturnVoid(context);
+  }
+
+  Future<bool> showProgress(BuildContext context, Future pFuture) async {
+    var result = await showDialog(
+      context: context,
+      builder: (context) =>
+          FutureProgressDialog(pFuture, message: Text('Procesando...')),
+    );
+
+    return showResultDialogReturn(context, result);
+  }
+
+  Future<void> showProgressWithoutMsg(BuildContext context, pFuture) async {
+    var result = await showDialog(
+        context: context, builder: (context) => FutureProgressDialog(pFuture));
+
+    showResultDialog(context, result);
+  }
+
+  void showResultDialog(BuildContext context, String sms) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(sms),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          )
+        ],
+      ),
+    );
+  }
+
+  bool showResultDialogReturn(BuildContext context, bool result) {
+    return result;
+  }
+
+  void showResultDialogReturnVoid(BuildContext context) {
+    return;
   }
 }

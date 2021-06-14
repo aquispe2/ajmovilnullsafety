@@ -273,7 +273,7 @@ class _InicioViewState extends State<InicioView> {
           elevation: 10,
           clipBehavior: Clip.antiAlias,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 18.0 / 11.0,

@@ -11,8 +11,6 @@ import 'package:movilaj/src/promocion-empresarial/services/PromocionEmpresarialS
 class PromocionEmpresarialController extends GetxController {
   final _promocionEmpresarialService = new PromocionEmpresarialService();
 
-  var lstPromociones = new List<PromocionEmpresarialModel>.empty().obs;
-
   // PARA JUEGOS DE LOTERIA
   var lstJuegoDeLoteria = new List<JuegosLoteriaModel>.empty().obs;
   var descargandoJuegosLoteria = false.obs;
@@ -43,31 +41,34 @@ class PromocionEmpresarialController extends GetxController {
   var descargandoLugarSorteo = false.obs;
   // ========================
 
+  // PARA LISTA DE PRMOCUIONES EMPRESARIALES
+  var lstPromociones = new List<PromocionEmpresarialModel>.empty().obs;
   var objPromocion = new PromocionEmpresarialModel();
-  var existePromocion = false.obs;
-  var extaProceso = false.obs;
+  var estaProceso = false.obs;
+  // ====================================
 
   String mensajeBusqueda = "";
 
   void cargarPromocionesEmpresarialesTodos() async {
-    existePromocion.value = false;
-    extaProceso.value = true;
+    lstPromociones.value = List.empty();
+    estaProceso.value = true;
     lstPromociones.value =
         await _promocionEmpresarialService.obtenerPromocionEmpresarialTodos();
-    existePromocion.value = true;
-    extaProceso.value = false;
+    estaProceso.value = false;
   }
 
-  Future<void> cargarPromocionesEmpresarialesByTextoBusqueda(
+  Future<bool> cargarPromocionesEmpresarialesByTextoBusqueda(
       String pTextoBuscar) async {
-    existePromocion.value = false;
-    extaProceso.value = true;
-    final promociones = await _promocionEmpresarialService
+    print("INICIA BUSQUEDA");
+    estaProceso.value = true;
+    lstPromociones.value = await _promocionEmpresarialService
         .obtenerPromocionEmpresarial(pTextoBuscar: pTextoBuscar);
-    print("obteniendo promociones");
-    lstPromociones.value = promociones;
-    existePromocion.value = true;
-    extaProceso.value = false;
+    estaProceso.value = false;
+    print("TERMINA BUSQUEDA");
+    if (lstPromociones.length > 0)
+      return true;
+    else
+      return false;
   }
 
   String getMensajeBusqueda() {

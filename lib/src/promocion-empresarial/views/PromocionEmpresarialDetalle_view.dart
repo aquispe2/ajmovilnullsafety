@@ -8,7 +8,6 @@ import 'package:movilaj/src/promocion-empresarial/models/premiosofertados_model.
 import 'package:movilaj/src/utils/apis.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/widgets/circularProgessCenter_widget.dart';
-import 'package:movilaj/src/widgets/circularProgress_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:movilaj/src/utils/colores.dart' as colores;
@@ -150,6 +149,10 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                     textAlign: TextAlign.right,
                   ),
                 ),
+                Text(
+                  '${DateFormat('dd/MM/yyyy').format(promocionEmpresarialController.objPromocion.fechaDesde)} al ${(promocionEmpresarialController.objPromocion.fechaHasta != null) ? DateFormat('dd/MM/yyyy').format(promocionEmpresarialController.objPromocion.fechaHasta) : ' - '}',
+                  style: estiloTexto.stlTexto,
+                )
               ],
             ),
             Row(
@@ -220,7 +223,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
                       Text(
                         promocionEmpresarialController
                             .objMecanicaPremiacion.value.mecanica,
-                        style: estiloTexto.stlTexto,
+                        style: estiloTexto.stlTextoMediano,
                         textAlign: TextAlign.justify,
                       )
                     ],
@@ -303,7 +306,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         Row(
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width * 0.25,
+              width: MediaQuery.of(context).size.width * 0.30,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Dirección:',
@@ -312,10 +315,10 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarSorteo.direccion,
-                style: estiloTexto.stlSubTitulo,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],
@@ -323,7 +326,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         Row(
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width * 0.25,
+              width: MediaQuery.of(context).size.width * 0.30,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Departamento:',
@@ -332,10 +335,10 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarSorteo.departamento,
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],
@@ -343,7 +346,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         Row(
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width * 0.25,
+              width: MediaQuery.of(context).size.width * 0.30,
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 'Fecha de sorteo:',
@@ -352,10 +355,10 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 "${DateFormat('dd/MM/yyyy').format(pLugarSorteo.fechaSorteo!)}",
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],
@@ -416,7 +419,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.75,
               child: Text(
                 pPremioOfertado.descripcionPremio,
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             ),
           ],
@@ -443,7 +446,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.direccion,
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],
@@ -465,7 +468,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.departamento,
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],
@@ -487,7 +490,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
               width: MediaQuery.of(context).size.width * 0.55,
               child: Text(
                 pLugarPremiacion.observacion,
-                style: estiloTexto.stlTexto,
+                style: estiloTexto.stlTextoMediano,
               ),
             )
           ],

@@ -12,7 +12,7 @@ class AvisoController extends GetxController {
   var descargandoAviso = false.obs;
   // ====================
 
-  void obtenerAviso() async {
+  Future obtenerAviso() async {
     descargandoAviso.value = true;
     lstAviso.value = await _avisoService.obtenerAviso();
     descargandoAviso.value = false;

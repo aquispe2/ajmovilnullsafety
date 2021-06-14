@@ -101,8 +101,8 @@ TextStyle stlTextoNombreEmpresa = GoogleFonts.quicksand(
 TextStyle stlTextoIrPromocion = GoogleFonts.padauk(
     textStyle: TextStyle(
         color: Colors.green[600],
-        letterSpacing: 0.2,
-        fontSize: 12,
+        letterSpacing: 0.0,
+        fontSize: 10,
         fontWeight: FontWeight.bold));
 // ===================
 

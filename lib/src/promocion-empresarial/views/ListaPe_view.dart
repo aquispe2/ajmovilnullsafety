@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
@@ -22,10 +21,21 @@ class _ListaPeViewState extends State<ListaPeView> {
       Get.find<PromocionEmpresarialController>();
 
   @override
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      if (promocionEmpresarialController.getMensajeBusqueda() == "") {
+        promocionEmpresarialController.limpiarPromocion();
+        promocionEmpresarialController.cargarPromocionesEmpresarialesTodos();
+      }
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (promocionEmpresarialController.getMensajeBusqueda() == "") {
+    /*if (promocionEmpresarialController.getMensajeBusqueda() == "") {
       promocionEmpresarialController.cargarPromocionesEmpresarialesTodos();
-    }
+    }*/
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +52,7 @@ class _ListaPeViewState extends State<ListaPeView> {
                       height: 5,
                     ),
                     Text(
-                      "Todas las Promociones Empresariales",
+                      "Todas las Promociones Empresariales ",
                       style: TextStyle(
                           fontSize: 10, color: colores.blue_grey_lighten_4),
                     ),
@@ -92,7 +102,7 @@ class _ListaPeViewState extends State<ListaPeView> {
   }
 
   Widget _crearListaPromociones() {
-    return Obx(() => (promocionEmpresarialController.existePromocion.value)
+    return Obx(() => (promocionEmpresarialController.lstPromociones.length > 0)
         ? Container(
             color: colores.grey_lighten_2,
             child: ListView.builder(
@@ -103,7 +113,7 @@ class _ListaPeViewState extends State<ListaPeView> {
                           promocionEmpresarialController.lstPromociones[index]);
                 }),
           )
-        : (promocionEmpresarialController.extaProceso.value)
+        : (promocionEmpresarialController.estaProceso.value)
             ? Center(child: CircularProgressWidget())
             : Center(
                 child: Text("No existe datos para mostrar"),
@@ -149,7 +159,7 @@ class _ListaPeViewState extends State<ListaPeView> {
         ),
         FlatButton(
             child: Text(
-              "IR A LA PROMOCIÓN",
+              "VER PROMOCIÓN",
               style: estiloTexto.stlTextoIrPromocion,
             ),
             onPressed: () {
@@ -161,48 +171,6 @@ class _ListaPeViewState extends State<ListaPeView> {
       ],
     );
   }
-
-  /*Row _textoDuracion(PromocionEmpresarialModel pPromocion) {
-    return Row(children: <Widget>[
-      Container(
-        width: MediaQuery.of(context).size.width * 0.30,
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        child: Text(
-          'Duración:',
-          style: estiloTexto.stlSubTitulo,
-          textAlign: TextAlign.right,
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width * 0.60,
-        child: Text(
-          '${DateFormat('dd/MM/yyyy').format(DateTime.parse(pPromocion.fechaDesde.toString()))} al ${(pPromocion.fechaHasta != null) ? DateFormat('dd/MM/yyyy').format(DateTime.parse(pPromocion.fechaHasta.toString())) : '-'}',
-          style: estiloTexto.stlTexto,
-        ),
-      )
-    ]);
-  }*/
-
-  /*Row _textoRaa(PromocionEmpresarialModel pPromocion) {
-    return Row(children: <Widget>[
-      Container(
-        width: MediaQuery.of(context).size.width * 0.30,
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        child: Text(
-          'Autorización:',
-          style: estiloTexto.stlSubTitulo,
-          textAlign: TextAlign.right,
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width * 0.60,
-        child: Text(
-          '${pPromocion.cadenaCiteResolucion}',
-          style: estiloTexto.stlTexto,
-        ),
-      )
-    ]);
-  }*/
 
   Row _textoPromocion(PromocionEmpresarialModel pPromocion) {
     return Row(children: <Widget>[

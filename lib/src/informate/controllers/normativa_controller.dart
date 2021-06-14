@@ -24,6 +24,7 @@ class NormativaController extends GetxController {
   }
 
   void verificarVersion() async {
+    print("verifica rversion");
     final version = await _normativaService.verificarVersion();
     versionNueva.value = version;
   }

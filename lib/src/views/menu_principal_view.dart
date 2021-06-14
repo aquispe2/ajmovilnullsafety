@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 import 'package:movilaj/src/routes/routes.dart';
 import 'package:movilaj/src/widgets/circleLogo_widget.dart';
 
@@ -16,10 +17,11 @@ class MenuPrincipal extends StatefulWidget {
 }
 
 class _MenuPrincipalState extends State<MenuPrincipal> {
-  //final normativaController = Get.find<NormativaController>();
+  final normativaController = Get.find<NormativaController>();
 
   @override
   Widget build(BuildContext context) {
+    normativaController.verificarVersion();
     return Drawer(
       child: Container(
         child: Column(
@@ -34,15 +36,15 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
               ),
             ),
             Column(
-                /*children: <Widget>[
+              children: <Widget>[
                 (normativaController.versionNueva.value != "")
                     ? Text(
                         normativaController.versionNueva.value,
                         style: TextStyle(fontSize: 12, color: Colors.red),
                       )
-                    : SizedBox(height: 1),
-              ],*/
-                ),
+                    : SizedBox(height: 2),
+              ],
+            ),
             Container(
               height: 30,
               width: double.infinity,

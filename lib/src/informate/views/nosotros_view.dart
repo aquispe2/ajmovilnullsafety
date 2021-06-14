@@ -26,12 +26,12 @@ class NosotrosView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            /*Container(
               padding: EdgeInsets.all(5),
               width: double.infinity,
               height: 200,
               child: LogoAjCompletoWidget(),
-            ),
+            ),*/
             Text("¿Quiénes somos y qué hacemos?",
                 style: estiloTexto.stlSubTitulo),
             SizedBox(

@@ -8,10 +8,12 @@ import 'package:movilaj/src/utils/apis.dart' as api;
 class PushNotificationService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+//cuando la app esta en seugndomplano
   static Future _backgroundHandler(RemoteMessage message) async {
     print("OCULTOOO");
   }
 
+  // cuando la aplicacion esta en primer plano
   static Future _onMessageHandler(RemoteMessage message) async {
     print("ABIERTO");
   }

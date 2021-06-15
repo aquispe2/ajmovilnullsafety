@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/apis.dart' as api;
+import 'package:store_redirect/store_redirect.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatefulWidget {
@@ -38,11 +39,23 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
             Column(
               children: <Widget>[
                 (normativaController.versionNueva.value != "")
-                    ? Text(
-                        normativaController.versionNueva.value,
-                        style: TextStyle(fontSize: 12, color: Colors.red),
+                    ? Column(
+                        children: [
+                          GestureDetector(
+                              onTap: () => {
+                                    StoreRedirect.redirect(
+                                        androidAppId: "bo.gob.aj.movilaj")
+                                  }, // hay q revisar no esta yendo al tutorial
+                              child: Container(
+                                color: Colors.red[100],
+                                padding: EdgeInsets.all(5),
+                                child: Text(
+                                    normativaController.versionNueva.value),
+                              )),
+                          SizedBox(height: 5)
+                        ],
                       )
-                    : SizedBox(height: 2),
+                    : SizedBox(height: 5),
               ],
             ),
             Container(

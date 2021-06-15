@@ -23,10 +23,7 @@ class _ListaPeViewState extends State<ListaPeView> {
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
-      if (promocionEmpresarialController.getMensajeBusqueda() == "") {
-        promocionEmpresarialController.limpiarPromocion();
-        promocionEmpresarialController.cargarPromocionesEmpresarialesTodos();
-      }
+      this.obtenerPromociones();
     });
     super.initState();
   }
@@ -101,17 +98,32 @@ class _ListaPeViewState extends State<ListaPeView> {
     );
   }
 
+  Future obtenerPromociones() async {
+    if (promocionEmpresarialController.getMensajeBusqueda() == "") {
+      promocionEmpresarialController.limpiarPromocion();
+      promocionEmpresarialController.cargarPromocionesEmpresarialesTodos();
+    }
+  }
+
   Widget _crearListaPromociones() {
     return Obx(() => (promocionEmpresarialController.lstPromociones.length > 0)
         ? Container(
             color: colores.grey_lighten_2,
-            child: ListView.builder(
-                itemCount: promocionEmpresarialController.lstPromociones.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _crearItemPromociones(
-                      pPromocion:
-                          promocionEmpresarialController.lstPromociones[index]);
-                }),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                return Future.delayed(Duration.zero, () async {
+                  await obtenerPromociones();
+                });
+              },
+              child: ListView.builder(
+                  itemCount:
+                      promocionEmpresarialController.lstPromociones.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _crearItemPromociones(
+                        pPromocion: promocionEmpresarialController
+                            .lstPromociones[index]);
+                  }),
+            ),
           )
         : (promocionEmpresarialController.estaProceso.value)
             ? Center(child: CircularProgressWidget())

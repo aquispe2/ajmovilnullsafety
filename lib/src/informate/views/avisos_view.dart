@@ -21,8 +21,7 @@ class _AvisosViewState extends State<AvisosView> {
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
-      avisoController.limpiarAviso();
-      avisoController.obtenerAviso();
+      await obtenerAvisos();
     });
     super.initState();
   }
@@ -63,20 +62,48 @@ class _AvisosViewState extends State<AvisosView> {
     );
   }
 
+  Future<void> obtenerAvisos() async {
+    avisoController.limpiarAviso();
+    await avisoController.obtenerAviso();
+  }
+
   Widget _crearListaAviso(List<AvisoModel> lstAviso) {
-    return Obx(() => (lstAviso.length > 0)
-        ? Container(
-            child: ListView.builder(
-                itemCount: lstAviso.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _crearItemAviso(pAvisoModel: lstAviso[index]);
-                }),
-          )
-        : (avisoController.descargandoAviso.value == true)
-            ? Center(child: CircularProgressWidget())
-            : Center(
-                child: Text("No existe datos para mostrar"),
-              ));
+    return Obx(
+      () => (lstAviso.length > 0)
+          ? Container(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  return Future.delayed(Duration.zero, () async {
+                    await obtenerAvisos();
+                  });
+                },
+                child: ListView.builder(
+                    itemCount: lstAviso.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _crearItemAviso(pAvisoModel: lstAviso[index]);
+                    }),
+              ),
+            )
+          : (avisoController.descargandoAviso.value == true)
+              ? Center(child: CircularProgressWidget())
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    return Future.delayed(Duration.zero, () async {
+                      await obtenerAvisos();
+                    });
+                  },
+                  child: ListView(
+                    padding: const EdgeInsets.all(8.0),
+                    children: <Widget>[
+                      Container(
+                        height: 50,
+                        child:
+                            const Center(child: Text(variable.NOEXISTE_DATOS)),
+                      ),
+                    ],
+                  ),
+                ),
+    );
   }
 
   Widget _crearItemAviso({required AvisoModel pAvisoModel}) {
@@ -99,6 +126,7 @@ class _AvisosViewState extends State<AvisosView> {
   }
 
   Widget _tituloAviso(AvisoModel pAvisoModel) {
+    print("titlulo: " + pAvisoModel.titulo);
     if (pAvisoModel.titulo.trim() != "")
       return Column(
         children: [
@@ -114,6 +142,8 @@ class _AvisosViewState extends State<AvisosView> {
   }
 
   Widget _imagenAviso(AvisoModel pAvisoModel) {
+    print("holaaaaaaaaaaaaaaaaa");
+    print("url: " + pAvisoModel.nombreArchivo);
     if (pAvisoModel.nombreArchivo.trim() != "") {
       print("url de rutaa: " + pAvisoModel.nombreArchivo.toString());
       return Container(
@@ -126,8 +156,6 @@ class _AvisosViewState extends State<AvisosView> {
               placeholder: AssetImage('assets/giphy.gif'),
               image: NetworkImage(api.API_AJAYU +
                   '/aviso/descargar_aviso/' +
-                  pAvisoModel.avisoMovilId.toString() +
-                  "/" +
                   pAvisoModel.nombreArchivo),
             ),
           ),
@@ -184,6 +212,12 @@ class _AvisosViewState extends State<AvisosView> {
               color: Colors.indigo,
             ),
             Row(children: <Widget>[
+              if (pAvisoModel.mensajeCorto != "")
+                Container(
+                  color: Colors.red[100],
+                  padding: EdgeInsets.all(5),
+                  child: Text(pAvisoModel.mensajeCorto),
+                ),
               Expanded(
                 child: SizedBox(),
               ),

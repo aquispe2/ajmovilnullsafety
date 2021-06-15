@@ -49,7 +49,7 @@ class PromocionEmpresarialController extends GetxController {
 
   String mensajeBusqueda = "";
 
-  void cargarPromocionesEmpresarialesTodos() async {
+  Future cargarPromocionesEmpresarialesTodos() async {
     lstPromociones.value = List.empty();
     estaProceso.value = true;
     lstPromociones.value =

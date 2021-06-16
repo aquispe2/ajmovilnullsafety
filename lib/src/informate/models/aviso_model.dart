@@ -10,6 +10,7 @@ class AvisoModel {
     this.nombreArchivo = "",
     this.titulo = "",
     this.contenido = "",
+    this.mensajeCorto = "",
   });
 
   final int avisoMovilId;
@@ -18,6 +19,7 @@ class AvisoModel {
   final String nombreArchivo;
   final String titulo;
   final String contenido;
+  final String mensajeCorto;
 
   factory AvisoModel.fromJson(Map<String, dynamic> json) => AvisoModel(
       avisoMovilId: json['avisoMovilId'] as int,
@@ -25,7 +27,8 @@ class AvisoModel {
       enlace: json['enlace'] as String,
       nombreArchivo: json['nombreArchivo'] as String,
       titulo: json['titulo'] as String,
-      contenido: json['contenido'] as String);
+      contenido: json['contenido'] as String,
+      mensajeCorto: json['mensajeCorto'] as String);
 
   Map<String, dynamic> toJson() => {
         'avisoMovilId': avisoMovilId,
@@ -33,7 +36,8 @@ class AvisoModel {
         'enlace': enlace,
         'nombreArchivo': nombreArchivo,
         'titulo': titulo,
-        'contenido': contenido
+        'contenido': contenido,
+        'mensajeCorto': mensajeCorto
       };
 
   AvisoModel clone() => AvisoModel(
@@ -42,7 +46,8 @@ class AvisoModel {
       enlace: enlace,
       nombreArchivo: nombreArchivo,
       titulo: titulo,
-      contenido: contenido);
+      contenido: contenido,
+      mensajeCorto: mensajeCorto);
 
   AvisoModel copyWith(
           {int? avisoMovilId,
@@ -50,15 +55,16 @@ class AvisoModel {
           String? enlace,
           String? nombreArchivo,
           String? titulo,
-          String? contenido}) =>
+          String? contenido,
+          String? mensajeCorto}) =>
       AvisoModel(
-        avisoMovilId: avisoMovilId ?? this.avisoMovilId,
-        fechaAviso: fechaAviso ?? this.fechaAviso,
-        enlace: enlace ?? this.enlace,
-        nombreArchivo: nombreArchivo ?? this.nombreArchivo,
-        titulo: titulo ?? this.titulo,
-        contenido: contenido ?? this.contenido,
-      );
+          avisoMovilId: avisoMovilId ?? this.avisoMovilId,
+          fechaAviso: fechaAviso ?? this.fechaAviso,
+          enlace: enlace ?? this.enlace,
+          nombreArchivo: nombreArchivo ?? this.nombreArchivo,
+          titulo: titulo ?? this.titulo,
+          contenido: contenido ?? this.contenido,
+          mensajeCorto: mensajeCorto ?? this.mensajeCorto);
 
   @override
   bool operator ==(Object other) =>
@@ -69,7 +75,8 @@ class AvisoModel {
           enlace == other.enlace &&
           nombreArchivo == other.nombreArchivo &&
           titulo == other.titulo &&
-          contenido == other.contenido;
+          contenido == other.contenido &&
+          mensajeCorto == other.mensajeCorto;
 
   @override
   int get hashCode =>
@@ -78,5 +85,6 @@ class AvisoModel {
       enlace.hashCode ^
       nombreArchivo.hashCode ^
       titulo.hashCode ^
-      contenido.hashCode;
+      contenido.hashCode ^
+      mensajeCorto.hashCode;
 }

@@ -30,9 +30,10 @@ class PromocionEmpresarialService {
       {required String pTextoBuscar}) async {
     print("INICIA SERVICIO: " + pTextoBuscar);
     String pTetxoBase64 = base64.encode(utf8.encode(pTextoBuscar));
+    print("decodificado: " + pTetxoBase64);
     final url =
         "${api.API_NET}/GetPromocionesEmpresarialesxTextov3/$pTetxoBase64";
-
+    print("url: " + url);
     final resp = await http
         .get(Uri.parse(url))
         .timeout(Duration(seconds: api.TIMEOUT_SECOND));

@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 
 import 'package:movilaj/src/utils/funciones.dart';
 
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
+import 'package:store_redirect/store_redirect.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,9 +23,11 @@ class InicioView extends StatefulWidget {
 
 class _InicioViewState extends State<InicioView> {
   Funciones objFuncion = new Funciones();
+  final normativaController = Get.find<NormativaController>();
 
   @override
   Widget build(BuildContext context) {
+    normativaController.verificarVersion();
     var media = MediaQuery.of(context).size;
     double altoIcono = (media.width < 400) ? 40 : 60;
     double anchoIcono = (media.width < 400) ? 40 : 60;
@@ -64,6 +68,22 @@ class _InicioViewState extends State<InicioView> {
           )),
           child: ListView(
             children: [
+              Column(
+                children: [
+                  Obx(() => (normativaController.versionNueva.value != "")
+                      ? GestureDetector(
+                          onTap: () => {
+                                StoreRedirect.redirect(
+                                    androidAppId: "bo.gob.aj.movilaj")
+                              }, // hay q revisar no esta yendo al tutorial
+                          child: Container(
+                            color: Colors.red[100],
+                            padding: EdgeInsets.all(5),
+                            child: Text(normativaController.versionNueva.value),
+                          ))
+                      : Container()),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
                 child: Text(

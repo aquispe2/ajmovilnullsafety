@@ -134,10 +134,13 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           "Referencia",
                           style: estiloTexto.stlSubTitulo,
                         ),
-                        Text(
-                          seguimientoTramiteController
-                              .lstSeguimientoTramiteFisico[index].referencia,
-                          style: estiloTexto.stlTexto,
+                        Container(
+                           width: MediaQuery.of(context).size.width * 0.60,
+                          child: Text(
+                            seguimientoTramiteController
+                                .lstSeguimientoTramiteFisico[index].referencia,
+                            style: estiloTexto.stlTexto,
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -168,10 +171,13 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                               "Origen: ",
                               style: estiloTexto.stlSubTitulo,
                             ),
-                            Text(
-                              seguimientoTramiteController
-                                  .lstSeguimientoTramiteFisico[index].origen,
-                              style: estiloTexto.stlTexto,
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.60,
+                              child: Text(
+                                seguimientoTramiteController
+                                    .lstSeguimientoTramiteFisico[index].origen,
+                                style: estiloTexto.stlTexto,
+                              ),
                             ),
                           ],
                         ),
@@ -237,7 +243,8 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                 child: Text("No se pudo descargar tramite físico"),
               )));
   }
-     Future<bool> _clickAtras() {
+
+  Future<bool> _clickAtras() {
     Get.toNamed("seguimiento_tramites");
     return new Future.value(true);
   }

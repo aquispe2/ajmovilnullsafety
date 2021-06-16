@@ -125,11 +125,14 @@ class _TramitePlataformaDetalleViewState
                               "Referencia",
                               style: estiloTexto.stlSubTitulo,
                             ),
-                            Text(
-                              seguimientoTramiteController
-                                  .lstSeguimientoTramitePlataforma[index]
-                                  .referencia,
-                              style: estiloTexto.stlTexto,
+                            Container(
+                               width: MediaQuery.of(context).size.width * 0.60,
+                              child: Text(
+                                seguimientoTramiteController
+                                    .lstSeguimientoTramitePlataforma[index]
+                                    .referencia,
+                                style: estiloTexto.stlTexto,
+                              ),
                             ),
                             SizedBox(
                               height: 10,
@@ -161,11 +164,14 @@ class _TramitePlataformaDetalleViewState
                                   "Origen: ",
                                   style: estiloTexto.stlSubTitulo,
                                 ),
-                                Text(
-                                  seguimientoTramiteController
-                                      .lstSeguimientoTramitePlataforma[index]
-                                      .origen,
-                                  style: estiloTexto.stlTexto,
+                                Container(
+                                   width: MediaQuery.of(context).size.width * 0.60,
+                                  child: Text(
+                                    seguimientoTramiteController
+                                        .lstSeguimientoTramitePlataforma[index]
+                                        .origen,
+                                    style: estiloTexto.stlTexto,
+                                  ),
                                 ),
                               ],
                             ),

@@ -24,21 +24,24 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
   Widget build(BuildContext context) {
     promocionEmpresarialController.cargarJuegosLoteriaTodos();
 
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.JUEGO_LOTERIA,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
-              ),
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.JUEGO_LOTERIA,
+              style: estiloTexto.stlTituloBarBlanco,
             ),
-          )),
-      drawer: MenuPrincipal(),
-      body: _crearListaJuegosLoteria(),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        drawer: MenuPrincipal(),
+        body: _crearListaJuegosLoteria(),
+      ),
     );
   }
 
@@ -107,5 +110,9 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
             : Center(
                 child: Text(variable.NOEXISTE_DATOS),
               )));
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

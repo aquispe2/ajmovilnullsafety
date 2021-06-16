@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:flutter/material.dart';
@@ -51,90 +52,93 @@ class _MapasViewState extends State<MapasView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.CONTACTANOS,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.CONTACTANOS,
+              style: estiloTexto.stlTituloBarBlanco,
+            ),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        drawer: MenuPrincipal(),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: GoogleMap(
+              initialCameraPosition:
+                  CameraPosition(target: locationLaPaz, zoom: 15),
+              compassEnabled: true,
+              zoomControlsEnabled: false,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              markers: Set.of(_markers.values)),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.business,
+                size: 15,
+              ),
+              title: Text(
+                'La Paz',
+                style: estiloTexto.stlTextoPequeno,
               ),
             ),
-          )),
-      drawer: MenuPrincipal(),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: locationLaPaz, zoom: 15),
-            compassEnabled: true,
-            zoomControlsEnabled: false,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: Set.of(_markers.values)),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.business,
-              size: 15,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.business,
+                size: 15,
+              ),
+              title: Text(
+                'Cochabamba',
+                style: estiloTexto.stlTextoPequeno,
+              ),
             ),
-            title: Text(
-              'La Paz',
-              style: estiloTexto.stlTextoPequeno,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.business,
+                size: 15,
+              ),
+              title: Text(
+                'Santa Cruz',
+                style: estiloTexto.stlTextoPequeno,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.business,
-              size: 15,
-            ),
-            title: Text(
-              'Cochabamba',
-              style: estiloTexto.stlTextoPequeno,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.business,
-              size: 15,
-            ),
-            title: Text(
-              'Santa Cruz',
-              style: estiloTexto.stlTextoPequeno,
-            ),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: colores.blue_grey_darken_3,
-        onTap: _onItemTapped,
-      ),
-      floatingActionButton: Container(
-        color: Colors.white,
-        margin: EdgeInsets.only(left: 30),
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        height: 80,
-        child: Column(
-          children: <Widget>[
-            Text(
-              _titulo,
-              style: estiloTexto.stlSubTitulo,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              _texto,
-              style: estiloTexto.stlTextoPequeno,
-            )
           ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: colores.blue_grey_darken_3,
+          onTap: _onItemTapped,
+        ),
+        floatingActionButton: Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(left: 30),
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          height: 80,
+          child: Column(
+            children: <Widget>[
+              Text(
+                _titulo,
+                style: estiloTexto.stlSubTitulo,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                _texto,
+                style: estiloTexto.stlTextoPequeno,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -178,5 +182,9 @@ class _MapasViewState extends State<MapasView> {
       tilt: 50.0,
       bearing: 45.0,
     )));
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

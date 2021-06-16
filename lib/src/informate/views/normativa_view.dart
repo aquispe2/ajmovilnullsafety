@@ -34,32 +34,35 @@ class _NormativaViewState extends State<NormativaView> {
         List<NormativaModel>.empty(); // lipiando normativas
     normativaController.cargarNormativas();
 
-    return Scaffold(
-        appBar: AppBar(
-            title:
-                Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+          appBar: AppBar(
+              title:
+                  Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                  ),
                 ),
-              ),
-            )),
-        drawer: MenuPrincipal(),
-        body: Obx(() => (normativaController.lstNormativa.length > 0)
-            ? Container(
-                child: ListView.builder(
-                    itemCount: normativaController.lstNormativa.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _crearItemNormativa(
-                          pNormativa: normativaController.lstNormativa[index]);
-                    }),
-              )
-            : ((normativaController.descargandoNormativa.value == true)
-                ? CircularProgressCenterWidget()
-                : Center(
-                    child: Text("No existe datos para mostrar"),
-                  ))));
+              )),
+          drawer: MenuPrincipal(),
+          body: Obx(() => (normativaController.lstNormativa.length > 0)
+              ? Container(
+                  child: ListView.builder(
+                      itemCount: normativaController.lstNormativa.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return _crearItemNormativa(
+                            pNormativa: normativaController.lstNormativa[index]);
+                      }),
+                )
+              : ((normativaController.descargandoNormativa.value == true)
+                  ? CircularProgressCenterWidget()
+                  : Center(
+                      child: Text("No existe datos para mostrar"),
+                    )))),
+    );
   }
 
   Widget _crearItemNormativa({NormativaModel? pNormativa}) {
@@ -184,5 +187,9 @@ class _NormativaViewState extends State<NormativaView> {
         ),
       ),
     );
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

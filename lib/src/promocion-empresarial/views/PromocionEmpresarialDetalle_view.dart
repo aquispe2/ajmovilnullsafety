@@ -34,31 +34,34 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
     promocionEmpresarialController.cargarLugaresSorteoByPromocionId(
         promocionEmpresarialController.objPromocion.promocionEmpresarialId);
 
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.PROMOCIONES_EMPRESARIALES_DETALLE,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
-              ),
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.PROMOCIONES_EMPRESARIALES_DETALLE,
+              style: estiloTexto.stlTituloBarBlanco,
             ),
-          )),
-      body: Container(
-        color: colores.grey_lighten_2,
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-          children: <Widget>[
-            _crearDatosEmpresa(),
-            _crearComoParticipar(),
-            _crearPremiosOfertados(),
-            _crearLugaresPremiacion(),
-            _crearLugarSorteo(),
-            _crearMasInformacion(),
-          ],
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        body: Container(
+          color: colores.grey_lighten_2,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            children: <Widget>[
+              _crearDatosEmpresa(),
+              _crearComoParticipar(),
+              _crearPremiosOfertados(),
+              _crearLugaresPremiacion(),
+              _crearLugarSorteo(),
+              _crearMasInformacion(),
+            ],
+          ),
         ),
       ),
     );
@@ -522,5 +525,10 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
         ),
       ),
     );
+  }
+
+  Future<bool> _clickAtras() {
+    Get.toNamed("promociones_empresariales");
+    return new Future.value(true);
   }
 }

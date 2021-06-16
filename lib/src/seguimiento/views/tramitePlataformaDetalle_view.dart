@@ -18,25 +18,28 @@ class _TramitePlataformaDetalleViewState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Column(children: [
-              Text(
-                "Búsqueda",
-                style: estiloTexto.stlTituloBarBlanco,
-              ),
-              Text("Seguimiento por N° de Trámite",
-                  style: TextStyle(
-                      fontSize: 10, color: colores.blue_grey_lighten_4))
-            ]),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+          appBar: AppBar(
+              title: Column(children: [
+                Text(
+                  "Búsqueda",
+                  style: estiloTexto.stlTituloBarBlanco,
                 ),
-              ),
-            )),
-        body: _crearDatosTramitePlataforma());
+                Text("Seguimiento por N° de Trámite",
+                    style: TextStyle(
+                        fontSize: 10, color: colores.blue_grey_lighten_4))
+              ]),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                  ),
+                ),
+              )),
+          body: _crearDatosTramitePlataforma()),
+    );
   }
 
   Widget _crearDatosTramitePlataforma() {
@@ -228,5 +231,10 @@ class _TramitePlataformaDetalleViewState
             : Center(
                 child: Text("No se pudo descargar tramite físico"),
               )));
+  }
+
+  Future<bool> _clickAtras() {
+    Get.toNamed("seguimiento_tramites");
+    return new Future.value(true);
   }
 }

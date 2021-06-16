@@ -31,34 +31,37 @@ class _AvisosViewState extends State<AvisosView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.AVISOS,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
-              ),
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.AVISOS,
+              style: estiloTexto.stlTituloBarBlanco,
             ),
-          )),
-      drawer: MenuPrincipal(),
-      body: Container(
-        width: double.infinity,
-        /*decoration: BoxDecoration(
-              color: colores.azul_oscuro_aj,
-              gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-                  colores.azul_oscuro_aj,
-                  colores.azul_claro_aj,
-                ],
-              )),*/
-        padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-        child: _crearListaAviso(avisoController.lstAviso),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        drawer: MenuPrincipal(),
+        body: Container(
+          width: double.infinity,
+          /*decoration: BoxDecoration(
+                color: colores.azul_oscuro_aj,
+                gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [
+                    colores.azul_oscuro_aj,
+                    colores.azul_claro_aj,
+                  ],
+                )),*/
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+          child: _crearListaAviso(avisoController.lstAviso),
+        ),
       ),
     );
   }
@@ -205,5 +208,9 @@ class _AvisosViewState extends State<AvisosView> {
     else {
       return Row();
     }
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

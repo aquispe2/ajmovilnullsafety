@@ -33,26 +33,29 @@ class _CasoDetalleView extends State<CasoDetalleView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            '${variable.SEGUIMIENTO_CONSULTAS_RECLAMOS} ',
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
-              ),
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              '${variable.SEGUIMIENTO_CONSULTAS_RECLAMOS} ',
+              style: estiloTexto.stlTituloBarBlanco,
             ),
-          )),
-      body: Container(
-        color: colores.grey_lighten_2,
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-          children: <Widget>[
-            _datosConsultas(),
-          ],
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        body: Container(
+          color: colores.grey_lighten_2,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            children: <Widget>[
+              _datosConsultas(),
+            ],
+          ),
         ),
       ),
     );
@@ -436,5 +439,9 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                 ],
               )));
     }
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("busca_casos");
+    return new Future.value(true);
   }
 }

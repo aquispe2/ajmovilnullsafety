@@ -17,25 +17,28 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Column(children: [
-              Text(
-                "Búsqueda",
-                style: estiloTexto.stlTituloBarBlanco,
-              ),
-              Text("Seguimiento por Hoja de Ruta",
-                  style: TextStyle(
-                      fontSize: 10, color: colores.blue_grey_lighten_4))
-            ]),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+          appBar: AppBar(
+              title: Column(children: [
+                Text(
+                  "Búsqueda",
+                  style: estiloTexto.stlTituloBarBlanco,
                 ),
-              ),
-            )),
-        body: _crearDatosTramiteFisico());
+                Text("Seguimiento por Hoja de Ruta",
+                    style: TextStyle(
+                        fontSize: 10, color: colores.blue_grey_lighten_4))
+              ]),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                  ),
+                ),
+              )),
+          body: _crearDatosTramiteFisico()),
+    );
   }
 
   Widget _crearDatosTramiteFisico() {
@@ -233,5 +236,9 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
             : Center(
                 child: Text("No se pudo descargar tramite físico"),
               )));
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("seguimiento_tramites");
+    return new Future.value(true);
   }
 }

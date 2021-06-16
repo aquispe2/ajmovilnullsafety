@@ -24,21 +24,24 @@ class _JuegosAzarState extends State<JuegosAzarView> {
   Widget build(BuildContext context) {
     promocionEmpresarialController.cargarJuegosAzarTodos();
 
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.JUEGO_AZAR,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
-              ),
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.JUEGO_AZAR,
+              style: estiloTexto.stlTituloBarBlanco,
             ),
-          )),
-      drawer: MenuPrincipal(),
-      body: _crearListaJuegosAzar(),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
+              ),
+            )),
+        drawer: MenuPrincipal(),
+        body: _crearListaJuegosAzar(),
+      ),
     );
   }
 
@@ -213,5 +216,9 @@ class _JuegosAzarState extends State<JuegosAzarView> {
             ],
           );
         });
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

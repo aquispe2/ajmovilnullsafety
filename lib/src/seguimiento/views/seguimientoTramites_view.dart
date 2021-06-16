@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/views/tramiteFisico_view.dart';
 import 'package:movilaj/src/seguimiento/views/tramitePlataforma_view.dart';
 import 'package:movilaj/src/utils/variables.dart' as variable;
@@ -31,68 +32,71 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Text(
-              "${variable.BUSQUEDA_TRAMITES}",
-              style: estiloTexto.stlTituloBarBlanco,
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+          appBar: AppBar(
+              title: Text(
+                "${variable.BUSQUEDA_TRAMITES}",
+                style: estiloTexto.stlTituloBarBlanco,
+              ),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                  ),
+                ),
+              )),
+          drawer: MenuPrincipal(),
+
+          //body: _widgetOptions.elementAt(_selectedIndex),
+
+          body: SizedBox.expand(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _selectedIndex = index);
+              },
+              children: <Widget>[
+                Container(
+                  child: TramiteFisicoView(),
+                ),
+                Container(
+                  child: TramitePlataforma(),
+                )
+              ],
             ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.business,
+                  size: 15,
+                  color: colores.blue_grey_darken_1,
+                ),
+                title: Text(
+                  'Trámites en físico',
+                  style: estiloTexto.stlTextoPequeno,
                 ),
               ),
-            )),
-        drawer: MenuPrincipal(),
-
-        //body: _widgetOptions.elementAt(_selectedIndex),
-
-        body: SizedBox.expand(
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() => _selectedIndex = index);
-            },
-            children: <Widget>[
-              Container(
-                child: TramiteFisicoView(),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.business,
+                  size: 15,
+                  color: colores.blue_grey_darken_1,
+                ),
+                title: Text(
+                  'Trámites en plataforma',
+                  style: estiloTexto.stlTextoPequeno,
+                ),
               ),
-              Container(
-                child: TramitePlataforma(),
-              )
             ],
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.business,
-                size: 15,
-                color: colores.blue_grey_darken_1,
-              ),
-              title: Text(
-                'Trámites en físico',
-                style: estiloTexto.stlTextoPequeno,
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.business,
-                size: 15,
-                color: colores.blue_grey_darken_1,
-              ),
-              title: Text(
-                'Trámites en plataforma',
-                style: estiloTexto.stlTextoPequeno,
-              ),
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.indigo,
-          onTap: _onItemTapped,
-        ));
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.indigo,
+            onTap: _onItemTapped,
+          )),
+    );
   }
 
   void _onItemTapped(int index) {
@@ -101,5 +105,10 @@ class _SeguimientoTramitesViewState extends State<SeguimientoTramitesView> {
         duration: Duration(milliseconds: 500), curve: Curves.easeOut);
 
     setState(() {});
+  }
+
+  Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

@@ -37,67 +37,70 @@ class _ListaPeViewState extends State<ListaPeView> {
       promocionEmpresarialController.cargarPromocionesEmpresarialesTodos();
     }*/
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Column(children: <Widget>[
-          (promocionEmpresarialController.getMensajeBusqueda() == "")
-              ? Column(
-                  children: <Widget>[
-                    Text(
-                      variable_textos.PROMOCIONES_EMPRESARIALES,
-                      style: estiloTexto.stlTituloBarBlanco,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Todas las Promociones Empresariales ",
-                      style: TextStyle(
-                          fontSize: 10, color: colores.blue_grey_lighten_4),
-                    ),
-                  ],
-                )
-              : Column(
-                  children: <Widget>[
-                    Text(
-                      variable_textos.PROMOCIONES_EMPRESARIALES,
-                      style: estiloTexto.stlTextoBlancoHome,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      promocionEmpresarialController.getMensajeBusqueda(),
-                      style: TextStyle(
-                          fontSize: 10, color: colores.blue_grey_lighten_4),
-                    ),
-                  ],
-                )
-        ]),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          title: Column(children: <Widget>[
+            (promocionEmpresarialController.getMensajeBusqueda() == "")
+                ? Column(
+                    children: <Widget>[
+                      Text(
+                        variable_textos.PROMOCIONES_EMPRESARIALES,
+                        style: estiloTexto.stlTituloBarBlanco,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Todas las Promociones Empresariales ",
+                        style: TextStyle(
+                            fontSize: 10, color: colores.blue_grey_lighten_4),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: <Widget>[
+                      Text(
+                        variable_textos.PROMOCIONES_EMPRESARIALES,
+                        style: estiloTexto.stlTextoBlancoHome,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        promocionEmpresarialController.getMensajeBusqueda(),
+                        style: TextStyle(
+                            fontSize: 10, color: colores.blue_grey_lighten_4),
+                      ),
+                    ],
+                  )
+          ]),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+              ),
             ),
           ),
+          actions: <Widget>[
+            InkWell(
+              onTap: () {
+                //Navigator.pushNamed(context, 'busca_promociones');
+                Get.toNamed('busca_promociones');
+              },
+              child: CircleAvatar(
+                child: Icon(Icons.search),
+                backgroundColor: colores.azul_oscuro_aj,
+              ),
+            ),
+          ],
         ),
-        actions: <Widget>[
-          InkWell(
-            onTap: () {
-              //Navigator.pushNamed(context, 'busca_promociones');
-              Get.toNamed('busca_promociones');
-            },
-            child: CircleAvatar(
-              child: Icon(Icons.search),
-              backgroundColor: colores.azul_oscuro_aj,
-            ),
-          ),
-        ],
+        drawer: MenuPrincipal(),
+        body: _crearListaPromociones(),
+        floatingActionButton: _crearBotonFlotante(),
       ),
-      drawer: MenuPrincipal(),
-      body: _crearListaPromociones(),
-      floatingActionButton: _crearBotonFlotante(),
     );
   }
 
@@ -217,5 +220,9 @@ class _ListaPeViewState extends State<ListaPeView> {
     } else {
       return Container();
     }
+  }
+   Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

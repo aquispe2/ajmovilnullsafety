@@ -25,33 +25,36 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            variable.BUSQUEDA_CASOS,
-            style: estiloTexto.stlTituloBarBlanco,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+    return WillPopScope(
+      onWillPop: _clickAtras,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+              variable.BUSQUEDA_CASOS,
+              style: estiloTexto.stlTituloBarBlanco,
+            ),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colores.azul_claro_aj, colores.azul_oscuro_aj],
+                ),
               ),
-            ),
-          )),
-      drawer: MenuPrincipal(),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            _crearNota(),
-            SizedBox(
-              height: 10,
-            ),
-            _crearTextoBuscador(),
-            _crearBotonBuscar()
-          ],
+            )),
+        drawer: MenuPrincipal(),
+        body: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              _crearNota(),
+              SizedBox(
+                height: 10,
+              ),
+              _crearTextoBuscador(),
+              _crearBotonBuscar()
+            ],
+          ),
         ),
       ),
     );
@@ -115,5 +118,9 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
     } else {
       objFuncion.mostrarDialog("Mensaje", "Debe escribir el número de caso");
     }
+  }
+     Future<bool> _clickAtras() {
+    Get.toNamed("inicio");
+    return new Future.value(true);
   }
 }

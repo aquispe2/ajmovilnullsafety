@@ -119,6 +119,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
                                   int.parse(_controllerNroHr.text.trim())),
                           message: Text(variable.PROGRESS_BUSCANDO_HR)),
                     );
+
                     //pr.hide();
 
                     if (seguimientoTramiteController

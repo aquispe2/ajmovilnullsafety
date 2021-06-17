@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ConsultasReclamosDenunciasService {
   Future<List<CasoModel>> obtenerCasoPorNroCaso(String pNroCaso) async {
     final url = "${api.API_AJAYU}/casos/busquedas?nrocaso=$pNroCaso";
-    print("OBTENER CASO POR NUMERO CASO: " + url);
+    print("url_caso:  " + url);
 
     try {
       final resp = await http

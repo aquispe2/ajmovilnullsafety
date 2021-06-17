@@ -101,25 +101,37 @@ class _BuscaCasosViewState extends State<BuscaCasosView> {
     consultasReclamosDenunciasController.lstCaso.value =
         new List<CasoModel>.empty();
     if (_controllerBuscar.text.trim() != "") {
-      await showDialog(
+      /*await showDialog(
         context: context,
         builder: (context) => FutureProgressDialog(
             consultasReclamosDenunciasController
                 .cargarCasosPorNroCaso(_controllerBuscar.text),
             message: Text(variable.PROGRESS_BUSCANDO_CASO)),
-      );
-      print("resultado del caso");
+      );*/
+
+      var result = await objFuncion.showProgress(
+          context,
+          consultasReclamosDenunciasController
+              .cargarCasosPorNroCaso(_controllerBuscar.text));
+      if (result) {
+        Get.toNamed("caso_detalle");
+      } else {
+        objFuncion.mostrarDialog("Mensaje", "No se ha encontrado el Caso");
+      }
+
+      /*print("resultado del caso");
       print(consultasReclamosDenunciasController.lstCaso.length);
       if (consultasReclamosDenunciasController.lstCaso.isEmpty) {
         objFuncion.mostrarDialog("Mensaje", "No se ha encontrado el Caso");
       } else {
         Get.toNamed('caso_detalle');
-      }
+      }*/
     } else {
       objFuncion.mostrarDialog("Mensaje", "Debe escribir el número de caso");
     }
   }
-     Future<bool> _clickAtras() {
+
+  Future<bool> _clickAtras() {
     Get.toNamed("inicio");
     return new Future.value(true);
   }

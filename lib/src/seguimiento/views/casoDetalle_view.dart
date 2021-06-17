@@ -399,22 +399,22 @@ class _CasoDetalleView extends State<CasoDetalleView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        child: Text(
-                          'Respuesta parcial',
-                          style: estiloTexto.stlSubTitulo,
-                          textAlign: TextAlign.right,
+                      if (caso.respuestaParcial != null)
+                        Container(
+                          child: Text(
+                            'Respuesta parcial',
+                            style: estiloTexto.stlSubTitulo,
+                            textAlign: TextAlign.right,
+                          ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.80,
-                        child: Text(
-                          (caso.respuestaParcial != null)
-                              ? caso.respuestaParcial
-                              : 'aún no tiene una respuesta parcial',
-                          style: estiloTexto.stlTexto,
+                      if (caso.respuestaParcial != null)
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.80,
+                          child: Text(
+                            caso.respuestaParcial,
+                            style: estiloTexto.stlTexto,
+                          ),
                         ),
-                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -440,7 +440,8 @@ class _CasoDetalleView extends State<CasoDetalleView> {
               )));
     }
   }
-     Future<bool> _clickAtras() {
+
+  Future<bool> _clickAtras() {
     Get.toNamed("busca_casos");
     return new Future.value(true);
   }

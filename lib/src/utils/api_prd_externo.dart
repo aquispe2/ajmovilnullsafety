@@ -7,7 +7,7 @@ const PATH_FILE = "adjuntos/open/file?filename=/home/srvadmpw/Adjuntos";
 const SITIO_SIAJ = "https://siaj.aj.gob.bo:40085";
 
 //==== OTRAS CONFIGIURACIONES ===============
-const TOPIC = 'anuncios_aj_qas';
+const TOPIC = 'anuncios_aj_prd';
 const VERSION_APP = 2.0;
 const TIMEOUT_SECOND = 60;
-const TUTORIAL = 'https://youtu.be/cHNsxrNiizg';
+const TUTORIAL = 'https://www.youtube.com/watch?v=85PL34RBguI';

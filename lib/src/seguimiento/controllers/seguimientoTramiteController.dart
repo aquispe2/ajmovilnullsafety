@@ -17,21 +17,31 @@ class SeguimientoTramiteController extends GetxController {
 
   var lstOficina = new List<OficinaModel>.empty().obs;
 
-  Future<void> cargarSeguimientoTramiteFisico(
+  Future<bool> cargarSeguimientoTramiteFisico(
       int pGestion, int pOficinaId, int pNroHr) async {
     descargandoSeguimientoTramiteFisico.value = true;
     lstSeguimientoTramiteFisico.value = await _seguimientoTramiteService
         .obtenerSeguimientoTramiteFisico(pGestion, pOficinaId, pNroHr);
     descargandoSeguimientoTramiteFisico.value = false;
+    if (lstSeguimientoTramiteFisico.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  Future<void> cargarSeguimientoTramitePlataforma(int pTramiteId) async {
+  Future<bool> cargarSeguimientoTramitePlataforma(int pTramiteId) async {
     descargandoSeguimientoTramitePlataforma.value = true;
     lstSeguimientoTramitePlataforma.value = await _seguimientoTramiteService
         .obtenerSeguimientoTramitePlataforma(pTramiteId);
 
     print('resultado v2:   ${lstSeguimientoTramitePlataforma.length}');
     descargandoSeguimientoTramitePlataforma.value = false;
+    if (lstSeguimientoTramitePlataforma.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> cargarOficinas() async {

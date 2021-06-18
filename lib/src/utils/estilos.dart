@@ -88,7 +88,7 @@ TextStyle stlTextoNombrePromocion = GoogleFonts.imprima(
     textStyle: TextStyle(
         color: colores.azul_oscuro_aj,
         letterSpacing: 0.5,
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: FontWeight.bold));
 
 TextStyle stlTextoNombreEmpresa = GoogleFonts.quicksand(

@@ -109,7 +109,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
 
                     //pr.show();
 
-                    await showDialog(
+                    /*await showDialog(
                       context: context,
                       builder: (context) => FutureProgressDialog(
                           seguimientoTramiteController
@@ -118,19 +118,31 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
                                   selectedOficina!.oficinaId,
                                   int.parse(_controllerNroHr.text.trim())),
                           message: Text(variable.PROGRESS_BUSCANDO_HR)),
-                    );
+                    );*/
 
-                    //pr.hide();
+                    var result = await objFuncion.showProgress(
+                        context,
+                        seguimientoTramiteController
+                            .cargarSeguimientoTramiteFisico(
+                                int.parse(_controllerGestion.text.trim()),
+                                selectedOficina!.oficinaId,
+                                int.parse(_controllerNroHr.text.trim())));
+                    if (result) {
+                      Get.toNamed('tramite_fisico_detalle');
+                    } else {
+                      objFuncion.mostrarDialog(
+                          "Mensaje", "No se ha encontrado la Hoja de Ruta");
+                    }
 
-                    if (seguimientoTramiteController
+                    /*if (seguimientoTramiteController
                             .lstSeguimientoTramiteFisico.length >
                         0) {
-                      //Navigator.pushNamed(context, 'tramite_fisico_detalle');
                       Get.toNamed('tramite_fisico_detalle');
                     } else {
                       objFuncion.mostrarDialog(
                           "Mensaje", "No existe datos para mostrar");
-                    }
+                    }*/
+
                   }
                 },
               ),

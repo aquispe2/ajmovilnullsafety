@@ -89,32 +89,40 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
 
                     //pr.show();
 
-                    await showDialog(
+                    /*await showDialog(
                       context: context,
                       builder: (context) => FutureProgressDialog(
                           seguimientoTramiteController
                               .cargarSeguimientoTramitePlataforma(int.parse(
                                   _controllerBuscarPorTramiteId.text.trim())),
                           message: Text(variable.PROGRESS_BUSCANDO_TRAMITE)),
-                    );
+                    );*/
 
-                    //pr.hide();
+                    var result = await objFuncion.showProgress(
+                        context,
+                        seguimientoTramiteController
+                            .cargarSeguimientoTramitePlataforma(int.parse(
+                                _controllerBuscarPorTramiteId.text.trim())));
+                    if (result) {
+                      Get.toNamed('tramite_plataforma_detalle');
+                    } else {
+                      objFuncion.mostrarDialog(
+                          "Mensaje", "No se ha encontrado la Hoja de Ruta");
+                    }
 
-                    if (seguimientoTramiteController
+                    /*if (seguimientoTramiteController
                             .descargandoSeguimientoTramitePlataforma.value ==
                         false) {
                       if (seguimientoTramiteController
                               .lstSeguimientoTramitePlataforma.length >
                           0) {
-                        //Navigator.pushNamed(context, 'tramite_plataforma_detalle');
                         Get.toNamed('tramite_plataforma_detalle');
                       } else {
-                        /*_mostrarAlert(
-                        context, "Mensaje", "No existe datos para mostrar");*/
                         objFuncion.mostrarDialog(
                             "Mensaje", "No existe datos para mostrar");
                       }
-                    }
+                    }*/
+
                   }
                 },
               ),

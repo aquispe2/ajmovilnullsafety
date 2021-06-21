@@ -5,7 +5,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:movilaj/src/informate/controllers/aviso_controller.dart';
 import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
 import 'package:movilaj/src/informate/views/avisos_view.dart';
-import 'package:movilaj/src/notificaciones-push/services/push_notification_service.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/views/ListaPe_view.dart';
 import 'package:movilaj/src/promocion-empresarial/views/PromocionEmpresarialDetalle_view.dart';
@@ -22,6 +21,7 @@ import 'package:movilaj/src/seguimiento/views/tramitePlataformaDetalle_view.dart
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:get/get.dart';
 import 'package:movilaj/src/views/inicio_view.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 // para ssl
 class MyHttpOverrides extends HttpOverrides {
@@ -35,11 +35,6 @@ class MyHttpOverrides extends HttpOverrides {
 // =============
 
 void main() async {
-  //notificaion push
-  WidgetsFlutterBinding.ensureInitialized();
-  await PushNotificationService.initializeApp();
-  // ==============
-
   HttpOverrides.global = new MyHttpOverrides(); // para SSL
   runApp(MyApp());
 }
@@ -50,18 +45,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  /*@override
-  void initState() {
-    super.initState();
-    PushNotificationService.messagesStream.listen((message) {
-      print('My App: $message');
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
-    // cargamos oficinas
-
     // provechamos de iniclaizar los estados de getX
     Get.put(PromocionEmpresarialController());
     Get.put(ConsultasReclamosDenunciasController());
@@ -73,45 +58,38 @@ class _MyAppState extends State<MyApp> {
     seguimientoTramiteController.cargarOficinas();
     // =================
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: colores.azul_oscuro_aj,
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      /*routes: {
-          'inicio': (BuildContext context) => InicioView(),
-        },*/
-      getPages: [
-        GetPage(name: 'inicio', page: () => InicioView()),
-        GetPage(name: 'promociones_empresariales', page: () => ListaPeView()),
-        GetPage(
-            name: 'promociones_empresariales_detalle',
-            page: () => PromocionEmpresarialDetalleView()),
-        GetPage(name: 'busca_promociones', page: () => BuscaPeView()),
-        GetPage(name: 'juegos_loteria', page: () => JuegosLoteriaView()),
-        GetPage(name: 'juegos_azar', page: () => JuegosAzarView()),
-        GetPage(name: 'busca_casos', page: () => BuscaCasosView()),
-        GetPage(name: 'caso_detalle', page: () => CasoDetalleView()),
-        /*GetPage(
-              name: 'consultas_reclamos_siteweb',
-              page: () => ConsultasReclamosView()),
+    return OverlaySupport(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: colores.azul_oscuro_aj,
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        getPages: [
+          GetPage(name: 'inicio', page: () => InicioView()),
+          GetPage(name: 'promociones_empresariales', page: () => ListaPeView()),
           GetPage(
-              name: 'denuncias_anticorrupcion',
-              page: () => DenunciasAnticorrupcionView()),*/
-        GetPage(
-            name: 'seguimiento_tramites',
-            page: () => SeguimientoTramitesView()),
-        GetPage(
-            name: 'tramite_fisico_detalle',
-            page: () => TramiteFisicoDetalleView()),
-        GetPage(
-            name: 'tramite_plataforma_detalle',
-            page: () => TramitePlataformaDetalleView()),
-        GetPage(name: 'aviso', page: () => AvisosView()),
-      ],
-      initialRoute: 'inicio',
+              name: 'promociones_empresariales_detalle',
+              page: () => PromocionEmpresarialDetalleView()),
+          GetPage(name: 'busca_promociones', page: () => BuscaPeView()),
+          GetPage(name: 'juegos_loteria', page: () => JuegosLoteriaView()),
+          GetPage(name: 'juegos_azar', page: () => JuegosAzarView()),
+          GetPage(name: 'busca_casos', page: () => BuscaCasosView()),
+          GetPage(name: 'caso_detalle', page: () => CasoDetalleView()),
+          GetPage(
+              name: 'seguimiento_tramites',
+              page: () => SeguimientoTramitesView()),
+          GetPage(
+              name: 'tramite_fisico_detalle',
+              page: () => TramiteFisicoDetalleView()),
+          GetPage(
+              name: 'tramite_plataforma_detalle',
+              page: () => TramitePlataformaDetalleView()),
+          GetPage(name: 'aviso', page: () => AvisosView()),
+        ],
+        initialRoute: 'inicio',
+      ),
     );
   }
 }

@@ -1,5 +1,10 @@
 import 'dart:io';
 
+import 'package:badges/badges.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:movilaj/src/models/PushNotification_model.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,7 +19,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:movilaj/src/utils/apis.dart' as api;
 
+import '../widgets/NotificationBadge_widget.dart';
+import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'menu_principal_view.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
 
 class InicioView extends StatefulWidget {
   @override
@@ -24,6 +35,109 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   Funciones objFuncion = new Funciones();
   final normativaController = Get.find<NormativaController>();
+
+// ============= PUSH ======================
+  late final FirebaseMessaging _messaging;
+  late int _totalNotifications;
+  PushNotification? _notificationInfo;
+
+  void registerNotification() async {
+    await Firebase.initializeApp();
+    _messaging = FirebaseMessaging.instance;
+    _messaging.subscribeToTopic(api.TOPIC);
+
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+    NotificationSettings settings = await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        print(
+            'Message title: ${message.notification?.title}, body: ${message.notification?.body}, data: ${message.data}');
+
+        // Parse the message received
+        PushNotification notification = PushNotification(
+          title: message.notification?.title,
+          body: message.notification?.body,
+          dataTitle: message.data['title'],
+          dataBody: message.data['body'],
+        );
+
+        setState(() {
+          _notificationInfo = notification;
+          _totalNotifications++;
+        });
+
+        if (_notificationInfo != null) {
+          // For displaying the notification as an overlay
+          showSimpleNotification(
+            Text(_notificationInfo!.title!),
+            //leading: NotificationBadge(totalNotifications: _totalNotifications),
+            subtitle: Text(_notificationInfo!.body!),
+            background: colores.azul_claro_aj,
+            duration: Duration(seconds: 2),
+          );
+        }
+      });
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
+
+  // For handling notification when the app is in terminated state
+  checkForInitialMessage() async {
+    await Firebase.initializeApp();
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+    if (initialMessage != null) {
+      PushNotification notification = PushNotification(
+        title: initialMessage.notification?.title,
+        body: initialMessage.notification?.body,
+        dataTitle: initialMessage.data['title'],
+        dataBody: initialMessage.data['body'],
+      );
+
+      setState(() {
+        _notificationInfo = notification;
+        _totalNotifications++;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    _totalNotifications = 0;
+    registerNotification();
+    checkForInitialMessage();
+
+    // For handling notification when the app is in background
+    // but not terminated
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      PushNotification notification = PushNotification(
+        title: message.notification?.title,
+        body: message.notification?.body,
+        dataTitle: message.data['title'],
+        dataBody: message.data['body'],
+      );
+
+      setState(() {
+        _notificationInfo = notification;
+        _totalNotifications++;
+      });
+    });
+
+    super.initState();
+  }
+
+  // =======================fin push ====================
 
   @override
   Widget build(BuildContext context) {
@@ -215,56 +329,44 @@ class _InicioViewState extends State<InicioView> {
                           style: stlTextoIconHome,
                           textAlign: TextAlign.center)),
                   Container(),
-                  /*Obx(() => (storage.getItem('cantidadNot') != null &&
-                          storage.getItem('cantidadNot') > 0)
-                      ? Badge(
-                          position: BadgePosition.topEnd(top: 0, end: 0),
-                          padding: EdgeInsets.all(7),
-                          animationDuration: Duration(milliseconds: 300),
-                          animationType: BadgeAnimationType.slide,
-                          badgeContent: Text(
-                            avisoController.cantidadNotificacion.value.toString(),
-                            style: estiloTexto.stlTextoBlancoHome,
-                          ),
-                          child: _iconoCard(
-                              context,
-                              "aviso",
-                              Center(
-                                child: Container(
-                                    width: altoIcono,
-                                    height: anchoIcono,
-                                    child: Image.asset('assets/AVISO.png')),
-                              ),
-                              Text("Avisos",
-                                  style: stlTextoIconHome,
-                                  textAlign: TextAlign.center),
-                              null),
-                        )
-                      : _iconoCard(
-                          context,
-                          "aviso",
-                          Center(
-                            child: Container(
-                                width: altoIcono,
-                                height: anchoIcono,
-                                child: Image.asset('assets/AVISO.png')),
-                          ),
-                          Text("Avisos",
-                              style: stlTextoIconHome,
-                              textAlign: TextAlign.center),
-                          null)),*/
-                  _iconoCard(
-                      context,
-                      "aviso",
-                      Center(
-                        child: Container(
-                            width: altoIcono,
-                            height: anchoIcono,
-                            child: Image.asset('assets/AVISO.png')),
-                      ),
-                      Text("Avisos",
-                          style: stlTextoIconHome, textAlign: TextAlign.center),
-                      null)
+                  //NotificationBadge(totalNotifications: _totalNotifications),
+                  if (_totalNotifications == 0)
+                    _iconoCard(
+                        context,
+                        "aviso",
+                        Center(
+                          child: Container(
+                              width: altoIcono,
+                              height: anchoIcono,
+                              child: Image.asset('assets/AVISO.png')),
+                        ),
+                        Text("Avisos",
+                            style: stlTextoIconHome,
+                            textAlign: TextAlign.center),
+                        null)
+                  else
+                    Badge(
+                        position: BadgePosition.topEnd(top: 0, end: 0),
+                        padding: EdgeInsets.all(7),
+                        animationDuration: Duration(milliseconds: 300),
+                        animationType: BadgeAnimationType.slide,
+                        badgeContent: Text(
+                          _totalNotifications.toString(),
+                          style: estiloTexto.stlTextoBlancoHome,
+                        ),
+                        child: _iconoCard(
+                            context,
+                            "aviso",
+                            Center(
+                              child: Container(
+                                  width: altoIcono,
+                                  height: anchoIcono,
+                                  child: Image.asset('assets/AVISO.png')),
+                            ),
+                            Text("Avisos",
+                                style: stlTextoIconHome,
+                                textAlign: TextAlign.center),
+                            null)),
                 ],
               ),
               Text(
@@ -292,6 +394,8 @@ class _InicioViewState extends State<InicioView> {
             launch(url!)
             //_launchInWebViewWithJavaScript(url!)
           }
+        else if (path == 'aviso')
+          {_totalNotifications = 0, Get.toNamed(path)}
         else
           {Get.toNamed(path)}
       },

@@ -40,6 +40,8 @@ dependencies:
   firebase_messaging: ^10.0.1
   firebase_core: ^1.2.1
   store_redirect: ^2.0.0
+  overlay_support: ^1.2.1
+  badges: ^2.0.1
 
 
 dev_dependencies:

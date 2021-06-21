@@ -85,14 +85,15 @@ class PromocionEmpresarialController extends GetxController {
 
   // metodo para listar mecanica de premiación por pPromocionId
   void cargarMecanicaPremiacionByPromocionId(int pPromocionId) async {
+    print("OBTENER MECANICA 1 ");
     descargandoMecanica.value = true;
+    print("OBTENER MECANICA 2 ");
     final mecanica = await _promocionEmpresarialService
         .obtenerMecanicaPremiacion(pPromocionId: pPromocionId);
-    if (mecanica != null) {
-      objMecanicaPremiacion.value = mecanica;
-    } else {
-      objMecanicaPremiacion.value = new MecanicaPremiacionModel();
-    }
+    print("OBTENER MECANICA 3 ");
+
+    objMecanicaPremiacion.value = mecanica;
+    print("OBTENER MECANICA 4 ");
     descargandoMecanica.value = false;
   }
 

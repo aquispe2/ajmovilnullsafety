@@ -51,24 +51,24 @@ class LugarPremiacionModel {
 
   factory LugarPremiacionModel.fromJson(Map<String, dynamic> json) =>
       LugarPremiacionModel(
-        lugarPremiacionId: json["lugarPremiacionId"],
-        tramiteId: json["tramiteId"],
-        promocionEmpresarialId: json["promocionEmpresarialId"],
-        personaId: json["personaId"],
-        departamentoId: json["departamentoId"],
+        lugarPremiacionId: json["lugarPremiacionId"] ?? 0,
+        tramiteId: json["tramiteId"] ?? 0,
+        promocionEmpresarialId: json["promocionEmpresarialId"] ?? 0,
+        personaId: json["personaId"] ?? 0,
+        departamentoId: json["departamentoId"] ?? 0,
         direccion: json["direccion"] ?? "",
         fechaEntrega: DateTime.parse(json["fechaEntrega"]),
         fechaEntregaInicio: json["fechaEntregaInicio"],
         fechaRegistro: json["fechaRegistro"],
-        estadoId: json["estadoId"],
+        estadoId: json["estadoId"] ?? 0,
         observacion: json["observacion"] ?? "",
         departamento: json["departamento"] ?? "",
-        tipoInicioPremiacionId: json["tipoInicioPremiacionID"],
+        tipoInicioPremiacionId: json["tipoInicioPremiacionID"] ?? 0,
         tipoInicioPremiacionDescripcion:
             json["tipoInicioPremiacionDescripcion"] ?? "",
-        esAmpliado: json["esAmpliado"],
-        fechaE: json["fechaE"],
-        fechaEFin: json["fechaEFin"],
+        esAmpliado: json["esAmpliado"] ?? false,
+        fechaE: json["fechaE"] ?? "",
+        fechaEFin: json["fechaEFin"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

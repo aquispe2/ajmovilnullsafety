@@ -116,8 +116,10 @@ class _BuscaPeState extends State<BuscaPeView> {
       ),
     );
   }
-     Future<bool> _clickAtras() {
-    Get.toNamed("promociones_empresariales");
+
+  Future<bool> _clickAtras() {
+    //Get.toNamed("promociones_empresariales");
+    Get.offAllNamed(("promociones_empresariales"));
     return new Future.value(true);
   }
 }

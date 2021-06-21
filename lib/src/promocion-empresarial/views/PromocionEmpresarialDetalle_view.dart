@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movilaj/src/promocion-empresarial/controllers/PromocionEmpresarialController.dart';
 import 'package:movilaj/src/promocion-empresarial/models/lugarPremiacon_model.dart';
 import 'package:movilaj/src/promocion-empresarial/models/lugarSorteo_model.dart';
+
 import 'package:movilaj/src/promocion-empresarial/models/premiosofertados_model.dart';
 
 import 'package:movilaj/src/utils/apis.dart';
@@ -25,6 +26,7 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
 
   @override
   Widget build(BuildContext context) {
+    print("cargando todas las cosas");
     promocionEmpresarialController.cargarMecanicaPremiacionByPromocionId(
         promocionEmpresarialController.objPromocion.promocionEmpresarialId);
     promocionEmpresarialController.cargarPremiosOfertadosByPromocionId(
@@ -203,9 +205,6 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
   }
 
   Widget _crearComoParticipar() {
-    print(promocionEmpresarialController.objMecanicaPremiacion
-        .toJson()
-        .toString());
     return Obx(() => (promocionEmpresarialController
                 .objMecanicaPremiacion.value.mecanica !=
             "")
@@ -528,7 +527,9 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
   }
 
   Future<bool> _clickAtras() {
-    Get.toNamed("promociones_empresariales");
+    Get.offAllNamed(("promociones_empresariales"));
+    //Get.toNamed(("promociones_empresariales"));
+
     return new Future.value(true);
   }
 }

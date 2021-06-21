@@ -73,7 +73,7 @@ TextStyle stlTextoIconHomePequeno = GoogleFonts.quicksand(
     textStyle: TextStyle(
         color: Colors.black,
         letterSpacing: 0.0,
-        fontSize: 9,
+        fontSize: 8,
         fontWeight: FontWeight.bold));
 TextStyle stlTextoOpcionesMenuDesplegable = GoogleFonts.heebo(
     textStyle: TextStyle(

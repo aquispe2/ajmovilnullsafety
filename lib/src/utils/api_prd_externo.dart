@@ -10,4 +10,4 @@ const SITIO_SIAJ = "https://siaj.aj.gob.bo:40085";
 const TOPIC = 'anuncios_aj_prd';
 const VERSION_APP = 2.0;
 const TIMEOUT_SECOND = 60;
-const TUTORIAL = 'https://www.youtube.com/watch?v=85PL34RBguI';
+//const TUTORIAL = 'https://www.youtube.com/watch?v=85PL34RBguI';

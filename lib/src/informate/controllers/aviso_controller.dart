@@ -12,10 +12,18 @@ class AvisoController extends GetxController {
   var descargandoAviso = false.obs;
   // ====================
 
+  // para enlace
+  var vEnlace = "".obs;
+  // ==================
+
   Future obtenerAviso() async {
     descargandoAviso.value = true;
     lstAviso.value = await _avisoService.obtenerAviso();
     descargandoAviso.value = false;
+  }
+
+  Future obtenerEnlaceManual() async {
+    vEnlace.value = await _avisoService.obtenerEnlaceManual();
   }
 
   void limpiarAviso() async {

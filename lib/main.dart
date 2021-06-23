@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:movilaj/src/informate/controllers/aviso_controller.dart';
 import 'package:movilaj/src/informate/controllers/normativa_controller.dart';
@@ -54,9 +57,11 @@ class _MyAppState extends State<MyApp> {
         Get.put(SeguimientoTramiteController());
     Get.put(NormativaController());
 
-    Get.put(AvisoController());
+    final avisoController = Get.put(AvisoController());
     seguimientoTramiteController.cargarOficinas();
     // =================
+
+    avisoController.obtenerEnlaceManual();
 
     return OverlaySupport(
       child: GetMaterialApp(
@@ -88,7 +93,15 @@ class _MyAppState extends State<MyApp> {
               page: () => TramitePlataformaDetalleView()),
           GetPage(name: 'aviso', page: () => AvisosView()),
         ],
-        initialRoute: 'inicio',
+        //initialRoute: 'inicio',
+        home: AnimatedSplashScreen(
+            duration: 3000,
+            splash: 'assets/logo_gif.gif',
+            splashIconSize: double.infinity,
+            nextScreen: InicioView(),
+            splashTransition: SplashTransition.fadeTransition,
+            pageTransitionType: PageTransitionType.topToBottom,
+            backgroundColor: Colors.white),
       ),
     );
   }

@@ -22,4 +22,19 @@ class AvisoService {
       return new List.empty();
     }
   }
+
+  Future<String> obtenerEnlaceManual() async {
+    try {
+      final url = "${api.API_AJAYU}/aviso/obtenerEnlaceTutorialMovil";
+
+      final resp = await http
+          .get(Uri.parse(url))
+          .timeout(Duration(seconds: api.TIMEOUT_SECOND));
+      final decodeData = json.decode(resp.body)["message"] as String;
+
+      return decodeData;
+    } catch (e) {
+      return "";
+    }
+  }
 }

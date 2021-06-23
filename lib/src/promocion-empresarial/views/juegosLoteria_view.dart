@@ -60,26 +60,26 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Nombre del sorteo",
+                        Text("NOMBRE DEL SORTEO",
                             style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeLoteria[index].nombreSorteo,
-                          style: estiloTexto.stlSubTitulo,
+                          style: estiloTexto.stlTexto,
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Monto en cantidad premio mayor",
+                        Text("MONTO EN CANTIDAD PREMIO MAYOR",
                             style: estiloTexto.stlSubTitulo),
                         Text(
                           "Bs ${f.format((promocionEmpresarialController.lstJuegoDeLoteria[index].montoCantidadPremioMayor != 0) ? promocionEmpresarialController.lstJuegoDeLoteria[index].montoCantidadPremioMayor : 0)}",
-                          style: estiloTexto.stlSubTitulo,
+                          style: estiloTexto.stlTexto,
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Fecha del sorteo",
+                        Text("FECHA DEL SORTEO",
                             style: estiloTexto.stlSubTitulo),
                         Text(
                           DateFormat('dd/MM/yyyy').format(
@@ -90,7 +90,7 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Departamento", style: estiloTexto.stlSubTitulo),
+                        Text("DEPARTAMENTO", style: estiloTexto.stlSubTitulo),
                         Text(
                           promocionEmpresarialController
                               .lstJuegoDeLoteria[index].departamento,
@@ -111,7 +111,8 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                 child: Text(variable.NOEXISTE_DATOS),
               )));
   }
-     Future<bool> _clickAtras() {
+
+  Future<bool> _clickAtras() {
     Get.toNamed("inicio");
     return new Future.value(true);
   }

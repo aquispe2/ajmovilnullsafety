@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:badges/badges.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:movilaj/src/informate/controllers/aviso_controller.dart';
 import 'package:movilaj/src/models/PushNotification_model.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,7 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   Funciones objFuncion = new Funciones();
   final normativaController = Get.find<NormativaController>();
+  final avisoController = Get.find<AvisoController>();
 
 // ============= PUSH ======================
   late final FirebaseMessaging _messaging;
@@ -143,8 +146,8 @@ class _InicioViewState extends State<InicioView> {
   Widget build(BuildContext context) {
     normativaController.verificarVersion();
     var media = MediaQuery.of(context).size;
-    double altoIcono = (media.width < 400) ? 40 : 60;
-    double anchoIcono = (media.width < 400) ? 40 : 60;
+    double altoIcono = (media.width < 400) ? 90 : 115;
+    double anchoIcono = (media.width < 400) ? 90 : 115;
 
     TextStyle stlTextoIconHome = (media.width < 400)
         ? estiloTexto.stlTextoIconHomePequeno
@@ -224,22 +227,24 @@ class _InicioViewState extends State<InicioView> {
                       style: estiloTexto.stlTextoBlancoHomeBold,
                       textAlign: TextAlign.center,
                     ),
-                    GestureDetector(
-                      onTap: () => {
-                        launch(api.TUTORIAL)
-                      }, // hay q revisar no esta yendo al tutorial
-                      child: Card(
-                        elevation: 6,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Container(
-                              width: 30,
-                              height: 30,
-                              child: Image.asset(
-                                  'assets/LOGO_AJ_MOVIL_PEQUENO.png')),
-                        ),
-                      ),
-                    )
+                    Obx(() => (avisoController.vEnlace.value != "")
+                        ? GestureDetector(
+                            onTap: () => {
+                              launch(avisoController.vEnlace.value)
+                            }, // hay q revisar no esta yendo al tutorial
+                            child: Card(
+                              elevation: 6,
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.asset(
+                                        'assets/LOGO_AJ_MOVIL_PEQUENO.png')),
+                              ),
+                            ),
+                          )
+                        : Container()),
                   ],
                 ),
               ),
@@ -406,11 +411,8 @@ class _InicioViewState extends State<InicioView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              AspectRatio(
-                aspectRatio: 18.0 / 11.0,
-                child: icon,
-              ),
-              Padding(
+              icon
+              /*Padding(
                 padding: EdgeInsets.fromLTRB(16.0, 3.0, 16.0, 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -418,7 +420,7 @@ class _InicioViewState extends State<InicioView> {
                     text,
                   ],
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
@@ -471,11 +473,12 @@ class _InicioViewState extends State<InicioView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            AspectRatio(
+            /*AspectRatio(
               aspectRatio: 18.0 / 11.0,
               child: icon,
-            ),
-            Padding(
+            ),*/
+            icon
+            /*Padding(
               padding: EdgeInsets.fromLTRB(16.0, 3.0, 16.0, 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -483,7 +486,7 @@ class _InicioViewState extends State<InicioView> {
                   text,
                 ],
               ),
-            ),
+            ),*/
           ],
         ),
       ),

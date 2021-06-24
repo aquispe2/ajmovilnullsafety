@@ -205,38 +205,38 @@ class _BuscaPeDetalleState extends State<PromocionEmpresarialDetalleView> {
   }
 
   Widget _crearComoParticipar() {
-    return Obx(() => (promocionEmpresarialController
-                .objMecanicaPremiacion.value.mecanica !=
-            "")
-        ? Card(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: <Widget>[
-                  Column(
+    return Obx(() =>
+        (promocionEmpresarialController.vMecanicaPremiacion.value != "")
+            ? Card(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
                     children: <Widget>[
-                      Text(
-                        "COMO PARTICIPAR",
-                        style: estiloTexto.stlSubTitulo,
-                      ),
-                      Divider(
-                        color: Colors.indigo,
-                      ),
-                      Text(
-                        promocionEmpresarialController
-                            .objMecanicaPremiacion.value.mecanica,
-                        style: estiloTexto.stlTextoMediano,
-                        textAlign: TextAlign.justify,
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            "COMO PARTICIPAR",
+                            style: estiloTexto.stlSubTitulo,
+                          ),
+                          Divider(
+                            color: Colors.indigo,
+                          ),
+                          Text(
+                            promocionEmpresarialController
+                                .vMecanicaPremiacion.value,
+                            style: estiloTexto.stlTextoMediano,
+                            textAlign: TextAlign.justify,
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
-              ),
-            ),
-          )
-        : ((promocionEmpresarialController.descargandoMecanica.value == true)
-            ? CircularProgressCenterWidget()
-            : _noExisetDato("COMO PARTICIPAR", variable.NOEXISTE_DATOS)));
+                  ),
+                ),
+              )
+            : ((promocionEmpresarialController.descargandoMecanica.value ==
+                    true)
+                ? CircularProgressCenterWidget()
+                : _noExisetDato("COMO PARTICIPAR", variable.NOEXISTE_DATOS)));
   }
 
   Widget _crearLugaresPremiacion() {

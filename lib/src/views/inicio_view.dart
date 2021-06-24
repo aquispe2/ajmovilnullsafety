@@ -223,7 +223,7 @@ class _InicioViewState extends State<InicioView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Revisa nuestro tutorial ",
+                      "Revisa nuestros tutoriales ",
                       style: estiloTexto.stlTextoBlancoHomeBold,
                       textAlign: TextAlign.center,
                     ),

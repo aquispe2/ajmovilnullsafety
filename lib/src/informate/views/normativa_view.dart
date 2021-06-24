@@ -38,8 +38,8 @@ class _NormativaViewState extends State<NormativaView> {
       onWillPop: _clickAtras,
       child: Scaffold(
           appBar: AppBar(
-              title:
-                  Text(variable.NORMATIVA, style: estiloTexto.stlTituloBarBlanco),
+              title: Text(variable.NORMATIVA,
+                  style: estiloTexto.stlTituloBarBlanco),
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -54,7 +54,8 @@ class _NormativaViewState extends State<NormativaView> {
                       itemCount: normativaController.lstNormativa.length,
                       itemBuilder: (BuildContext context, int index) {
                         return _crearItemNormativa(
-                            pNormativa: normativaController.lstNormativa[index]);
+                            pNormativa:
+                                normativaController.lstNormativa[index]);
                       }),
                 )
               : ((normativaController.descargandoNormativa.value == true)
@@ -188,7 +189,8 @@ class _NormativaViewState extends State<NormativaView> {
       ),
     );
   }
-     Future<bool> _clickAtras() {
+
+  Future<bool> _clickAtras() {
     Get.toNamed("inicio");
     return new Future.value(true);
   }

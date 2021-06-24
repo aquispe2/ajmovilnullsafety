@@ -45,29 +45,35 @@ class PromocionEmpresarialService {
     return lstPromocionEmpresarial;
   }
 
-  Future<MecanicaPremiacionModel> obtenerMecanicaPremiacion(
-      {required int pPromocionId}) async {
+  Future<String> obtenerMecanicaPremiacion({required int pPromocionId}) async {
+    String mecanicaString = "";
     try {
       final url = "${api.API_NET}/ObtenerMecanicaPremiacion/$pPromocionId";
-      print("URL MECANICA: " + url);
+
       final resp = await http
           .get(Uri.parse(url))
           .timeout(Duration(seconds: api.TIMEOUT_SECOND));
-      print("RESPUESTA MECANICA: " + url);
+
       final decodeData = json.decode(resp.body) as List;
       List<MecanicaPremiacionModel> lstMecanicaPremiacion = decodeData
           .map((obj) => MecanicaPremiacionModel.fromJson(obj))
           .toList();
-      print("CANTIDAD MECANICA MECANICA: " +
-          lstMecanicaPremiacion.length.toString());
-      if (lstMecanicaPremiacion.length > 0)
-        return lstMecanicaPremiacion[0];
-      else
-        return new MecanicaPremiacionModel();
+
+      if (lstMecanicaPremiacion.length > 0) {
+        for (var i = 0; i < lstMecanicaPremiacion.length; i++) {
+          if (mecanicaString != "") {
+            mecanicaString =
+                mecanicaString + "\n\n" + lstMecanicaPremiacion[i].mecanica;
+          } else {
+            mecanicaString = lstMecanicaPremiacion[i].mecanica;
+          }
+        }
+      } else
+        mecanicaString = "";
     } catch (e) {
-      print("ERROR: " + e.toString());
-      return new MecanicaPremiacionModel();
+      mecanicaString = "";
     }
+    return mecanicaString;
   }
 
   Future<List<PremiosOfertadosModel>> obtenerPremiosOfertados(

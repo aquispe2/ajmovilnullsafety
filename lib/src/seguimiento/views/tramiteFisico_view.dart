@@ -127,6 +127,7 @@ class _TramiteFisicoViewState extends State<TramiteFisicoView> {
                                 int.parse(_controllerGestion.text.trim()),
                                 selectedOficina!.oficinaId,
                                 int.parse(_controllerNroHr.text.trim())));
+
                     if (result) {
                       Get.toNamed('tramite_fisico_detalle');
                     } else {

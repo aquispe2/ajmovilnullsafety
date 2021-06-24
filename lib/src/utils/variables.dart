@@ -19,6 +19,7 @@ const AVISOS = "Avisos";
 
 // MENSAJES
 const NOEXISTE_DATOS = "No existe datos";
+const NOEXISTE_DATOS_LOTERIA = "No existen sorteos de lotería vigentes";
 
 // MENSAJES DE PROGRESS DIALOG
 const PROGRESS_DESCARGANDO_ARCHIVO = "descargando archivo ...";

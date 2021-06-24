@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:movilaj/src/seguimiento/controllers/seguimientoTramiteController.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:movilaj/src/seguimiento/models/derivacionFisico_model.dart';
+import 'package:movilaj/src/seguimiento/models/derivacion_model.dart';
 import 'package:movilaj/src/utils/estilos.dart' as estiloTexto;
 import 'package:movilaj/src/utils/colores.dart' as colores;
 import 'package:movilaj/src/widgets/circularProgress_widget.dart';
@@ -49,6 +51,21 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
             itemCount:
                 seguimientoTramiteController.lstSeguimientoTramiteFisico.length,
             itemBuilder: (BuildContext context, int index) {
+              if (seguimientoTramiteController
+                          .lstSeguimientoTramiteFisico[index].flujoId !=
+                      null &&
+                  seguimientoTramiteController
+                          .lstSeguimientoTramiteFisico[index].flujoId >
+                      0) {
+                seguimientoTramiteController.cargarDerivacionTramiteFisico(
+                    seguimientoTramiteController
+                        .lstSeguimientoTramiteFisico[index].tramiteId);
+              } else {
+                seguimientoTramiteController.cargarDerivacionTramite(
+                    seguimientoTramiteController
+                        .lstSeguimientoTramiteFisico[index].tramiteId);
+              }
+
               return Card(
                   elevation: 5.0,
                   shape: RoundedRectangleBorder(
@@ -135,7 +152,7 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                           style: estiloTexto.stlSubTitulo,
                         ),
                         Container(
-                           width: MediaQuery.of(context).size.width * 0.60,
+                          width: MediaQuery.of(context).size.width * 0.60,
                           child: Text(
                             seguimientoTramiteController
                                 .lstSeguimientoTramiteFisico[index].referencia,
@@ -227,6 +244,48 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
                             ),
                           ],
                         ),
+                        Divider(
+                          color: Colors.indigo,
+                        ),
+                        Obx(() => (seguimientoTramiteController
+                                    .lstDerivacionesFisico.length >
+                                0)
+                            ? Column(
+                                children: [
+                                  Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.70,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 2),
+                                      child: Text(
+                                        'Listado de Derivaciones',
+                                        style: estiloTexto.stlSubTitulo,
+                                        textAlign: TextAlign.center,
+                                      )),
+                                  (seguimientoTramiteController.lstSeguimientoTramiteFisico[index].flujoId !=
+                                              null &&
+                                          seguimientoTramiteController.lstSeguimientoTramiteFisico[index].flujoId >
+                                              0)
+                                      ? ListView.builder(
+                                          shrinkWrap: true,
+                                          primary: false,
+                                          itemCount:
+                                              seguimientoTramiteController
+                                                  .lstDerivacionesFisico.length,
+                                          itemBuilder: (context, i) => _creatItemDerivacionFisico(
+                                              seguimientoTramiteController
+                                                  .lstDerivacionesFisico[i]))
+                                      : ListView.builder(
+                                          shrinkWrap: true,
+                                          primary: false,
+                                          itemCount:
+                                              seguimientoTramiteController
+                                                  .lstDerivaciones.length,
+                                          itemBuilder: (context, i) =>
+                                              _creatItemDerivacion(seguimientoTramiteController.lstDerivaciones[i]))
+                                ],
+                              )
+                            : Container())
                       ],
                     ),
                   ));
@@ -242,6 +301,88 @@ class _TramiteFisicoDetalleViewState extends State<TramiteFisicoDetalleView> {
             : Center(
                 child: Text("No se pudo descargar tramite físico"),
               )));
+  }
+
+  Widget _creatItemDerivacionFisico(DerivacionFisicoModel pDerivacionModel) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.done,
+              size: 15,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  child: Text(
+                    pDerivacionModel.etapa,
+                    style: estiloTexto.stlTextoMediano,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  child: Text(
+                    DateFormat('dd/MM/yyyy').format(
+                        DateTime.parse(pDerivacionModel.fechaRecepcion)),
+                    style: estiloTexto.stlTextoMediano,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _creatItemDerivacion(DerivacionModel pDerivacionModel) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.done,
+              size: 15,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  child: Text(
+                    pDerivacionModel.area,
+                    style: estiloTexto.stlTextoMediano,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  child: Text(
+                    DateFormat('dd/MM/yyyy').format(
+                        DateTime.parse(pDerivacionModel.fechaAsignacion)),
+                    style: estiloTexto.stlTextoMediano,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ],
+    );
   }
 
   Future<bool> _clickAtras() {

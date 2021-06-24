@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movilaj/src/seguimiento/models/derivacionFisico_model.dart';
+import 'package:movilaj/src/seguimiento/models/derivacion_model.dart';
 import 'package:movilaj/src/seguimiento/models/oficina_model.dart';
 import 'package:movilaj/src/seguimiento/models/seguimientoTramiteFisico_model.dart';
 import 'package:movilaj/src/seguimiento/models/seguimientoTramitePlataforma_model.dart';
@@ -60,5 +62,37 @@ class SeguimientoTramiteService {
         decodeData.map((obj) => OficinaModel.fromJson(obj)).toList();
 
     return lstOficinas;
+  }
+
+  Future<List<DerivacionModel>> obtenerDerivacionTramite(int pTramiteId) async {
+    final url = "${api.API_JAVA}/extras/generic_derivations_v3/$pTramiteId";
+    try {
+      final resp = await http
+          .get(Uri.parse(url))
+          .timeout(Duration(seconds: api.TIMEOUT_SECOND));
+      final decodeData = json.decode(resp.body) as List;
+      List<DerivacionModel> lstDerivaciones =
+          decodeData.map((obj) => DerivacionModel.fromJson(obj)).toList();
+      return lstDerivaciones;
+    } catch (e) {
+      return List<DerivacionModel>.empty();
+    }
+  }
+
+  Future<List<DerivacionFisicoModel>> obtenerDerivacionTramiteFisico(
+      int pTramiteId) async {
+    final url = "${api.API_JAVA}/extras/stages/$pTramiteId";
+    print("urlll: " + url);
+    try {
+      final resp = await http
+          .get(Uri.parse(url))
+          .timeout(Duration(seconds: api.TIMEOUT_SECOND));
+      final decodeData = json.decode(resp.body) as List;
+      List<DerivacionFisicoModel> lstDerivaciones =
+          decodeData.map((obj) => DerivacionFisicoModel.fromJson(obj)).toList();
+      return lstDerivaciones;
+    } catch (e) {
+      return List<DerivacionFisicoModel>.empty();
+    }
   }
 }

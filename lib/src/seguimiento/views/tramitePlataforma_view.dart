@@ -103,7 +103,14 @@ class _TramitePlataformaState extends State<TramitePlataforma> {
                         seguimientoTramiteController
                             .cargarSeguimientoTramitePlataforma(int.parse(
                                 _controllerBuscarPorTramiteId.text.trim())));
-                    if (result) {
+
+                    var result2 = await objFuncion.showProgress(
+                        context,
+                        seguimientoTramiteController.cargarDerivacionTramite(
+                            int.parse(
+                                _controllerBuscarPorTramiteId.text.trim())));
+
+                    if (result && result2) {
                       Get.toNamed('tramite_plataforma_detalle');
                     } else {
                       objFuncion.mostrarDialog(

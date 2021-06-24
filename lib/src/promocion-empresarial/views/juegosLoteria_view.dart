@@ -108,7 +108,7 @@ class _JuegosLoteriaViewState extends State<JuegosLoteriaView> {
                     borderRadius: BorderRadius.circular(10.0)),
                 child: Center(child: CircularProgressWidget()))
             : Center(
-                child: Text(variable.NOEXISTE_DATOS),
+                child: Text(variable.NOEXISTE_DATOS_LOTERIA),
               )));
   }
 

@@ -22,7 +22,7 @@ class PromocionEmpresarialController extends GetxController {
   // =================================
 
   // PARA MECANICA DE PREMIACIÓN
-  var objMecanicaPremiacion = new MecanicaPremiacionModel().obs;
+  var vMecanicaPremiacion = "".obs;
   var descargandoMecanica = false.obs;
   // ==========================
 
@@ -85,15 +85,10 @@ class PromocionEmpresarialController extends GetxController {
 
   // metodo para listar mecanica de premiación por pPromocionId
   void cargarMecanicaPremiacionByPromocionId(int pPromocionId) async {
-    print("OBTENER MECANICA 1 ");
     descargandoMecanica.value = true;
-    print("OBTENER MECANICA 2 ");
-    final mecanica = await _promocionEmpresarialService
+    vMecanicaPremiacion.value = await _promocionEmpresarialService
         .obtenerMecanicaPremiacion(pPromocionId: pPromocionId);
-    print("OBTENER MECANICA 3 ");
 
-    objMecanicaPremiacion.value = mecanica;
-    print("OBTENER MECANICA 4 ");
     descargandoMecanica.value = false;
   }
 
@@ -124,7 +119,7 @@ class PromocionEmpresarialController extends GetxController {
 
   // limpiarDetallePremios
   void limpiarDetallePremios() {
-    objMecanicaPremiacion.value = new MecanicaPremiacionModel();
+    vMecanicaPremiacion.value = "";
     lstPremiosOfertados.value = new List.empty();
     lstLugarPremiacion.value = new List.empty();
     lstLugarSorteo.value = new List.empty();
